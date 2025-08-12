@@ -25,7 +25,7 @@ function drawGrid(gameState) {
       if (!gameState.revealed[row][col]) {
         const cellFillColor =
           gameState.mapConfig[row][col] === CELL_TYPES.RIVER
-            ? COLORS.PRIMARY
+            ? COLORS.CELL_RIVER
             : null;
         draw3DRectEffect(
           x,
@@ -33,7 +33,7 @@ function drawGrid(gameState) {
           gameState.cellSize,
           gameState.cellSize,
           true,
-          2,
+          4,
           cellFillColor
         );
       } else {

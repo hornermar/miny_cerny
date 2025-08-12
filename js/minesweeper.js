@@ -10,7 +10,8 @@ let gameState = {
   startTime: null,
 };
 
-let shareTechFont;
+let touchStartTime = null;
+const LONG_TOUCH_DURATION = 500;
 
 function initializeGame() {
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
@@ -129,10 +130,6 @@ function setup() {
     return false;
   });
 }
-
-// --- Mobile long touch support ---
-let touchStartTime = null;
-const LONG_TOUCH_DURATION = 500;
 
 function touchStarted() {
   touchStartTime = Date.now();

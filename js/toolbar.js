@@ -4,6 +4,8 @@ function drawToolbar(gameState) {
   toolbarWidth = gameState.cols * gameState.cellSize + TOOLBAR.OFFSET * 2;
   const toolbarX = (window.innerWidth - toolbarWidth) / 2;
 
+  drawLevel(toolbarX);
+
   draw3DRectEffect(
     toolbarX,
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2,
@@ -28,8 +30,8 @@ function drawDisplay(x, y, displayText) {
   // Display text
   fill(COLORS.PRIMARY);
   textAlign(CENTER, CENTER);
-  textSize(TOOLBAR.TEXT_SIZE);
-  textFont("monospace");
+  textSize(DISPLAY.TEXT_SIZE);
+  textFont("Share Tech Mono");
   text(displayText, x + DISPLAY.WIDTH / 2, y + DISPLAY.HEIGHT / 2 + 2);
 }
 
@@ -63,7 +65,7 @@ function drawResetButton(gameState, toolbarX) {
 
   fill(0, 0, 0);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(26);
   text("🛫", buttonX + buttonSize / 2, buttonY + buttonSize / 2 + 2);
 
   window.resetButton = {
