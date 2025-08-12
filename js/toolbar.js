@@ -31,8 +31,7 @@ function drawDisplay(x, y, displayText) {
   fill(COLORS.PRIMARY);
   textAlign(CENTER, CENTER);
   textSize(DISPLAY.TEXT_SIZE);
-  textFont("Share Tech Mono");
-  text(displayText, x + DISPLAY.WIDTH / 2, y + DISPLAY.HEIGHT / 2 + 2);
+  text(displayText, x + DISPLAY.WIDTH / 2, y + DISPLAY.HEIGHT / 2 + 3);
 }
 
 function drawMineCounter(gameState, toolbarX) {
@@ -54,14 +53,7 @@ function drawResetButton(gameState, toolbarX) {
   const buttonY =
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2 + (TOOLBAR.HEIGHT - buttonSize) / 2;
 
-  draw3DRectEffect(
-    buttonX,
-    buttonY,
-    buttonSize,
-    buttonSize,
-    true,
-    TOOLBAR.OFFSET
-  );
+  draw3DRectEffect(buttonX, buttonY, buttonSize, buttonSize, true, 4);
 
   fill(0, 0, 0);
   textAlign(CENTER, CENTER);

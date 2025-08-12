@@ -1,10 +1,10 @@
 const LEVEL = {
   NAMES: ["Začátečník", "Pokročilý", "Praha 2050"],
-  BUTTON_WIDTH: 90,
+  BUTTON_WIDTH: 100,
   BUTTON_HEIGHT: 32,
   SPACING: 18,
   OFFSET_Y: 16,
-  TEXT_SIZE: 13,
+  TEXT_SIZE: 14,
 };
 
 const TOOLBAR = {
@@ -15,8 +15,8 @@ const TOOLBAR = {
 };
 
 const DISPLAY = {
-  WIDTH: 76,
-  HEIGHT: 44,
+  WIDTH: 80,
+  HEIGHT: 42,
   TEXT_SIZE: 42,
 };
 

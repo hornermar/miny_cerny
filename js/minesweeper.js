@@ -175,6 +175,7 @@ function touchEnded() {
 }
 
 function draw() {
+  textFont("Kode Mono");
   drawGame(gameState);
 }
 

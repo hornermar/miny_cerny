@@ -12,7 +12,7 @@ function drawLevel(toolbarX) {
   window.levelButtons = [];
   for (let i = 0; i < levelCount; i++) {
     const x = startX + i * (buttonWidth + spacing);
-    draw3DRectEffect(x, buttonY, buttonWidth, buttonHeight, true, 5);
+    draw3DRectEffect(x, buttonY, buttonWidth, buttonHeight, true, 4);
 
     fill(COLORS.PRIMARY);
     textAlign(CENTER, CENTER);
