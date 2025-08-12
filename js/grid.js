@@ -77,7 +77,7 @@ function drawCellContent(gameState, row, col, x, y) {
   if (gameState.flagged[row][col]) {
     fill(COLORS.FLAG);
     textSize(16);
-    text("🚩", x + gameState.cellSize / 2, y + gameState.cellSize / 2);
+    text("📌", x + gameState.cellSize / 2, y + gameState.cellSize / 2);
   } else if (gameState.revealed[row][col]) {
     if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
       fill(COLORS.MINE);

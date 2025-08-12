@@ -130,6 +130,53 @@ function setup() {
   });
 }
 
+// --- Mobile long touch support ---
+let touchStartTime = null;
+const LONG_TOUCH_DURATION = 500;
+
+function touchStarted() {
+  touchStartTime = Date.now();
+}
+
+function touchEnded() {
+  if (!touchStartTime) return true;
+
+  const duration = Date.now() - touchStartTime;
+  touchStartTime = null;
+
+  // Check if reset button was touched
+  const btn = window.resetButton;
+  if (
+    btn &&
+    mouseX >= btn.x &&
+    mouseX <= btn.x + btn.width &&
+    mouseY >= btn.y &&
+    mouseY <= btn.y + btn.height
+  ) {
+    resetGame();
+    return false;
+  }
+
+  // Compute cell coordinates once
+  const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
+  const col = Math.floor((mouseX - gridX) / gameState.cellSize);
+  const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+  const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
+
+  if (!isInGameArea) return false;
+
+  if (duration >= LONG_TOUCH_DURATION) {
+    toggleFlag(row, col);
+  } else {
+    if (gameState.currentGameState === "not started") {
+      gameState.startTime = Date.now();
+      gameState.currentGameState = "playing";
+    }
+    revealCell(row, col);
+  }
+  return false;
+}
+
 function draw() {
   drawGame(gameState);
 }
