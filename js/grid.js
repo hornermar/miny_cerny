@@ -75,14 +75,17 @@ function drawCellContent(gameState, row, col, x, y) {
   textSize(12);
 
   if (gameState.flagged[row][col]) {
-    fill(COLORS.FLAG);
     textSize(16);
     text("🏴", x + gameState.cellSize / 2, y + gameState.cellSize / 2);
   } else if (gameState.revealed[row][col]) {
-    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
-      fill(COLORS.MINE);
-      textSize(16);
-      text("🦋", x + gameState.cellSize / 2, y + gameState.cellSize / 2);
+    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {        
+      image(
+          babyImg,
+          x + gameState.cellSize * 0.05,
+          y + gameState.cellSize * 0.05,
+          gameState.cellSize * 0.9,
+          gameState.cellSize * 0.9
+        );
     } else {
       let neighborCount = getNeighborMineCount(
         row,

@@ -1,3 +1,8 @@
+let babyImg;
+
+function preload() {
+  babyImg = loadImage('assets/baby.png');
+}
 let gameState = {
   rows: GRID.ROWS,
   cols: GRID.COLS,
@@ -8,12 +13,20 @@ let gameState = {
   flagged: [],
   mapConfig: MAP,
   startTime: null,
+  level: 1, // 0, 1, 2
 };
 
 let touchStartTime = null;
 const LONG_TOUCH_DURATION = 500;
+const minesArray = [MINES_0, MINES_1, MINES_2];
 
 function initializeGame() {
+  gameState.mapConfig = MAP.map((row) => row.slice());
+
+  for (const [row, col] of minesArray[gameState.level]) {
+    gameState.mapConfig[row][col] = CELL_TYPES.MINE;
+  }
+
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
 
   const gridBorderWidth = TOOLBAR.OFFSET * 2;
@@ -111,10 +124,11 @@ function checkWin() {
   }
 }
 
-function resetGame() {
+function resetGame(level) {
   gameState.currentGameState = "not started";
   gameState.firstClick = true;
   gameState.startTime = null;
+  gameState.level = level ?? gameState.level;
   initializeGame();
 }
 
@@ -175,7 +189,7 @@ function touchEnded() {
 }
 
 function draw() {
-  textFont("Kode Mono");
+  textFont(COMMON.fontFamily);
   drawGame(gameState);
 }
 

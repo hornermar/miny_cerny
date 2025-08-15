@@ -1,5 +1,9 @@
+const COMMON = {
+  fontFamily: "Kode Mono"
+}
+
 const LEVEL = {
-  NAMES: ["Začátečník", "Pokročilý", "Praha 2050"],
+  NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
   BUTTON_WIDTH: 100,
   BUTTON_HEIGHT: 32,
   SPACING: 18,
@@ -30,18 +34,16 @@ const GRID = {
 
 const COLORS = {
   BACKGROUND: [186, 184, 186],
-  PRIMARY: [0, 129, 221],
+  PRIMARY: [255, 107, 191],
 
   TEXT_PRIMARY: [51, 51, 51],
   TEXT_TITLE: [34, 34, 34],
   TEXT_WIN: [76, 175, 80],
   TEXT_LOSE: [244, 67, 54],
 
-  CELL_MINE: [178, 45, 192],
-  CELL_RIVER: [0, 129, 221],
+  CELL_MINE: [255, 107, 191],
+  CELL_RIVER: [120, 120, 120],
 
-  FLAG: [244, 67, 54],
-  MINE: [178, 45, 192],
 
   EFFECT_HIGHLIGHT: [227, 225, 227],
   EFFECT_SHADOW: [135, 134, 135],
