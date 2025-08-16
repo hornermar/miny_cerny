@@ -4,8 +4,8 @@ const COMMON = {
 
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
-  BUTTON_WIDTH: 100,
-  BUTTON_HEIGHT: 32,
+  BUTTON_WIDTH: 108,
+  BUTTON_HEIGHT: 40,
   SPACING: 18,
   OFFSET_Y: 16,
   TEXT_SIZE: 14,
@@ -19,9 +19,9 @@ const TOOLBAR = {
 };
 
 const DISPLAY = {
-  WIDTH: 80,
-  HEIGHT: 42,
-  TEXT_SIZE: 42,
+  WIDTH: 98,
+  HEIGHT: 50,
+  TEXT_SIZE: 52,
 };
 
 const GRID = {
@@ -33,30 +33,36 @@ const GRID = {
 };
 
 const COLORS = {
-  BACKGROUND: [186, 184, 186],
+  BACKGROUND: [200, 200, 200],
   PRIMARY: [255, 107, 191],
+  BLACK: [0, 0, 0],
 
-  TEXT_PRIMARY: [51, 51, 51],
-  TEXT_TITLE: [34, 34, 34],
-  TEXT_WIN: [76, 175, 80],
-  TEXT_LOSE: [244, 67, 54],
+   TEXT_PRIMARY: [70, 70, 70],
+  // TEXT_TITLE: [34, 34, 34],
+  // TEXT_WIN: [76, 175, 80],
+  // TEXT_LOSE: [244, 67, 54],
 
   CELL_MINE: [255, 107, 191],
-  CELL_RIVER: [120, 120, 120],
+  CELL_RIVER: [150, 150, 150],
 
 
-  EFFECT_HIGHLIGHT: [227, 225, 227],
-  EFFECT_SHADOW: [135, 134, 135],
+  EFFECT_HIGHLIGHT: [240, 240, 240],
+  EFFECT_SHADOW: [130, 130, 130],
+};
 
-  //TODO: Change colors
-  NUMBERS: {
-    1: [33, 150, 243], // Blue
-    2: [76, 175, 80], // Green
-    3: [255, 87, 34], // Deep orange
-    4: [156, 39, 176], // Purple
-    5: [233, 30, 99], // Pink
-    6: [0, 188, 212], // Cyan
-    7: [96, 125, 139], // Blue gray
-    8: [121, 85, 72], // Brown
-  },
+COLORS.NUMBERS = {
+  1: COLORS.EFFECT_HIGHLIGHT, 
+  2: COLORS.PRIMARY, 
+  3: [80, 80, 80],
+  4: [189, 77, 140], 
+  5: [50, 50, 50], 
+  6: [143, 59, 106],     
+  7: COLORS.TEXT_PRIMARY,    
+  8: COLORS.BLACK, 
+};
+
+const CELL_TYPES = {
+  CITY: 0,
+  MINE: 1,
+  RIVER: 2,
 };

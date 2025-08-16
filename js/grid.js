@@ -70,7 +70,6 @@ function drawCellBackground(gameState, row, col, x, y) {
 }
 
 function drawCellContent(gameState, row, col, x, y) {
-  fill(COLORS.TEXT_PRIMARY);
   textAlign(CENTER, CENTER);
   textSize(12);
 
@@ -107,11 +106,13 @@ function drawCellContent(gameState, row, col, x, y) {
 
 function drawNumberWithColor(count, x, y) {
   noStroke();
+
   if (COLORS.NUMBERS[count]) {
+    push();
     fill(COLORS.NUMBERS[count]);
-  } else {
-    fill(COLORS.TEXT_PRIMARY);
-  }
-  textSize(14);
-  text(count, x, y);
+    textSize(gameState.cellSize * 0.6);
+    textStyle(BOLD)
+    text(count, x + 1, y + 2);
+    pop()
+  } 
 }

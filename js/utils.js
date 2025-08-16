@@ -81,11 +81,13 @@ function draw3DRectEffect(
   strokeWidth = 10,
   fillColor = null
 ) {
-  const darkGray = COLORS.EFFECT_SHADOW;
-  const lightGray = COLORS.EFFECT_HIGHLIGHT;
+const colorAdjustment = 20;
 
-  const topLeftColor = isRaised ? lightGray : darkGray;
-  const bottomRightColor = isRaised ? darkGray : lightGray;
+  const dark = fillColor ? [fillColor[0] - colorAdjustment, fillColor[1] - colorAdjustment, fillColor[2] - colorAdjustment] : COLORS.EFFECT_SHADOW;
+  const light = fillColor ? [fillColor[0] + colorAdjustment, fillColor[1] + colorAdjustment, fillColor[2] + colorAdjustment] : COLORS.EFFECT_HIGHLIGHT;
+
+  const topLeftColor = isRaised ? light : dark;
+  const bottomRightColor = isRaised ? dark : light;
 
   // First draw the main rectangle background
   fill(fillColor || COLORS.BACKGROUND);

@@ -26,11 +26,3 @@ const MINES_1 = [
 ];
 
 const MINES_2 = []
-
-
-
-const CELL_TYPES = {
-  CITY: 0,
-  MINE: 1,
-  RIVER: 2,
-};

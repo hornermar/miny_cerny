@@ -24,8 +24,8 @@ function drawDisplay(x, y, displayText) {
   draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, 3);
 
   // Draw display background
-  fill(0, 0, 0);
-  rect(x + 3, y + 3, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 6);
+  fill(COLORS.BLACK);
+  rect(x + 3, y + 1, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 6);
 
   // Display text
   fill(COLORS.PRIMARY);
@@ -58,7 +58,7 @@ function drawResetButton(gameState, toolbarX) {
   fill(0, 0, 0);
   textAlign(CENTER, CENTER);
   textSize(26);
-  text("🛫", buttonX + buttonSize / 2, buttonY + buttonSize / 2 + 2);
+  text("", buttonX + buttonSize / 2, buttonY + buttonSize / 2 + 2);
 
   window.resetButton = {
     x: buttonX,
