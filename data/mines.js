@@ -130,7 +130,7 @@ const mines = [
   },
      {
     id: 23,
-    name: "Kavárna Mlýnská",
+    name: "Bar v kavárně Mlýnská",
     description: "Popis",
     position: [4, 3],
   },
@@ -191,6 +191,9 @@ const mines = [
   // },
 ];
 
-const MINES_1 = mines.map(artwork => artwork.position);
-const MINES_0 = []
-const MINES_2 = []
+const mines0Ids = [2, 12, 15, 16]
+const MINES_0 = mines.filter((mine) => mines0Ids.includes(mine.id)).map((mine) => mine.position);
+
+const MINES_1 = mines.map(mine => mine.position);
+
+const MINES_2 = mines.map(mine => mine.position);
