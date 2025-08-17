@@ -4,11 +4,11 @@ const COMMON = {
 
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
-  BUTTON_WIDTH: 108,
+  BUTTON_WIDTH: 98,
   BUTTON_HEIGHT: 40,
   SPACING: 18,
   OFFSET_Y: 16,
-  TEXT_SIZE: 14,
+  TEXT_SIZE: 13,
 };
 
 const TOOLBAR = {
@@ -25,7 +25,8 @@ const DISPLAY = {
 };
 
 const GRID = {
-  MIN_CELL_SIZE: 10,
+  MIN_CELL_SIZE: 20,
+  MAX_CELL_SIZE: 30,
   ROWS: MAP.length,
   COLS: MAP[0].length,
   OFFSET_X: 14,
