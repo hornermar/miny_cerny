@@ -9,6 +9,7 @@ let gameState = {
   mapConfig: MAP,
   startTime: null,
   level: 1, // 0, 1, 2
+  endMine: null
 };
 
 let touchStartTime = null;
@@ -69,6 +70,7 @@ function draw() {
 function drawGame(gameState) {
   drawToolbar(gameState);
   drawGrid(gameState);
+  drawStatus(gameState);
   //drawGameStatus(gameState);
 }
 
@@ -77,6 +79,7 @@ function resetGame(level) {
   gameState.firstClick = true;
   gameState.startTime = null;
   gameState.level = level ?? gameState.level;
+  gameState.endMine = null;
   initializeGame();
 }
 
@@ -157,7 +160,12 @@ function touchEnded() {
       gameState.startTime = Date.now();
       gameState.currentGameState = "playing";
     }
-    revealCell(row, col);
+
+    if (gameState.revealed[row][col]) {
+      revealSafeNeighbors(row, col);
+    } else {
+      revealCell(row, col);
+    }
   }
   return false;
 }

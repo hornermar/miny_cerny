@@ -12,6 +12,7 @@ function revealCell(row, col) {
   if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
     gameState.currentGameState = "lost";
     revealAllMines();
+    gameState.endMine = [row, col];
     return;
   }
 
