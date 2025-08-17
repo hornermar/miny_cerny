@@ -9,7 +9,8 @@ let gameState = {
   mapConfig: MAP,
   startTime: null,
   level: 1, // 0, 1, 2
-  endMine: null
+  endMine: null,
+  endTime: null
 };
 
 let touchStartTime = null;
@@ -25,6 +26,7 @@ function preload() {
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   background(COLORS.BACKGROUND);
+  textFont(COMMON.fontFamily);
   initializeGame();
 
   // Prevent right-click context menu on the canvas
@@ -37,8 +39,13 @@ function setup() {
 function initializeGame() {
   gameState.mapConfig = MAP.map((row) => row.slice());
 
-  for (const [row, col] of minesArray[gameState.level]) {
+  const minePositions = minesArray[gameState.level];
+  for (const [row, col] of minePositions) {
     gameState.mapConfig[row][col] = CELL_TYPES.MINE;
+  }
+
+  if (gameState.level === 2) {
+    addRandomMines(0.7);
   }
 
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
@@ -63,15 +70,13 @@ function initializeGame() {
 }
 
 function draw() {
-  textFont(COMMON.fontFamily);
   drawGame(gameState);
 }
 
 function drawGame(gameState) {
   drawToolbar(gameState);
   drawGrid(gameState);
-  drawStatus(gameState);
-  //drawGameStatus(gameState);
+  //  drawStatus(gameState);
 }
 
 function resetGame(level) {
@@ -80,6 +85,7 @@ function resetGame(level) {
   gameState.startTime = null;
   gameState.level = level ?? gameState.level;
   gameState.endMine = null;
+  gameState.endTime = null;
   initializeGame();
 }
 

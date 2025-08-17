@@ -13,6 +13,7 @@ function revealCell(row, col) {
     gameState.currentGameState = "lost";
     revealAllMines();
     gameState.endMine = [row, col];
+    gameState.endTime = Date.now();
     return;
   }
 
@@ -73,6 +74,7 @@ function checkWin() {
 
   if (revealedCount === totalSafeCells) {
     gameState.currentGameState = "won";
+    gameState.endTime = Date.now();
   }
 }
 
@@ -108,6 +110,21 @@ function revealSafeNeighbors(row, col) {
           !gameState.revealed[nRow][nCol]
         ) {
           revealCell(nRow, nCol);
+        }
+      }
+    }
+  }
+}
+
+function addRandomMines(probability) {
+  for (let row = 0; row < gameState.rows; row++) {
+    for (let col = 0; col < gameState.cols; col++) {
+      if (
+        gameState.mapConfig[row][col] !== CELL_TYPES.MINE &&
+        gameState.mapConfig[row][col] !== CELL_TYPES.RIVER
+      ) {
+        if (Math.random() < probability) {
+          gameState.mapConfig[row][col] = CELL_TYPES.MINE;
         }
       }
     }

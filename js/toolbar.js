@@ -110,8 +110,17 @@ function drawResetButton(gameState, toolbarX) {
 
 function drawTimer(gameState, toolbarX) {
   let elapsedTime = 0;
-  if (gameState.currentGameState === "playing" && gameState.startTime) {
-    elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000);
+  if (gameState.startTime) {
+    if (
+      gameState.currentGameState === "won" ||
+      gameState.currentGameState === "lost"
+    ) {
+      if (gameState.endTime) {
+        elapsedTime = Math.floor((gameState.endTime - gameState.startTime) / 1000);
+      }
+    } else if (gameState.currentGameState === "playing") {
+      elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000);
+    }
     elapsedTime = Math.min(elapsedTime, 999);
   }
 
