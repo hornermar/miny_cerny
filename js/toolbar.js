@@ -1,15 +1,14 @@
-let toolbarWidth; // TODO: Use grid width from gameState?
+
 
 function drawToolbar(gameState) {
-  toolbarWidth = gameState.cols * gameState.cellSize + TOOLBAR.OFFSET * 2;
-  const toolbarX = (window.innerWidth - toolbarWidth) / 2;
+  const toolbarX = (window.innerWidth - gameState.gridWidth) / 2;
 
-  drawLevels(toolbarX);
+  drawLevels(gameState, toolbarX);
 
   draw3DRectEffect(
     toolbarX,
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2,
-    toolbarWidth,
+    gameState.gridWidth,
     TOOLBAR.HEIGHT,
     false,
     TOOLBAR.OFFSET
@@ -20,13 +19,13 @@ function drawToolbar(gameState) {
   drawTimer(gameState, toolbarX);
 }
 
-function drawLevels(toolbarX) {
+function drawLevels(gameState, toolbarX) {
   const levelCount = LEVEL.NAMES.length;
   const buttonWidth = LEVEL.BUTTON_WIDTH;
   const buttonHeight = LEVEL.BUTTON_HEIGHT;
   const buttonY = LEVEL.OFFSET_Y;
 
-  const availableWidth = toolbarWidth - buttonWidth * levelCount;
+  const availableWidth = gameState.gridWidth - buttonWidth * levelCount;
   const spacing = levelCount > 1 ? availableWidth / (levelCount - 1) : 0;
   const startX = toolbarX;
 
@@ -89,7 +88,7 @@ function drawMineCounter(gameState, toolbarX) {
 
 function drawResetButton(gameState, toolbarX) {
   const buttonSize = DISPLAY.HEIGHT;
-  const buttonX = toolbarX + toolbarWidth / 2 - buttonSize / 2;
+  const buttonX = toolbarX + gameState.gridWidth / 2 - buttonSize / 2;
   const buttonY =
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2 + (TOOLBAR.HEIGHT - buttonSize) / 2;
 
@@ -126,7 +125,7 @@ function drawTimer(gameState, toolbarX) {
 
   const timerDisplayX =
     toolbarX +
-    toolbarWidth -
+    gameState.gridWidth -
     DISPLAY.WIDTH -
     (TOOLBAR.HEIGHT - DISPLAY.HEIGHT) / 2;
   const timerDisplayY =

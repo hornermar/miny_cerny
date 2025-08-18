@@ -2,6 +2,7 @@ let gameState = {
   rows: GRID.ROWS,
   cols: GRID.COLS,
   cellSize: GRID.MIN_CELL_SIZE,
+  gridWidth: null,
   totalMines: 0,
   currentGameState: "not started", // 'not started', 'playing', 'won', 'lost'
   revealed: [],
@@ -58,6 +59,7 @@ function initializeGame() {
     GRID.MIN_CELL_SIZE,
     Math.min(calculatedCellSize, GRID.MAX_CELL_SIZE)
   );
+  gameState.gridWidth = gameState.cols * gameState.cellSize + gridBorderWidth;
 
   for (let row = 0; row < gameState.rows; row++) {
     gameState.revealed[row] = [];
@@ -76,7 +78,7 @@ function draw() {
 function drawGame(gameState) {
   drawToolbar(gameState);
   drawGrid(gameState);
-  //  drawStatus(gameState);
+  drawStatus(gameState);
 }
 
 function resetGame(level) {

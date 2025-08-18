@@ -1,6 +1,6 @@
 const COMMON = {
-  fontFamily: "Kode Mono"
-}
+  fontFamily: "Kode Mono",
+};
 
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
@@ -36,16 +36,16 @@ const GRID = {
 const STATUS = {
   HEIGHT: 100,
   TEXT_SIZE: 12,
-  OFFSET_Y: 30,
-  MINE_INFO_OFFSET_Y: 60,
-}
+  OFFSET_Y: 20,
+  MINE_INFO_OFFSET_Y: 20,
+};
 
 const COLORS = {
   BACKGROUND: [200, 200, 200],
   PRIMARY: [255, 107, 191],
   BLACK: [0, 0, 0],
 
-   TEXT_PRIMARY: [70, 70, 70],
+  TEXT_PRIMARY: [70, 70, 70],
   // TEXT_TITLE: [34, 34, 34],
   // TEXT_WIN: [76, 175, 80],
   // TEXT_LOSE: [244, 67, 54],
@@ -53,20 +53,19 @@ const COLORS = {
   CELL_MINE: [255, 107, 191],
   CELL_RIVER: [150, 150, 150],
 
-
   EFFECT_HIGHLIGHT: [240, 240, 240],
   EFFECT_SHADOW: [130, 130, 130],
 };
 
 COLORS.NUMBERS = {
-  1: COLORS.EFFECT_HIGHLIGHT, 
-  2: COLORS.PRIMARY, 
+  1: COLORS.EFFECT_HIGHLIGHT,
+  2: COLORS.PRIMARY,
   3: [80, 80, 80],
-  4: [189, 77, 140], 
-  5: [50, 50, 50], 
-  6: [143, 59, 106],     
-  7: COLORS.TEXT_PRIMARY,    
-  8: COLORS.BLACK, 
+  4: [189, 77, 140],
+  5: [50, 50, 50],
+  6: [143, 59, 106],
+  7: COLORS.TEXT_PRIMARY,
+  8: COLORS.BLACK,
 };
 
 const CELL_TYPES = {

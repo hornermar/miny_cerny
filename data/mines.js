@@ -45,7 +45,7 @@ const mines = [
   {
     id: 8,
     name: "Maso",
-    description: "Popis",
+    description: "Auta na MeetFactory jsou už od roku 2007.",
     position: [10, 3],
   },
   {
@@ -64,25 +64,26 @@ const mines = [
   {
     id: 11,
     name: "Pegasové",
-    description: "Popis",
+    description: "Napůl koně a napůl motory?",
     position: [10, 0],
   },
   {
     id: 12,
     name: "Viselec",
-    description: "Popis",
+    description: "Hasiče nevolej. Ale přehlédl si sochu Sigmunda Freuda.",
     position: [4, 6],
   },
   {
     id: 13,
     name: "Máj",
-    description: "Popis",
+    description:
+      "Myslel*a sis, že jde o dočasnou instalaci, co? Tak tu pořád je!",
     position: [5, 7],
   },
   {
     id: 14,
     name: 'Franz Kafka "K"',
-    description: "Popis",
+    description: "To si přes ty davy turistů netušil*a, že se tady něco děje?",
     position: [5, 8],
   },
   {
@@ -94,7 +95,8 @@ const mines = [
   {
     id: 16,
     name: "Miminka",
-    description: "Popis",
+    description:
+      "Věděl*a si, že původně šlo o dočasnou instalaci, ale díky kladnému ohlasu zůstala natrvalo? Škoda, že to tak nefunguje i obráceně.",
     position: [5, 9],
   },
   {
@@ -106,7 +108,7 @@ const mines = [
   {
     id: 18,
     name: "Lilith",
-    description: "Popis",
+    description: 'Narazil*a jsi na "symbol rovnoprávnosti a nezávisloti žen".',
     position: [3, 9],
   },
   {
@@ -115,41 +117,41 @@ const mines = [
     description: "Popis",
     position: [10, 4],
   },
-  
-     {
+
+  {
     id: 21,
     name: "Pamětní deska Václava Havla",
     description: "Popis",
     position: [5, 7],
   },
-   {
+  {
     id: 22,
     name: "H-A-V-E-L",
     description: "Popis",
     position: [6, 6],
   },
-     {
+  {
     id: 23,
     name: "Bar v kavárně Mlýnská",
     description: "Popis",
     position: [4, 3],
   },
-     {
+  {
     id: 24,
     name: "Tři ženy na domě",
     description: "Popis",
     position: [5, 6],
   },
-   {
+  {
     id: 25,
     name: "The Italians Wine Food",
     description: "Popis",
     position: [7, 4],
   },
-   {
+  {
     id: 26,
     name: "Embryo",
-    description: "Popis",
+    description: "Není zas tak vidět. Bylo vytvořeno k 50. výročí divadla Na zábradlí.",
     position: [6, 7], // Není ideální umítění. Posunout - ale není už kam! :)
   },
   // Mimo mapu
@@ -191,9 +193,11 @@ const mines = [
   // },
 ];
 
-const mines0Ids = [2, 12, 15, 16]
-const MINES_0 = mines.filter((mine) => mines0Ids.includes(mine.id)).map((mine) => mine.position);
+const mines0Ids = [2, 12, 15, 16];
+const MINES_0 = mines
+  .filter((mine) => mines0Ids.includes(mine.id))
+  .map((mine) => mine.position);
 
-const MINES_1 = mines.map(mine => mine.position);
+const MINES_1 = mines.map((mine) => mine.position);
 
-const MINES_2 = mines.map(mine => mine.position);
+const MINES_2 = mines.map((mine) => mine.position);

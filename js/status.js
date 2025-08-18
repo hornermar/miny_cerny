@@ -2,64 +2,52 @@ function drawStatus(gameState) {
   const gridBottomY = GRID.OFFSET_Y + gameState.rows * gameState.cellSize;
   let y = gridBottomY + STATUS.OFFSET_Y;
 
+
   textAlign(CENTER, TOP);
-  // Responsive text size: scale down for small screens
-  let responsiveTextSize = STATUS.TEXT_SIZE;
-  if (width < 500) {
-    responsiveTextSize = Math.max(14, Math.floor(width / 25));
-  }
-  textSize(responsiveTextSize);
+
+  textSize(STATUS.TEXT_SIZE);
   fill(COLORS.TEXT_PRIMARY);
 
-
   fill(COLORS.BACKGROUND);
-  //   noStroke();
-  stroke(0, 0, 0)
-  rect(0, y , window.innerWidth, STATUS.HEIGHT);
+  noStroke();
+  //stroke(0, 0, 0)
+  rect(0, y - 2, window.innerWidth, STATUS.HEIGHT);
 
   fill(COLORS.TEXT_PRIMARY);
   if (gameState.currentGameState === "not started") {
-    drawWrappedText("Najdi všechny sochy a objekty na mapě! Klikni na libovolné pole pro začátek.", width / 2, y, width * 0.95);
+    drawWrappedText(
+      "Najdi na mapě všechna díla Davida Černého! Klikni na libovolné pole pro začátek.",
+      width / 2,
+      y,
+      gameState.gridWidth
+    );
     return;
   }
 
-  if (gameState.currentGameState === "won") {
-    drawWrappedText("Gratulujeme! Našel jsi všechny objekty!", width / 2, y, width * 0.95);
-    return;
-  }
+  if (gameState.currentGameState === "lost" || gameState.currentGameState === "won") {
+    // Use endTime if available, otherwise use current time
+    let msElapsed = (gameState.endTime && gameState.startTime)
+      ? (gameState.endTime - gameState.startTime)
+      : (Date.now() - gameState.startTime);
+    drawWrappedText(`Čas: ${formatTime(msElapsed)} s`, width / 2, y, gameState.gridWidth);
 
-  if (gameState.currentGameState === "lost") {
-    drawWrappedText("Konec hry! Narazil jsi na objekt:", width / 2, y, width * 0.95);
-    y += STATUS.MINE_INFO_OFFSET_Y;
-    drawEndMineInfo(gameState, y);
-    return;
-  }
-}
 
-function drawWrappedText(txt, x, y, maxWidth) {
-  const words = txt.split(' ');
-  let line = '';
-  let lineHeight = textAscent() + textDescent() + 4;
-  let yy = y;
-  for (let n = 0; n < words.length; n++) {
-    let testLine = line + words[n] + ' ';
-    let testWidth = textWidth(testLine);
-    if (testWidth > maxWidth && n > 0) {
-      text(line, x, yy);
-      line = words[n] + ' ';
-      yy += lineHeight;
-    } else {
-      line = testLine;
+    if(gameState.currentGameState === "lost") {
+    drawEndMineInfo(gameState, y + STATUS.MINE_INFO_OFFSET_Y);
     }
+    return;
   }
-  text(line, x, yy);
 }
 
 function drawEndMineInfo(gameState, y, artworks) {
   const endMine = getFoundMine(gameState, artworks);
+  const description = endMine ? endMine.description : "Tuhle hru nevyhraješ!";
+
   if (endMine) {
-    text(`${endMine.name}: ${endMine.description}`, width / 2, y);
-  } 
+    drawWrappedText(`Narazil*a jsi na dílo: ${endMine.name}`, width / 2, y, gameState.gridWidth);
+  }
+
+  drawWrappedText(description, width / 2, endMine ? y + STATUS.MINE_INFO_OFFSET_Y * 2 : y + STATUS.MINE_INFO_OFFSET_Y, gameState.gridWidth);
 }
 
 function getFoundMine(gameState) {

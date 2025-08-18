@@ -72,6 +72,30 @@ const getFlaggedCount = (gameState) => {
   return flaggedCount;
 };
 
+function formatTime(ms) {
+  if (typeof ms !== "number" || isNaN(ms)) return "0.000";
+  return (ms / 1000).toFixed(3);
+}
+
+function drawWrappedText(txt, x, y, maxWidth) {
+  const words = txt.split(" ");
+  let line = "";
+  let lineHeight = textAscent() + textDescent() + 4;
+  let yy = y;
+  for (let n = 0; n < words.length; n++) {
+    let testLine = line + words[n] + " ";
+    let testWidth = textWidth(testLine);
+    if (testWidth > maxWidth && n > 0) {
+      text(line, x, yy);
+      line = words[n] + " ";
+      yy += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  text(line, x, yy);
+}
+
 function draw3DRectEffect(
   x,
   y,
