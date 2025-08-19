@@ -11,7 +11,7 @@ let gameState = {
   startTime: null,
   level: 1, // 0, 1, 2
   endMine: null,
-  endTime: null
+  endTime: null,
 };
 
 let touchStartTime = null;
@@ -19,15 +19,20 @@ const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
 
 let babyImg;
+let flagImg;
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+  initializeGame();
+}
 
 function preload() {
   babyImg = loadImage("assets/baby.png");
+  flagImg = loadImage("assets/flag.svg");
 }
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  background(COLORS.BACKGROUND);
-  textFont(COMMON.fontFamily);
   initializeGame();
 
   // Prevent right-click context menu on the canvas
@@ -38,6 +43,9 @@ function setup() {
 }
 
 function initializeGame() {
+  background(COLORS.BACKGROUND);
+  textFont(COMMON.fontFamily);
+
   gameState.mapConfig = MAP.map((row) => row.slice());
 
   const minePositions = minesArray[gameState.level];

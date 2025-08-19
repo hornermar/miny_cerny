@@ -18,15 +18,10 @@ function drawGrid(gameState) {
       let x = col * gameState.cellSize + gridX;
       let y = row * gameState.cellSize + GRID.OFFSET_Y;
 
-      // Draw cell background
-      drawCellBackground(gameState, row, col, x, y);
+      const background = getCellBackground(gameState, row, col, x, y);
 
       // Draw 3D effect for unrevealed cells
-      if (!gameState.revealed[row][col]) {
-        const cellFillColor =
-          gameState.mapConfig[row][col] === CELL_TYPES.RIVER
-            ? COLORS.CELL_RIVER
-            : null;
+      if (!gameState.revealed[row][col] || gameState.flagged[row][col]) {
         draw3DRectEffect(
           x,
           y,
@@ -34,13 +29,12 @@ function drawGrid(gameState) {
           gameState.cellSize,
           true,
           4,
-          cellFillColor
+          background
         );
       } else {
-        // Draw cell border only for revealed cells
         stroke(COLORS.EFFECT_SHADOW);
         strokeWeight(1);
-        noFill();
+        fill(background);
         rect(x, y, gameState.cellSize, gameState.cellSize);
       }
 
@@ -49,24 +43,38 @@ function drawGrid(gameState) {
   }
 }
 
-function drawCellBackground(gameState, row, col, x, y) {
-  noStroke();
-  if (gameState.revealed[row][col]) {
-    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
-      fill(COLORS.CELL_MINE);
-    } else if (gameState.mapConfig[row][col] === CELL_TYPES.RIVER) {
-      fill(COLORS.CELL_RIVER);
+function getCellBackground(gameState, row, col, x, y) {
+  const revealed = gameState.revealed[row][col];
+  const flagged = gameState.flagged[row][col];
+  const type = gameState.mapConfig[row][col];
+
+  if (revealed) {
+    if (type === CELL_TYPES.MINE) {
+      if (flagged) {
+        if (type === CELL_TYPES.RIVER) {
+          return COLORS.CELL_RIVER;
+        } else {
+          return COLORS.BACKGROUND;
+        }
+      } else {
+        return COLORS.CELL_MINE;
+      }
+    } else if (type === CELL_TYPES.RIVER) {
+      return COLORS.CELL_RIVER;
     } else {
-      fill(COLORS.BACKGROUND);
+      if (flagged) {
+        return COLORS.CELL_MINE_LIGHT;
+      } else {
+        return COLORS.BACKGROUND;
+      }
     }
   } else {
-    if (gameState.mapConfig[row][col] === CELL_TYPES.RIVER) {
-      fill(COLORS.CELL_RIVER);
+    if (type === CELL_TYPES.RIVER) {
+      return COLORS.CELL_RIVER;
     } else {
-      fill(COLORS.BACKGROUND);
+      return COLORS.BACKGROUND;
     }
   }
-  rect(x, y, gameState.cellSize, gameState.cellSize);
 }
 
 function drawCellContent(gameState, row, col, x, y) {
@@ -75,16 +83,23 @@ function drawCellContent(gameState, row, col, x, y) {
 
   if (gameState.flagged[row][col]) {
     textSize(16);
-    text("🏴", x + gameState.cellSize / 2, y + gameState.cellSize / 2);
+
+    image(
+      flagImg,
+      x + gameState.cellSize * 0.1,
+      y + gameState.cellSize * 0.1,
+      gameState.cellSize * 0.8,
+      gameState.cellSize * 0.8
+    );
   } else if (gameState.revealed[row][col]) {
-    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {        
+    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
       image(
-          babyImg,
-          x + gameState.cellSize * 0.05,
-          y + gameState.cellSize * 0.05,
-          gameState.cellSize * 0.9,
-          gameState.cellSize * 0.9
-        );
+        babyImg,
+        x + gameState.cellSize * 0.05,
+        y + gameState.cellSize * 0.05,
+        gameState.cellSize * 0.9,
+        gameState.cellSize * 0.9
+      );
     } else {
       let neighborCount = getNeighborMineCount(
         row,
@@ -111,8 +126,8 @@ function drawNumberWithColor(count, x, y) {
     push();
     fill(COLORS.NUMBERS[count]);
     textSize(gameState.cellSize * 0.6);
-    textStyle(BOLD)
+    textStyle(BOLD);
     text(count, x + 1, y + 2);
-    pop()
-  } 
+    pop();
+  }
 }

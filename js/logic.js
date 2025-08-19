@@ -50,7 +50,10 @@ function toggleFlag(row, col) {
 function revealAllMines() {
   for (let row = 0; row < gameState.rows; row++) {
     for (let col = 0; col < gameState.cols; col++) {
-      if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
+      if (
+        gameState.mapConfig[row][col] === CELL_TYPES.MINE ||
+        gameState.flagged[row][col]
+      ) {
         gameState.revealed[row][col] = true;
       }
     }
@@ -81,7 +84,8 @@ function checkWin() {
 function revealSafeNeighbors(row, col) {
   if (!gameState.revealed[row][col]) return;
   const neighborMines = getNeighborMineCount(
-    row, col,
+    row,
+    col,
     gameState.mapConfig,
     gameState.rows,
     gameState.cols
@@ -93,8 +97,12 @@ function revealSafeNeighbors(row, col) {
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       if (i === 0 && j === 0) continue;
-      const nRow = row + i, nCol = col + j;
-      if (isValidCell(nRow, nCol, gameState.rows, gameState.cols) && gameState.flagged[nRow][nCol]) {
+      const nRow = row + i,
+        nCol = col + j;
+      if (
+        isValidCell(nRow, nCol, gameState.rows, gameState.cols) &&
+        gameState.flagged[nRow][nCol]
+      ) {
         flaggedCount++;
       }
     }
@@ -103,7 +111,8 @@ function revealSafeNeighbors(row, col) {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
         if (i === 0 && j === 0) continue;
-        const nRow = row + i, nCol = col + j;
+        const nRow = row + i,
+          nCol = col + j;
         if (
           isValidCell(nRow, nCol, gameState.rows, gameState.cols) &&
           !gameState.flagged[nRow][nCol] &&

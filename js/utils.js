@@ -105,10 +105,22 @@ function draw3DRectEffect(
   strokeWidth = 10,
   fillColor = null
 ) {
-const colorAdjustment = 20;
+  const colorAdjustment = 30;
 
-  const dark = fillColor ? [fillColor[0] - colorAdjustment, fillColor[1] - colorAdjustment, fillColor[2] - colorAdjustment] : COLORS.EFFECT_SHADOW;
-  const light = fillColor ? [fillColor[0] + colorAdjustment, fillColor[1] + colorAdjustment, fillColor[2] + colorAdjustment] : COLORS.EFFECT_HIGHLIGHT;
+  const dark = fillColor
+    ? [
+        fillColor[0] - colorAdjustment,
+        fillColor[1] - colorAdjustment,
+        fillColor[2] - colorAdjustment,
+      ]
+    : COLORS.EFFECT_SHADOW;
+  const light = fillColor
+    ? [
+        fillColor[0] + colorAdjustment,
+        fillColor[1] + colorAdjustment,
+        fillColor[2] + colorAdjustment,
+      ]
+    : COLORS.EFFECT_HIGHLIGHT;
 
   const topLeftColor = isRaised ? light : dark;
   const bottomRightColor = isRaised ? dark : light;
