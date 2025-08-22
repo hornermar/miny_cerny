@@ -97,14 +97,50 @@ const mines = [
     name: "Miminka",
     description:
       "Věděl*a si, že původně šlo o dočasnou instalaci, ale díky kladnému ohlasu zůstala natrvalo? Škoda, že to tak nefunguje i obráceně.",
+    position: [6, 9],
+  },
+  {
+    id: 16,
+    name: "Miminka",
+    description: "",
     position: [5, 9],
   },
   {
-    id: 17,
-    name: "Mimino",
-    description: "Popis",
-    position: [6, 9],
+    id: 16,
+    name: "Miminka",
+    description: "",
+    position: [5, 10],
   },
+  {
+    id: 16,
+    name: "Miminka",
+    description: "",
+    position: [6, 10],
+  },
+  {
+    id: 16,
+    name: "Miminka",
+    description: "",
+    position: [7, 10],
+  },
+  {
+    id: 16,
+    name: "Miminka",
+    description: "",
+    position: [7, 9],
+  },
+  {
+    id: 16,
+    name: "Miminka",
+    description: "",
+    position: [7, 8],
+  },
+  // {
+  //   id: 17,
+  //   name: "Mimino",
+  //   description: "Popis",
+  //   position: [6, 9],
+  // },
   {
     id: 18,
     name: "Lilith",
@@ -151,7 +187,8 @@ const mines = [
   {
     id: 26,
     name: "Embryo",
-    description: "Není zas tak vidět. Bylo vytvořeno k 50. výročí divadla Na zábradlí.",
+    description:
+      "Není zas tak vidět. Bylo vytvořeno k 50. výročí divadla Na zábradlí.",
     position: [6, 7], // Není ideální umítění. Posunout - ale není už kam! :)
   },
   // Mimo mapu

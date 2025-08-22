@@ -1,3 +1,25 @@
+function isButtonPressed(x, y, w, h) {
+  if (
+    mouseIsPressed &&
+    mouseX >= x &&
+    mouseX <= x + w &&
+    mouseY >= y &&
+    mouseY <= y + h
+  ) {
+    return true;
+  }
+  if (
+    typeof touches !== "undefined" &&
+    touches.length > 0 &&
+    touches[0].x >= x &&
+    touches[0].x <= x + w &&
+    touches[0].y >= y &&
+    touches[0].y <= y + h
+  ) {
+    return true;
+  }
+  return false;
+}
 function countMinesFromMap(mapConfig) {
   let mineCount = 0;
   for (let row = 0; row < mapConfig.length; row++) {
@@ -75,6 +97,17 @@ const getFlaggedCount = (gameState) => {
 function formatTime(ms) {
   if (typeof ms !== "number" || isNaN(ms)) return "0.000";
   return (ms / 1000).toFixed(3);
+}
+
+function getEmoji(state) {
+  switch (state) {
+    case "playing":
+      return emojiSmileImg;
+    case "lost":
+      return emojiSadImg;
+    default:
+      return emojiSmileImg;
+  }
 }
 
 function drawWrappedText(txt, x, y, maxWidth) {

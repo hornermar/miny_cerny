@@ -20,6 +20,9 @@ const minesArray = [MINES_0, MINES_1, MINES_2];
 
 let babyImg;
 let flagImg;
+let headImg;
+
+window.pendingLevelReset = null;
 
 function windowResized() {
   resizeCanvas(window.innerWidth, window.innerHeight);
@@ -29,6 +32,8 @@ function windowResized() {
 function preload() {
   babyImg = loadImage("assets/baby.png");
   flagImg = loadImage("assets/flag.svg");
+  emojiSmileImg = loadImage("assets/emoji-smile.svg");
+  emojiSadImg = loadImage("assets/emoji-sad.svg");
 }
 
 function setup() {
@@ -138,6 +143,13 @@ function mousePressed() {
   }
 }
 
+function mouseReleased() {
+  if (window.pendingLevelReset !== null) {
+    resetGame(window.pendingLevelReset);
+    window.pendingLevelReset = null;
+  }
+}
+
 function touchStarted() {
   touchStartTime = Date.now();
 }
@@ -147,6 +159,12 @@ function touchEnded() {
 
   const duration = Date.now() - touchStartTime;
   touchStartTime = null;
+
+  if (window.pendingLevelReset !== null) {
+    resetGame(window.pendingLevelReset);
+    window.pendingLevelReset = null;
+    return false;
+  }
 
   // Check if reset button was touched
   const btn = window.resetButton;

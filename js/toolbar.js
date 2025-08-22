@@ -1,5 +1,3 @@
-
-
 function drawToolbar(gameState) {
   const toolbarX = (window.innerWidth - gameState.gridWidth) / 2;
 
@@ -32,13 +30,16 @@ function drawLevels(gameState, toolbarX) {
   for (let i = 0; i < levelCount; i++) {
     const x = startX + i * (buttonWidth + spacing);
 
-    let isHover = mouseX >= x && mouseX <= x + buttonWidth && mouseY >= buttonY && mouseY <= buttonY + buttonHeight;
+    let isHover =
+      mouseX >= x &&
+      mouseX <= x + buttonWidth &&
+      mouseY >= buttonY &&
+      mouseY <= buttonY + buttonHeight;
 
-    let isRaised =  gameState.level !== i;
-    const offset = isRaised ? 0 : 2
+    let isRaised = gameState.level !== i;
+    const offset = isRaised ? 0 : 2;
     draw3DRectEffect(x, buttonY, buttonWidth, buttonHeight, isRaised, 4);
 
-  
     fill(COLORS.TEXT_PRIMARY);
     noStroke();
 
@@ -49,12 +50,12 @@ function drawLevels(gameState, toolbarX) {
     text(
       LEVEL.NAMES[i].toUpperCase(),
       x + buttonWidth / 2 + offset,
-      buttonY + buttonHeight / 2  + offset
+      buttonY + buttonHeight / 2 + offset
     );
     pop();
 
     if (isHover && mouseIsPressed) {
-      resetGame(i);
+      window.pendingLevelReset = i;
     }
   }
 }
@@ -87,17 +88,23 @@ function drawMineCounter(gameState, toolbarX) {
 }
 
 function drawResetButton(gameState, toolbarX) {
+  const emoji = getEmoji(gameState.currentGameState);
   const buttonSize = DISPLAY.HEIGHT;
   const buttonX = toolbarX + gameState.gridWidth / 2 - buttonSize / 2;
   const buttonY =
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2 + (TOOLBAR.HEIGHT - buttonSize) / 2;
 
-  draw3DRectEffect(buttonX, buttonY, buttonSize, buttonSize, true, 4);
+  const isPressed = isButtonPressed(buttonX, buttonY, buttonSize, buttonSize);
+  const offset = isPressed ? 2 : 0;
 
-  fill(0, 0, 0);
-  textAlign(CENTER, CENTER);
-  textSize(26);
-  text("", buttonX + buttonSize / 2, buttonY + buttonSize / 2 + 2);
+  draw3DRectEffect(buttonX, buttonY, buttonSize, buttonSize, !isPressed, 4);
+  image(
+    emoji,
+    buttonX + 4 + offset,
+    buttonY + 4 + offset,
+    buttonSize - 8,
+    buttonSize - 8
+  );
 
   window.resetButton = {
     x: buttonX,
@@ -115,7 +122,9 @@ function drawTimer(gameState, toolbarX) {
       gameState.currentGameState === "lost"
     ) {
       if (gameState.endTime) {
-        elapsedTime = Math.floor((gameState.endTime - gameState.startTime) / 1000);
+        elapsedTime = Math.floor(
+          (gameState.endTime - gameState.startTime) / 1000
+        );
       }
     } else if (gameState.currentGameState === "playing") {
       elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000);
