@@ -18,7 +18,7 @@ function drawStatus(gameState) {
     gameState.currentGameState === "playing"
   ) {
     drawWrappedText(
-      "Prahu brzy zaplní Černý.",
+      "Praha bude brzo plná Černýho.",
       width / 2,
       y,
       gameState.gridWidth
