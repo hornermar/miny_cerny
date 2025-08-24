@@ -14,7 +14,7 @@ let gameState = {
   endTime: null,
 };
 
-let touchStartTime = null;
+let longTouchTimeout = null;
 const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
 
@@ -159,23 +159,34 @@ function mouseReleased() {
 }
 
 function touchStarted() {
-  touchStartTime = Date.now();
+  if (longTouchTimeout) {
+    clearTimeout(longTouchTimeout);
+  }
+  const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
+  const col = Math.floor((mouseX - gridX) / gameState.cellSize);
+  const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+  const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
+
+  if (isInGameArea) {
+    longTouchTimeout = setTimeout(() => {
+      toggleFlag(row, col);
+      vibrate(80);
+      longTouchTimeout = null;
+    }, LONG_TOUCH_DURATION);
+  }
 }
 
 function touchEnded() {
-  if (!touchStartTime) return true;
-
-  const duration = Date.now() - touchStartTime;
-  touchStartTime = null;
-
   if (window.pendingLevelReset !== null) {
-    vibrate(30);
+    vibrate(50);
     resetGame(window.pendingLevelReset);
     window.pendingLevelReset = null;
+    if (longTouchTimeout) {
+      clearTimeout(longTouchTimeout);
+      longTouchTimeout = null;
+    }
     return false;
   }
-
-  // Check if reset button was touched
   const btn = window.resetButton;
   if (
     btn &&
@@ -184,35 +195,35 @@ function touchEnded() {
     mouseY >= btn.y &&
     mouseY <= btn.y + btn.height
   ) {
-    vibrate(30);
+    vibrate(50);
     resetGame();
+    if (longTouchTimeout) {
+      clearTimeout(longTouchTimeout);
+      longTouchTimeout = null;
+    }
     return false;
   }
-
-  if (
-    gameState.currentGameState === "won" ||
-    gameState.currentGameState === "lost"
-  ) {
-    return false;
-  }
-
-  // Compute cell coordinates once
-  const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
-  const col = Math.floor((mouseX - gridX) / gameState.cellSize);
-  const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
-  const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
-
-  if (!isInGameArea) return false;
-
-  if (duration >= LONG_TOUCH_DURATION) {
-    toggleFlag(row, col);
-    vibrate(60);
-  } else {
+  // If timeout is still pending, treat as short tap
+  if (longTouchTimeout) {
+    clearTimeout(longTouchTimeout);
+    longTouchTimeout = null;
+    if (
+      gameState.currentGameState === "won" ||
+      gameState.currentGameState === "lost"
+    ) {
+      return false;
+    }
+    // Compute cell coordinates once
+    const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
+    const col = Math.floor((mouseX - gridX) / gameState.cellSize);
+    const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+    const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
+    if (!isInGameArea) return false;
     if (gameState.currentGameState === "not started") {
       gameState.startTime = Date.now();
       gameState.currentGameState = "playing";
     }
-    vibrate(30);
+    vibrate(50);
     if (gameState.revealed[row][col]) {
       revealSafeNeighbors(row, col);
     } else {
