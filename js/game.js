@@ -24,9 +24,21 @@ let headImg;
 
 window.pendingLevelReset = null;
 
+function recalculateCellSizeAndGridWidth() {
+  const gridBorderWidth = TOOLBAR.OFFSET * 2;
+  const gridWidth = window.innerWidth - GRID.OFFSET_X * 2 - gridBorderWidth;
+  const calculatedCellSize = Math.floor(gridWidth / gameState.cols);
+  gameState.cellSize = Math.max(
+    GRID.MIN_CELL_SIZE,
+    Math.min(calculatedCellSize, GRID.MAX_CELL_SIZE)
+  );
+  gameState.gridWidth = gameState.cols * gameState.cellSize + gridBorderWidth;
+}
+
 function windowResized() {
   resizeCanvas(window.innerWidth, window.innerHeight);
-  initializeGame();
+  recalculateCellSizeAndGridWidth();
+  draw();
 }
 
 function preload() {
@@ -34,10 +46,12 @@ function preload() {
   flagImg = loadImage("assets/flag.svg");
   emojiSmileImg = loadImage("assets/emoji-smile.svg");
   emojiSadImg = loadImage("assets/emoji-sad.svg");
+  emojiGlassesImg = loadImage("assets/emoji-glasses.svg");
 }
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
+  recalculateCellSizeAndGridWidth();
   initializeGame();
 
   // Prevent right-click context menu on the canvas
@@ -48,9 +62,6 @@ function setup() {
 }
 
 function initializeGame() {
-  background(COLORS.BACKGROUND);
-  textFont(COMMON.fontFamily);
-
   gameState.mapConfig = MAP.map((row) => row.slice());
 
   const minePositions = minesArray[gameState.level];
@@ -64,16 +75,6 @@ function initializeGame() {
 
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
 
-  const gridBorderWidth = TOOLBAR.OFFSET * 2;
-  const gridWidth = window.innerWidth - GRID.OFFSET_X * 2 - gridBorderWidth;
-  const calculatedCellSize = Math.floor(gridWidth / gameState.cols);
-
-  gameState.cellSize = Math.max(
-    GRID.MIN_CELL_SIZE,
-    Math.min(calculatedCellSize, GRID.MAX_CELL_SIZE)
-  );
-  gameState.gridWidth = gameState.cols * gameState.cellSize + gridBorderWidth;
-
   for (let row = 0; row < gameState.rows; row++) {
     gameState.revealed[row] = [];
     gameState.flagged[row] = [];
@@ -85,6 +86,8 @@ function initializeGame() {
 }
 
 function draw() {
+  background(COLORS.BACKGROUND);
+  textFont(COMMON.fontFamily);
   drawGame(gameState);
 }
 
@@ -105,7 +108,6 @@ function resetGame(level) {
 }
 
 function mousePressed() {
-  // Check if resetButton button was clicked
   if (
     window.resetButton &&
     mouseX >= window.resetButton.x &&
@@ -113,8 +115,14 @@ function mousePressed() {
     mouseY >= window.resetButton.y &&
     mouseY <= window.resetButton.y + window.resetButton.height
   ) {
-    console.log("resetButton button clicked");
     resetGame();
+    return;
+  }
+
+  if (
+    gameState.currentGameState === "won" ||
+    gameState.currentGameState === "lost"
+  ) {
     return;
   }
 
@@ -161,6 +169,7 @@ function touchEnded() {
   touchStartTime = null;
 
   if (window.pendingLevelReset !== null) {
+    vibrate(30);
     resetGame(window.pendingLevelReset);
     window.pendingLevelReset = null;
     return false;
@@ -175,7 +184,15 @@ function touchEnded() {
     mouseY >= btn.y &&
     mouseY <= btn.y + btn.height
   ) {
+    vibrate(30);
     resetGame();
+    return false;
+  }
+
+  if (
+    gameState.currentGameState === "won" ||
+    gameState.currentGameState === "lost"
+  ) {
     return false;
   }
 
@@ -189,12 +206,13 @@ function touchEnded() {
 
   if (duration >= LONG_TOUCH_DURATION) {
     toggleFlag(row, col);
+    vibrate(60);
   } else {
     if (gameState.currentGameState === "not started") {
       gameState.startTime = Date.now();
       gameState.currentGameState = "playing";
     }
-
+    vibrate(30);
     if (gameState.revealed[row][col]) {
       revealSafeNeighbors(row, col);
     } else {

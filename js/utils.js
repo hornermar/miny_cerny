@@ -101,12 +101,18 @@ function formatTime(ms) {
 
 function getEmoji(state) {
   switch (state) {
-    case "playing":
-      return emojiSmileImg;
     case "lost":
       return emojiSadImg;
+    case "won":
+      return emojiGlassesImg;
     default:
       return emojiSmileImg;
+  }
+}
+
+function vibrate(pattern) {
+  if (navigator.vibrate) {
+    navigator.vibrate(pattern);
   }
 }
 

@@ -13,7 +13,7 @@ const mines = [
   },
   {
     id: 3,
-    name: "Babies",
+    name: "Mimina",
     description: "Popis",
     position: [4, 4],
   },

@@ -54,7 +54,7 @@ function drawLevels(gameState, toolbarX) {
     );
     pop();
 
-    if (isHover && mouseIsPressed) {
+    if (isHover && mouseIsPressed && gameState.level !== i) {
       window.pendingLevelReset = i;
     }
   }
