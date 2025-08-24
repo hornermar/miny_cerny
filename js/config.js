@@ -2,17 +2,22 @@ const COMMON = {
   fontFamily: "Kode Mono",
 };
 
+const TITLE = {
+  OFFSET_Y: 20,
+  TEXT_SIZE: 14,
+  LABEL: "miny_černý",
+};
+
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
-  BUTTON_WIDTH: 98,
+  BUTTON_WIDTH: 94,
   BUTTON_HEIGHT: 40,
-  SPACING: 18,
-  OFFSET_Y: 16,
-  TEXT_SIZE: 13,
+  OFFSET_Y: TITLE.TEXT_SIZE + TITLE.OFFSET_Y + 8,
+  TEXT_SIZE: 12,
 };
 
 const TOOLBAR = {
-  OFFSET_Y: LEVEL.BUTTON_HEIGHT + LEVEL.OFFSET_Y * 2,
+  OFFSET_Y: LEVEL.BUTTON_HEIGHT + LEVEL.OFFSET_Y + 18,
   OFFSET: 7,
   TEXT_SIZE: 40,
   HEIGHT: 80,
@@ -30,12 +35,12 @@ const GRID = {
   ROWS: MAP.length,
   COLS: MAP[0].length,
   OFFSET_X: 14,
-  OFFSET_Y: TOOLBAR.HEIGHT + TOOLBAR.OFFSET_Y + LEVEL.OFFSET_Y,
+  OFFSET_Y: TOOLBAR.HEIGHT + TOOLBAR.OFFSET_Y + 18,
 };
 
 const STATUS = {
   HEIGHT: 100,
-  TEXT_SIZE: 12,
+  TEXT_SIZE: 10,
   OFFSET_Y: 20,
   MINE_INFO_OFFSET_Y: 60,
 };
@@ -47,7 +52,7 @@ const COLORS = {
   PRIMARY: pink,
   BLACK: [10, 10, 10],
 
-  TEXT_PRIMARY: [100, 100, 100],
+  TEXT_PRIMARY: [100],
   // TEXT_TITLE: [34, 34, 34],
   // TEXT_WIN: [76, 175, 80],
   // TEXT_LOSE: [244, 67, 54],

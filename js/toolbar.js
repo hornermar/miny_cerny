@@ -1,6 +1,7 @@
 function drawToolbar(gameState) {
   const toolbarX = (window.innerWidth - gameState.gridWidth) / 2;
 
+  drawTitle(toolbarX);
   drawLevels(gameState, toolbarX);
 
   draw3DRectEffect(
@@ -15,6 +16,15 @@ function drawToolbar(gameState) {
   drawMineCounter(gameState, toolbarX);
   drawResetButton(gameState, toolbarX);
   drawTimer(gameState, toolbarX);
+}
+
+function drawTitle(toolbarX) {
+  const title = TITLE.LABEL;
+
+  fill(COLORS.BLACK);
+  textAlign(LEFT, CENTER);
+  textSize(TITLE.TEXT_SIZE);
+  text(title, toolbarX + 4, TITLE.OFFSET_Y);
 }
 
 function drawLevels(gameState, toolbarX) {
@@ -48,7 +58,7 @@ function drawLevels(gameState, toolbarX) {
     textStyle(BOLD);
     textSize(LEVEL.TEXT_SIZE);
     text(
-      LEVEL.NAMES[i].toUpperCase(),
+      LEVEL.NAMES[i].toLocaleLowerCase(),
       x + buttonWidth / 2 + offset,
       buttonY + buttonHeight / 2 + offset
     );

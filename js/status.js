@@ -1,11 +1,11 @@
 function drawStatus(gameState) {
   const gridBottomY = GRID.OFFSET_Y + gameState.rows * gameState.cellSize;
-  let y = gridBottomY + STATUS.OFFSET_Y;
+  const y = gridBottomY + STATUS.OFFSET_Y;
 
   textAlign(CENTER, TOP);
 
   textSize(STATUS.TEXT_SIZE);
-  fill(COLORS.TEXT_PRIMARY);
+  fill(COLORS.BLACK);
 
   fill(COLORS.BACKGROUND);
   noStroke();
@@ -13,11 +13,20 @@ function drawStatus(gameState) {
   rect(0, y - 2, window.innerWidth, STATUS.HEIGHT);
 
   fill(COLORS.TEXT_PRIMARY);
-  if (gameState.currentGameState === "not started") {
+  if (
+    gameState.currentGameState === "not started" ||
+    gameState.currentGameState === "playing"
+  ) {
     drawWrappedText(
-      "Najdi na mapě všechna díla Davida Černého! Klikni na libovolné pole pro začátek.",
+      "Prahu brzy zaplní Černý.",
       width / 2,
       y,
+      gameState.gridWidth
+    );
+    drawWrappedText(
+      "Jeho sochy se objevují po městě jako miny. Najdi je a znič dřív, než ovládnou město.",
+      width / 2,
+      y + STATUS.TEXT_SIZE * 2,
       gameState.gridWidth
     );
     return;
