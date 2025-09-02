@@ -3,8 +3,8 @@ const COMMON = {
 };
 
 const TITLE = {
-  OFFSET_Y: 20,
-  TEXT_SIZE: 14,
+  OFFSET_Y: 14,
+  TEXT_SIZE: 12,
   LABEL: "miny_černý",
 };
 
@@ -12,7 +12,7 @@ const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
   BUTTON_WIDTH: 94,
   BUTTON_HEIGHT: 40,
-  OFFSET_Y: TITLE.TEXT_SIZE + TITLE.OFFSET_Y + 18,
+  OFFSET_Y: TITLE.TEXT_SIZE + TITLE.OFFSET_Y + 4,
   TEXT_SIZE: 12,
 };
 
@@ -51,6 +51,7 @@ const COLORS = {
   BACKGROUND: [220, 220, 220],
   PRIMARY: pink,
   BLACK: [10, 10, 10],
+  WHITE: [255, 255, 255],
 
   TEXT_PRIMARY: [100],
   // TEXT_TITLE: [34, 34, 34],

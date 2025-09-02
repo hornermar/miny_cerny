@@ -18,15 +18,9 @@ function drawStatus(gameState) {
     gameState.currentGameState === "playing"
   ) {
     drawWrappedText(
-      "Praha bude brzo plná Černýho.",
+      "Praha bude brzo zaplněná sochami Černýho. Objevují se po městě jako miny. Najdi je a znič dřív, než ovládnou město.",
       width / 2,
       y,
-      gameState.gridWidth
-    );
-    drawWrappedText(
-      "Jeho sochy se objevují po městě jako miny. Najdi je a znič dřív, než ovládnou město.",
-      width / 2,
-      y + STATUS.TEXT_SIZE * 2,
       gameState.gridWidth
     );
     return;

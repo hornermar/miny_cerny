@@ -99,18 +99,18 @@ const mines = [
       "Věděl*a si, že původně šlo o dočasnou instalaci, ale díky kladnému ohlasu zůstala natrvalo? Škoda, že to tak nefunguje i obráceně.",
     position: [6, 9],
   },
-  {
-    id: 16,
-    name: "Miminka",
-    description: "",
-    position: [5, 9],
-  },
-  {
-    id: 16,
-    name: "Miminka",
-    description: "",
-    position: [5, 10],
-  },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [5, 9],
+  // },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [5, 10],
+  // },
   {
     id: 16,
     name: "Miminka",
@@ -129,12 +129,12 @@ const mines = [
     description: "",
     position: [7, 9],
   },
-  {
-    id: 16,
-    name: "Miminka",
-    description: "",
-    position: [7, 8],
-  },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [7, 8],
+  // },
   // {
   //   id: 17,
   //   name: "Mimino",

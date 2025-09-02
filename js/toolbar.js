@@ -21,10 +21,10 @@ function drawToolbar(gameState) {
 function drawTitle(toolbarX) {
   const title = TITLE.LABEL;
 
-  fill(COLORS.BLACK);
-  textAlign(LEFT, CENTER);
+  fill(COLORS.WHITE);
+  textAlign(RIGHT, CENTER);
   textSize(TITLE.TEXT_SIZE);
-  text(title, toolbarX + 4, TITLE.OFFSET_Y);
+  text(title, toolbarX + gameState.gridWidth - 4, TITLE.OFFSET_Y);
 }
 
 function drawLevels(gameState, toolbarX) {
