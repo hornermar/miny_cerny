@@ -58,7 +58,7 @@ function drawLevels(gameState, toolbarX) {
     textStyle(BOLD);
     textSize(LEVEL.TEXT_SIZE);
     text(
-      LEVEL.NAMES[i].toLocaleLowerCase(),
+      LEVEL.NAMES[i],
       x + buttonWidth / 2 + offset,
       buttonY + buttonHeight / 2 + offset
     );
