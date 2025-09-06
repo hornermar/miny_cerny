@@ -12,8 +12,8 @@ const dropdownHeight = 40;
 
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
-  TEXT_SIZE: 12,
-  DROPDOWN_WIDTH: 116,
+  TEXT_SIZE: 14,
+  DROPDOWN_WIDTH: 130,
   DROPDOWN_HEIGHT: dropdownHeight  ,
   INNER_OFFSET_X: 14,
   OFFSET_Y: TITLE.OFFSET_Y - dropdownHeight / 2,

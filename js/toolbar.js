@@ -107,7 +107,7 @@ function drawLevels(gameState, toolbarX) {
       textSize(LEVEL.TEXT_SIZE);
       text(
         LEVEL.NAMES[i].toLowerCase(),
-        dropdownX + 10,
+        dropdownX + 14,
         itemY + LEVEL.DROPDOWN_HEIGHT / 2
       );
       pop();
