@@ -2,8 +2,7 @@ function drawToolbar(gameState) {
   const toolbarX = (window.innerWidth - gameState.gridWidth) / 2;
 
   drawTitle(toolbarX);
-  drawLevels(gameState, toolbarX);
-
+  
   draw3DRectEffect(
     toolbarX,
     TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2,
@@ -12,75 +11,132 @@ function drawToolbar(gameState) {
     false,
     TOOLBAR.OFFSET
   );
-
+  
   drawMineCounter(gameState, toolbarX);
   drawResetButton(gameState, toolbarX);
   drawTimer(gameState, toolbarX);
+  
+  drawLevels(gameState, toolbarX);
 }
 
 function drawTitle(toolbarX) {
   const title = TITLE.LABEL;
 
-  fill(COLORS.WHITE);
-  textAlign(RIGHT, CENTER);
-  textSize(TITLE.TEXT_SIZE);
-  text(title, toolbarX + gameState.gridWidth - 4, TITLE.OFFSET_Y);
+  fill(COLORS.TEXT_PRIMARY);
+  textStyle(BOLD);
+  textAlign(LEFT, CENTER);
+  textSize(TITLE.TEXT_SIZE)
+  text(title, toolbarX + 4, TITLE.OFFSET_Y);
 }
 
 function drawLevels(gameState, toolbarX) {
-  const levelCount = LEVEL.NAMES.length;
-  const buttonWidth = LEVEL.BUTTON_WIDTH;
-  const buttonHeight = LEVEL.BUTTON_HEIGHT;
-  const buttonY = LEVEL.OFFSET_Y;
+  const dropdownX = toolbarX + gameState.gridWidth - LEVEL.DROPDOWN_WIDTH;
 
-  const availableWidth = gameState.gridWidth - buttonWidth * levelCount;
-  const spacing = levelCount > 1 ? availableWidth / (levelCount - 1) : 0;
-  const startX = toolbarX;
+  // Track dropdown open state globally
+  if (typeof window.levelDropdownOpen === "undefined") {
+    window.levelDropdownOpen = false;
+  }
 
-  for (let i = 0; i < levelCount; i++) {
-    const x = startX + i * (buttonWidth + spacing);
+  draw3DRectEffect(dropdownX, LEVEL.OFFSET_Y, LEVEL.DROPDOWN_WIDTH, LEVEL.DROPDOWN_HEIGHT, true, 4);
+  fill(COLORS.TEXT_PRIMARY);
 
-    let isHover =
-      mouseX >= x &&
-      mouseX <= x + buttonWidth &&
-      mouseY >= buttonY &&
-      mouseY <= buttonY + buttonHeight;
 
-    let isRaised = gameState.level !== i;
-    const offset = isRaised ? 0 : 2;
-    draw3DRectEffect(x, buttonY, buttonWidth, buttonHeight, isRaised, 4);
-
-    fill(COLORS.TEXT_PRIMARY);
-    noStroke();
-
-    push();
-    textAlign(CENTER, CENTER);
-    textStyle(BOLD);
-    textSize(LEVEL.TEXT_SIZE);
-    text(
-      LEVEL.NAMES[i],
-      x + buttonWidth / 2 + offset,
-      buttonY + buttonHeight / 2 + offset
+  textAlign(LEFT, CENTER);
+  textStyle(BOLD);
+  textSize(LEVEL.TEXT_SIZE);
+  text(
+    LEVEL.NAMES[gameState.level].toLowerCase(),
+    dropdownX + LEVEL.INNER_OFFSET_X,
+    LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT / 2
+  );
+  
+  // Draw arrow
+  const arrowX = dropdownX + LEVEL.DROPDOWN_WIDTH - 2 * LEVEL.INNER_OFFSET_X + 4;
+  const arrowY = LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT / 2 - 1;
+  if (window.levelDropdownOpen) {
+    triangle(
+      arrowX, arrowY + 4,
+      arrowX + 10, arrowY + 4,
+      arrowX + 5, arrowY - 3
     );
-    pop();
+  } else {
+    triangle(
+      arrowX, arrowY - 3,
+      arrowX + 10, arrowY - 3,
+      arrowX + 5, arrowY + 4
+    );
+  }
 
-    if (isHover && mouseIsPressed && gameState.level !== i) {
-      window.pendingLevelReset = i;
+  // TODO: Refactor, only one handler for mouse click
+  // Toggle dropdown open/close on button click 
+  if (typeof window.levelDropdownMouseWasPressed === "undefined") {
+    window.levelDropdownMouseWasPressed = false;
+  }
+  if (
+    mouseIsPressed && !window.levelDropdownMouseWasPressed &&
+    mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+    mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT
+  ) {
+    window.levelDropdownOpen = !window.levelDropdownOpen;
+    window.levelDropdownMouseWasPressed = true;
+  }
+  if (!mouseIsPressed) {
+    window.levelDropdownMouseWasPressed = false;
+  }
+
+  // Draw dropdown list if open
+  if (window.levelDropdownOpen) {
+    for (let i = 0; i < LEVEL.NAMES.length; i++) {
+      const itemY = LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + i * LEVEL.DROPDOWN_HEIGHT;
+
+      fill(COLORS.BACKGROUND);
+      rect(dropdownX, itemY, LEVEL.DROPDOWN_WIDTH, LEVEL.DROPDOWN_HEIGHT);      
+      fill(i === gameState.level ? COLORS.TEXT_PRIMARY : COLORS.TEXT_PRIMARY); // TODO: different color for selected item
+      push();
+      textAlign(LEFT, CENTER);
+      textStyle(BOLD);
+      textSize(LEVEL.TEXT_SIZE);
+      text(
+        LEVEL.NAMES[i].toLowerCase(),
+        dropdownX + 10,
+        itemY + LEVEL.DROPDOWN_HEIGHT / 2
+      );
+      pop();
+
+      // Detect click on item
+      if (
+        mouseIsPressed &&
+        mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+        mouseY >= itemY && mouseY <= itemY + LEVEL.DROPDOWN_HEIGHT &&
+        gameState.level !== i
+      ) {
+        window.pendingLevelReset = i;
+        window.levelDropdownOpen = false;
+      }
+    }
+    
+    // Close dropdown if click outside dropdown area 
+    if (
+      mouseIsPressed &&
+      !(mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+        mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + LEVEL.NAMES.length * LEVEL.DROPDOWN_HEIGHT)
+    ) {
+      window.levelDropdownOpen = false;
     }
   }
 }
 
 function drawDisplay(x, y, displayText) {
   draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, 3);
-
   // Draw display background
   fill(COLORS.BLACK);
   rect(x + 3, y + 1, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 6);
-
+  
   // Display text
   fill(COLORS.PRIMARY);
   textAlign(CENTER, CENTER);
   textSize(DISPLAY.TEXT_SIZE);
+  textStyle(NORMAL);
   text(displayText, x + DISPLAY.WIDTH / 2, y + DISPLAY.HEIGHT / 2 + 3);
 }
 
@@ -125,7 +181,7 @@ function drawResetButton(gameState, toolbarX) {
 }
 
 function drawTimer(gameState, toolbarX) {
-  let elapsedTime = 0;
+  let elapsedTime = 1;
   if (gameState.startTime) {
     if (
       gameState.currentGameState === "won" ||
@@ -137,7 +193,7 @@ function drawTimer(gameState, toolbarX) {
         );
       }
     } else if (gameState.currentGameState === "playing") {
-      elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000);
+      elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000) + 1;
     }
     elapsedTime = Math.min(elapsedTime, 999);
   }

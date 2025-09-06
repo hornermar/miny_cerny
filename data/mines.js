@@ -3,94 +3,94 @@ const mines = [
     id: 1,
     name: "Proudy",
     description: "Popis",
-    position: [3, 5],
+    position: [3, 4],
   },
   {
     id: 2,
     name: "Quo Vadis - Trabant",
     description: "Popis",
-    position: [3, 4],
+    position: [3, 3],
   },
   {
     id: 3,
     name: "Mimina",
     description: "Popis",
-    position: [4, 5],
+    position: [4, 4],
   },
   {
     id: 4,
     name: "Věra",
     description: "Popis",
-    position: [5, 5],
+    position: [5, 4],
   },
   {
     id: 5,
     name: "Pomník kapely Visací zámek",
     description: "Popis",
-    position: [5, 3],
+    position: [5, 2],
   },
   {
     id: 6,
     name: "Brownnosing",
     description: "Popis",
-    position: [6, 3],
+    position: [6, 2],
   },
   {
     id: 7,
     name: "Torzo tanku",
     description: "Popis",
-    position: [6, 4],
+    position: [6, 3],
   },
 
   {
     id: 8,
     name: "Maso",
     description: "Auta na MeetFactory jsou už od roku 2007.",
-    position: [10, 4],
+    position: [10, 3],
   },
   {
     id: 9,
     name: "Mimino",
     description: "Popis",
-    position: [11, 5],
+    position: [11, 4],
   },
 
   {
     id: 10,
     name: "Speederman",
     description: "Popis",
-    position: [8, 2],
+    position: [9, 0],
   },
   {
     id: 11,
     name: "Pegasové",
     description: "Napůl koně a napůl motory?",
-    position: [9, 2],
+    position: [10, 0],
   },
   {
     id: 12,
     name: "Viselec",
     description: "Hasiče nevolej. Ale přehlédl si sochu Sigmunda Freuda.",
-    position: [4, 7],
+    position: [4, 6],
   },
   {
     id: 13,
     name: "Máj",
     description:
       "Myslel*a sis, že jde o dočasnou instalaci, co? Tak tu pořád je!",
-    position: [5, 8],
+    position: [5, 7],
   },
   {
     id: 14,
     name: 'Franz Kafka "K"',
     description: "To si přes ty davy turistů netušil*a, že se tady něco děje?",
-    position: [5, 9],
+    position: [5, 8],
   },
   {
     id: 15,
     name: "Svatý Václav",
     description: "Popis",
-    position: [6, 9],
+    position: [6, 8],
   },
   {
     id: 16,
@@ -99,6 +99,18 @@ const mines = [
       "Věděl*a si, že původně šlo o dočasnou instalaci, ale díky kladnému ohlasu zůstala natrvalo? Škoda, že to tak nefunguje i obráceně.",
     position: [6, 9],
   },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [5, 9],
+  // },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [5, 10],
+  // },
   {
     id: 16,
     name: "Miminka",
@@ -117,6 +129,18 @@ const mines = [
     description: "",
     position: [7, 9],
   },
+  // {
+  //   id: 16,
+  //   name: "Miminka",
+  //   description: "",
+  //   position: [7, 8],
+  // },
+  // {
+  //   id: 17,
+  //   name: "Mimino",
+  //   description: "Popis",
+  //   position: [6, 9],
+  // },
   {
     id: 18,
     name: "Lilith",
@@ -127,58 +151,71 @@ const mines = [
     id: 19,
     name: "Musoleum",
     description: "Popis",
-    position: [10, 5],
+    position: [10, 4],
   },
 
   {
     id: 21,
     name: "Pamětní deska Václava Havla",
     description: "Popis",
-    position: [5, 8],
+    position: [5, 7],
   },
   {
     id: 22,
     name: "H-A-V-E-L",
     description: "Popis",
-    position: [6, 7],
+    position: [6, 6],
   },
   {
     id: 23,
     name: "Bar v kavárně Mlýnská",
     description: "Popis",
-    position: [4, 4],
+    position: [4, 3],
   },
   {
     id: 24,
     name: "Tři ženy na domě",
     description: "Popis",
-    position: [5, 7],
+    position: [5, 6],
   },
   {
     id: 25,
     name: "The Italians Wine Food",
     description: "Popis",
-    position: [8, 5],
+    position: [7, 4],
   },
   {
     id: 26,
     name: "Embryo",
     description:
       "Není zas tak vidět. Bylo vytvořeno k 50. výročí divadla Na zábradlí.",
-    position: [6, 8], // Není ideální umítění. Posunout - ale není už kam! :)
+    position: [6, 7], // Není ideální umítění. Posunout - ale není už kam! :)
+
+
+
+
+
+
+
+
+
+
+
+
   },
-  {
-    id: 12,
-    name: "Trifot",
-    description: "Popis",
-    position: [11, 0],
-  },
-  {
-    id: 13,
-    name: "Cyberdog",
-    description: "Popis",
-    position: [11, 1],
-  },
+  // Mimo mapu
+  // {
+  //   id: 12,
+  //   name: "Trifot",
+  //   description: "Popis",
+  //   position: { x: 19, y: 29 },
+  // },
+  // {
+  //   id: 13,
+  //   name: "Cyberdog",
+  //   description: "Popis",
+  //   position: { x: 18, y: 31 },
+  // },
   //   {
   //   id: 20,
   //   name: "Brouk",

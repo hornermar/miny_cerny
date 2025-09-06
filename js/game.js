@@ -92,8 +92,8 @@ function draw() {
 }
 
 function drawGame(gameState) {
-  drawToolbar(gameState);
   drawGrid(gameState);
+  drawToolbar(gameState);
   drawStatus(gameState);
 }
 

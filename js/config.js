@@ -3,21 +3,24 @@ const COMMON = {
 };
 
 const TITLE = {
-  OFFSET_Y: 14,
-  TEXT_SIZE: 12,
+  OFFSET_Y: 34,
+  TEXT_SIZE: 14,
   LABEL: "miny_černý",
 };
 
+const dropdownHeight = 40;
+
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
-  BUTTON_WIDTH: 94,
-  BUTTON_HEIGHT: 40,
-  OFFSET_Y: TITLE.TEXT_SIZE + TITLE.OFFSET_Y + 4,
   TEXT_SIZE: 12,
+  DROPDOWN_WIDTH: 116,
+  DROPDOWN_HEIGHT: dropdownHeight  ,
+  INNER_OFFSET_X: 14,
+  OFFSET_Y: TITLE.OFFSET_Y - dropdownHeight / 2,
 };
 
 const TOOLBAR = {
-  OFFSET_Y: LEVEL.BUTTON_HEIGHT + LEVEL.OFFSET_Y + 18,
+  OFFSET_Y: LEVEL.DROPDOWN_HEIGHT + LEVEL.OFFSET_Y + 18,
   OFFSET: 7,
   TEXT_SIZE: 40,
   HEIGHT: 80,
@@ -63,7 +66,7 @@ const COLORS = {
   CELL_RIVER: [180, 180, 180],
 
   EFFECT_HIGHLIGHT: [255, 255, 255],
-  EFFECT_SHADOW: [200, 200, 200],
+  EFFECT_SHADOW: [170],
 };
 
 COLORS.NUMBERS = {

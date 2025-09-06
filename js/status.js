@@ -3,6 +3,7 @@ function drawStatus(gameState) {
   const y = gridBottomY + STATUS.OFFSET_Y;
 
   textAlign(CENTER, TOP);
+  textStyle(NORMAL);
 
   textSize(STATUS.TEXT_SIZE);
   fill(COLORS.BLACK);
