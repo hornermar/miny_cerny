@@ -4,7 +4,7 @@ const COMMON = {
 
 const TITLE = {
   OFFSET_Y: 34,
-  TEXT_SIZE: 14,
+  TEXT_SIZE: 16,
   LABEL: "miny_černý",
 };
 
@@ -53,19 +53,17 @@ const pink = [217, 77, 153];
 const COLORS = {
   BACKGROUND: [220, 220, 220],
   PRIMARY: pink,
-  BLACK: [10, 10, 10],
+  BLACK: [10],
   WHITE: [255, 255, 255],
+  GRAY_LIGHT: [200],
 
   TEXT_PRIMARY: [100],
-  // TEXT_TITLE: [34, 34, 34],
-  // TEXT_WIN: [76, 175, 80],
-  // TEXT_LOSE: [244, 67, 54],
 
   CELL_MINE: pink,
   CELL_MINE_LIGHT: [235, 157, 199],
   CELL_RIVER: [180, 180, 180],
 
-  EFFECT_HIGHLIGHT: [255, 255, 255],
+  EFFECT_HIGHLIGHT: [255],
   EFFECT_SHADOW: [170],
 };
 

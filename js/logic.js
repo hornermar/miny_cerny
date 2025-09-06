@@ -78,6 +78,16 @@ function checkWin() {
   if (revealedCount === totalSafeCells) {
     gameState.currentGameState = "won";
     gameState.endTime = Date.now();
+    vibrate([100, 50, 100]);
+
+    // add flag to all mines
+    for (let row = 0; row < gameState.rows; row++) {
+      for (let col = 0; col < gameState.cols; col++) {
+        if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
+          gameState.flagged[row][col] = true;
+        }
+      }
+    }
   }
 }
 

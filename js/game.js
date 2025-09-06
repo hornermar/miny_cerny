@@ -70,7 +70,7 @@ function initializeGame() {
   }
 
   if (gameState.level === 2) {
-    addRandomMines(0.7);
+    addRandomMines(0.15);
   }
 
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
@@ -178,7 +178,7 @@ function touchStarted() {
 
 function touchEnded() {
   if (window.pendingLevelReset !== null) {
-    vibrate(50);
+    vibrate();
     resetGame(window.pendingLevelReset);
     window.pendingLevelReset = null;
     if (longTouchTimeout) {
@@ -195,7 +195,7 @@ function touchEnded() {
     mouseY >= btn.y &&
     mouseY <= btn.y + btn.height
   ) {
-    vibrate(50);
+    vibrate();
     resetGame();
     if (longTouchTimeout) {
       clearTimeout(longTouchTimeout);
@@ -223,7 +223,7 @@ function touchEnded() {
       gameState.startTime = Date.now();
       gameState.currentGameState = "playing";
     }
-    vibrate(50);
+    vibrate();
     if (gameState.revealed[row][col]) {
       revealSafeNeighbors(row, col);
     } else {

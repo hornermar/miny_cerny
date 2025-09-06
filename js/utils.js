@@ -110,7 +110,7 @@ function getEmoji(state) {
   }
 }
 
-function vibrate(pattern) {
+function vibrate(pattern = 50) {
   if (navigator.vibrate) {
     navigator.vibrate(pattern);
   }

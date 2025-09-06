@@ -18,7 +18,7 @@ function drawGrid(gameState) {
       let x = col * gameState.cellSize + gridX;
       let y = row * gameState.cellSize + GRID.OFFSET_Y;
 
-      const background = getCellBackground(gameState, row, col, x, y);
+      const background = getCellBackground(gameState, row, col);
 
       // Draw 3D effect for unrevealed cells
       if (!gameState.revealed[row][col] || gameState.flagged[row][col]) {
@@ -43,10 +43,12 @@ function drawGrid(gameState) {
   }
 }
 
-function getCellBackground(gameState, row, col, x, y) {
+function getCellBackground(gameState, row, col) {
   const revealed = gameState.revealed[row][col];
   const flagged = gameState.flagged[row][col];
   const type = gameState.mapConfig[row][col];
+
+  const isEndMine = gameState.endMine?.[0] === row && gameState.endMine?.[1] === col;
 
   if (revealed) {
     if (type === CELL_TYPES.MINE) {
@@ -57,7 +59,11 @@ function getCellBackground(gameState, row, col, x, y) {
           return COLORS.BACKGROUND;
         }
       } else {
-        return COLORS.CELL_MINE;
+        if (isEndMine) { return COLORS.CELL_MINE;
+        } else {
+          return COLORS.BACKGROUND;
+        }
+       
       }
     } else if (type === CELL_TYPES.RIVER) {
       return COLORS.CELL_RIVER;

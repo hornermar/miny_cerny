@@ -21,11 +21,12 @@ function drawToolbar(gameState) {
 
 function drawTitle(toolbarX) {
   const title = TITLE.LABEL;
+  noStroke();
 
   fill(COLORS.TEXT_PRIMARY);
-  textStyle(BOLD);
   textAlign(LEFT, CENTER);
   textSize(TITLE.TEXT_SIZE)
+  textStyle(BOLD);
   text(title, toolbarX + 4, TITLE.OFFSET_Y);
 }
 
@@ -67,17 +68,24 @@ function drawLevels(gameState, toolbarX) {
     );
   }
 
-  // TODO: Refactor, only one handler for mouse click
-  // Toggle dropdown open/close on button click 
   if (typeof window.levelDropdownMouseWasPressed === "undefined") {
     window.levelDropdownMouseWasPressed = false;
   }
-  if (
-    mouseIsPressed && !window.levelDropdownMouseWasPressed &&
-    mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
-    mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT
-  ) {
-    window.levelDropdownOpen = !window.levelDropdownOpen;
+  if (mouseIsPressed && !window.levelDropdownMouseWasPressed) {
+    // Click on dropdown button
+    if (
+      mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+      mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT
+    ) {
+      window.levelDropdownOpen = !window.levelDropdownOpen;
+    } else if (
+      // Click outside dropdown area (when open)
+      window.levelDropdownOpen &&
+      !(mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+        mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + LEVEL.NAMES.length * LEVEL.DROPDOWN_HEIGHT)
+    ) {
+      window.levelDropdownOpen = false;
+    }
     window.levelDropdownMouseWasPressed = true;
   }
   if (!mouseIsPressed) {
@@ -89,9 +97,10 @@ function drawLevels(gameState, toolbarX) {
     for (let i = 0; i < LEVEL.NAMES.length; i++) {
       const itemY = LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + i * LEVEL.DROPDOWN_HEIGHT;
 
-      fill(COLORS.BACKGROUND);
+      fill(i === gameState.level ? COLORS.CELL_RIVER : COLORS.GRAY_LIGHT);
       rect(dropdownX, itemY, LEVEL.DROPDOWN_WIDTH, LEVEL.DROPDOWN_HEIGHT);      
-      fill(i === gameState.level ? COLORS.TEXT_PRIMARY : COLORS.TEXT_PRIMARY); // TODO: different color for selected item
+      
+      fill(COLORS.TEXT_PRIMARY);  
       push();
       textAlign(LEFT, CENTER);
       textStyle(BOLD);
@@ -113,15 +122,6 @@ function drawLevels(gameState, toolbarX) {
         window.pendingLevelReset = i;
         window.levelDropdownOpen = false;
       }
-    }
-    
-    // Close dropdown if click outside dropdown area 
-    if (
-      mouseIsPressed &&
-      !(mouseX >= dropdownX && mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
-        mouseY >= LEVEL.OFFSET_Y && mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + LEVEL.NAMES.length * LEVEL.DROPDOWN_HEIGHT)
-    ) {
-      window.levelDropdownOpen = false;
     }
   }
 }
