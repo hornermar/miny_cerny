@@ -1,27 +1,24 @@
 function drawStatus(gameState) {
   const gridBottomY = GRID.OFFSET_Y + gameState.rows * gameState.cellSize;
-  const y = gridBottomY + STATUS.OFFSET_Y;
+  let y = gridBottomY + STATUS.OFFSET_Y;
 
-  textAlign(CENTER, TOP);
   textStyle(NORMAL);
+  const x = (window.innerWidth - gameState.gridWidth) / 2;
 
   textSize(STATUS.TEXT_SIZE);
-  fill(COLORS.BLACK);
-
-  fill(COLORS.BACKGROUND);
-  noStroke();
-  //stroke(0, 0, 0)
-  rect(0, y - 2, window.innerWidth, STATUS.HEIGHT);
 
   fill(COLORS.TEXT_PRIMARY);
+
   if (
     gameState.currentGameState === "not started" ||
     gameState.currentGameState === "playing"
   ) {
+    drawWrappedText(INTRODUCTION[gameState.level], x, y, gameState.gridWidth);
+
     drawWrappedText(
-      "Praha bude brzo zaplněná sochami Černýho. Objevují se po městě jako miny. Najdi je a znič dřív, než ovládnou město.",
-      width / 2,
-      y,
+      "Tvoje mise: Odminuj Prahu a zachraň veřejný prostor.",
+      x,
+      y + STATUS.LINE_HEIGHT * 2,
       gameState.gridWidth
     );
     return;
@@ -33,28 +30,33 @@ function drawStatus(gameState) {
   ) {
     const msElapsed = gameState.endTime - gameState.startTime;
 
+    text("Čas:", x, y);
+    text(`${formatTime(msElapsed)} s`, x + 40, y);
+  }
+
+  y += STATUS.LINE_HEIGHT;
+  textSize(STATUS.TEXT_SIZE);
+
+  if (gameState.currentGameState === "won") {
     drawWrappedText(
-      `Čas: ${formatTime(msElapsed)} s`,
-      width / 2,
+      "Odminováno! Veřejný prostor je zase volný. ",
+      x,
       y,
       gameState.gridWidth
     );
-
-    if (gameState.currentGameState === "lost") {
-      drawEndMineInfo(gameState, y + STATUS.MINE_INFO_OFFSET_Y);
-    }
-    return;
+  } else if (gameState.currentGameState === "lost") {
+    drawEndMineInfo(gameState, x, y);
   }
 }
 
-function drawEndMineInfo(gameState, y, artworks) {
-  const endMine = getFoundMine(gameState, artworks);
+function drawEndMineInfo(gameState, x, y) {
+  const endMine = getFoundMine(gameState);
   const description = endMine ? endMine.description : "Tuhle hru nevyhraješ!";
 
   if (endMine) {
     drawWrappedText(
-      `Narazil*a jsi na dílo: ${endMine.name}`,
-      width / 2,
+      `Bum! Narazil*a jsi na "${endMine.name}". A Praha je pořád plná Černýho.`,
+      x,
       y,
       gameState.gridWidth
     );

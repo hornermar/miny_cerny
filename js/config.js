@@ -8,13 +8,19 @@ const TITLE = {
   LABEL: "miny_černý",
 };
 
+const INTRODUCTION = [
+  "Sochy Davida Černého se postupně dostávají do veřejného prostoru Prahy.",
+  "Díla Davida Černéhose šíří po městě jako miny. ",
+  "Díla Davida Černého jsou všude – na ulicích, na střechách. Každý roh je zaminovaný.",
+];
+
 const dropdownHeight = 40;
 
 const LEVEL = {
   NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
   TEXT_SIZE: 14,
   DROPDOWN_WIDTH: 130,
-  DROPDOWN_HEIGHT: dropdownHeight  ,
+  DROPDOWN_HEIGHT: dropdownHeight,
   INNER_OFFSET_X: 14,
   OFFSET_Y: TITLE.OFFSET_Y - dropdownHeight / 2,
 };
@@ -34,7 +40,7 @@ const DISPLAY = {
 
 const GRID = {
   MIN_CELL_SIZE: 20,
-  MAX_CELL_SIZE: 30,
+  MAX_CELL_SIZE: 28,
   ROWS: MAP.length,
   COLS: MAP[0].length,
   OFFSET_X: 14,
@@ -44,8 +50,8 @@ const GRID = {
 const STATUS = {
   HEIGHT: 100,
   TEXT_SIZE: 12,
-  OFFSET_Y: 20,
-  MINE_INFO_OFFSET_Y: 60,
+  OFFSET_Y: 30,
+  LINE_HEIGHT: 24,
 };
 
 const pink = [217, 77, 153];

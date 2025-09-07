@@ -190,18 +190,6 @@ const mines = [
     description:
       "Není zas tak vidět. Bylo vytvořeno k 50. výročí divadla Na zábradlí.",
     position: [6, 7], // Není ideální umítění. Posunout - ale není už kam! :)
-
-
-
-
-
-
-
-
-
-
-
-
   },
   // Mimo mapu
   // {

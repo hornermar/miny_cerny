@@ -48,7 +48,8 @@ function getCellBackground(gameState, row, col) {
   const flagged = gameState.flagged[row][col];
   const type = gameState.mapConfig[row][col];
 
-  const isEndMine = gameState.endMine?.[0] === row && gameState.endMine?.[1] === col;
+  const isEndMine =
+    gameState.endMine?.[0] === row && gameState.endMine?.[1] === col;
 
   if (revealed) {
     if (type === CELL_TYPES.MINE) {
@@ -59,11 +60,11 @@ function getCellBackground(gameState, row, col) {
           return COLORS.BACKGROUND;
         }
       } else {
-        if (isEndMine) { return COLORS.CELL_MINE;
+        if (isEndMine) {
+          return COLORS.CELL_MINE;
         } else {
           return COLORS.BACKGROUND;
         }
-       
       }
     } else if (type === CELL_TYPES.RIVER) {
       return COLORS.CELL_RIVER;
