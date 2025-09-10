@@ -152,17 +152,27 @@ function drawLevels(gameState, toolbarX) {
 }
 
 function drawDisplay(x, y, displayText) {
-  draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, 3);
-  // Draw display background
+  draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, DISPLAY.FRAME);
+
+  // Display background
   fill(COLORS.BLACK);
-  rect(x + 3, y + 1, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 4);
+  rect(
+    x + DISPLAY.FRAME,
+    y + DISPLAY.FRAME,
+    DISPLAY.WIDTH - DISPLAY.FRAME * 2,
+    DISPLAY.HEIGHT - DISPLAY.FRAME * 2
+  );
 
   // Display text
   fill(COLORS.PRIMARY);
   textAlign(CENTER, CENTER);
   textSize(DISPLAY.TEXT_SIZE);
   textStyle(NORMAL);
-  text(displayText, x + DISPLAY.WIDTH / 2, y + DISPLAY.HEIGHT / 2 + 3);
+  text(
+    displayText,
+    x + DISPLAY.WIDTH / 2,
+    y + DISPLAY.HEIGHT / 2 + DISPLAY.FRAME + 2
+  );
 }
 
 function drawMineCounter(gameState, toolbarX) {

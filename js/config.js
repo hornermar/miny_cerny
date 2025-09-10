@@ -36,6 +36,7 @@ const DISPLAY = {
   WIDTH: 98,
   HEIGHT: 50,
   TEXT_SIZE: 52,
+  FRAME: 3,
 };
 
 const GRID = {

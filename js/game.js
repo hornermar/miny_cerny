@@ -37,7 +37,10 @@ function recalculateCellSizeAndGridWidth() {
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
+  resizeCanvas(
+    window.innerWidth,
+    Math.max(window.innerHeight, minCanvasHeight)
+  );
   recalculateCellSizeAndGridWidth();
   draw();
 }
@@ -51,7 +54,10 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.innerWidth, Math.max(window.innerHeight, minCanvasHeight));
+  createCanvas(
+    window.innerWidth,
+    Math.max(window.innerHeight, minCanvasHeight)
+  );
   recalculateCellSizeAndGridWidth();
   initializeGame();
 
@@ -60,17 +66,6 @@ function setup() {
     e.preventDefault();
     return false;
   });
-
-  const canvas = document.querySelector("canvas");
-  if (canvas) {
-    canvas.style.touchAction = "none";
-    // prettier-ignore
-    canvas.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
-    // prettier-ignore
-    canvas.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
-    // prettier-ignore
-    canvas.addEventListener('touchend', function(e) { e.preventDefault(); }, { passive: false });
-  }
 }
 
 function initializeGame() {
@@ -131,7 +126,10 @@ function mousePressed() {
     return;
   }
 
-  if (gameState.currentGameState === "won" || gameState.currentGameState === "lost") {
+  if (
+    gameState.currentGameState === "won" ||
+    gameState.currentGameState === "lost"
+  ) {
     return;
   }
 
@@ -216,7 +214,10 @@ function touchEnded() {
   if (longTouchTimeout) {
     clearTimeout(longTouchTimeout);
     longTouchTimeout = null;
-    if (gameState.currentGameState === "won" || gameState.currentGameState === "lost") {
+    if (
+      gameState.currentGameState === "won" ||
+      gameState.currentGameState === "lost"
+    ) {
       return false;
     }
     // Compute cell coordinates once
