@@ -17,6 +17,7 @@ let gameState = {
 let longTouchTimeout = null;
 const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
+const minCanvasHeight = 610;
 
 let babyImg;
 let flagImg;
@@ -50,7 +51,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
+  createCanvas(window.innerWidth, Math.max(window.innerHeight, minCanvasHeight));
   recalculateCellSizeAndGridWidth();
   initializeGame();
 
@@ -59,6 +60,17 @@ function setup() {
     e.preventDefault();
     return false;
   });
+
+  const canvas = document.querySelector("canvas");
+  if (canvas) {
+    canvas.style.touchAction = "none";
+    // prettier-ignore
+    canvas.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
+    // prettier-ignore
+    canvas.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+    // prettier-ignore
+    canvas.addEventListener('touchend', function(e) { e.preventDefault(); }, { passive: false });
+  }
 }
 
 function initializeGame() {
@@ -119,10 +131,7 @@ function mousePressed() {
     return;
   }
 
-  if (
-    gameState.currentGameState === "won" ||
-    gameState.currentGameState === "lost"
-  ) {
+  if (gameState.currentGameState === "won" || gameState.currentGameState === "lost") {
     return;
   }
 
@@ -207,10 +216,7 @@ function touchEnded() {
   if (longTouchTimeout) {
     clearTimeout(longTouchTimeout);
     longTouchTimeout = null;
-    if (
-      gameState.currentGameState === "won" ||
-      gameState.currentGameState === "lost"
-    ) {
+    if (gameState.currentGameState === "won" || gameState.currentGameState === "lost") {
       return false;
     }
     // Compute cell coordinates once

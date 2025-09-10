@@ -10,7 +10,7 @@ const TITLE = {
 
 const INTRODUCTION = [
   "Sochy Davida Černého se postupně dostávají do veřejného prostoru Prahy.",
-  "Díla Davida Černéhose šíří po městě jako miny. ",
+  "Díla Davida Černéhose šíří po městě jako miny.",
   "Díla Davida Černého jsou všude – na ulicích, na střechách. Každý roh je zaminovaný.",
 ];
 

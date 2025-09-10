@@ -155,7 +155,7 @@ function drawDisplay(x, y, displayText) {
   draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, 3);
   // Draw display background
   fill(COLORS.BLACK);
-  rect(x + 3, y + 1, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 6);
+  rect(x + 3, y + 1, DISPLAY.WIDTH - 6, DISPLAY.HEIGHT - 4);
 
   // Display text
   fill(COLORS.PRIMARY);
