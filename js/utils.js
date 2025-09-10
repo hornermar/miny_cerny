@@ -1,3 +1,17 @@
+function getCanvasSize() {
+  let height;
+
+  if (window.innerHeight < minCanvasHeight) {
+    height = minCanvasHeight;
+    document.body.style.overflowY = "auto";
+  } else {
+    height = window.innerHeight;
+    document.body.style.overflowY = "hidden";
+  }
+
+  return { width: window.innerWidth, height };
+}
+
 function isButtonPressed(x, y, w, h) {
   if (
     mouseIsPressed &&

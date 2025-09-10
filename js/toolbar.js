@@ -168,10 +168,15 @@ function drawDisplay(x, y, displayText) {
   textAlign(CENTER, CENTER);
   textSize(DISPLAY.TEXT_SIZE);
   textStyle(NORMAL);
+
+  let extraOffset = 0;
+  if (/android/i.test(navigator.userAgent)) {
+    extraOffset = 2;
+  }
   text(
     displayText,
     x + DISPLAY.WIDTH / 2,
-    y + DISPLAY.HEIGHT / 2 + DISPLAY.FRAME + 2
+    y + DISPLAY.HEIGHT / 2 + DISPLAY.FRAME + extraOffset
   );
 }
 

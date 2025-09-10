@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100%;
 
   background: rgb(220, 220, 220);
   color: rgb(100, 100, 100);
@@ -11,10 +10,6 @@ body {
 
   user-select: none;
   touch-action: manipulation;
-}
-
-canvas {
-  position: fixed;
 }
 
 .loading {
