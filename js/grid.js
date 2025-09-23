@@ -28,7 +28,7 @@ function drawGrid(gameState) {
           gameState.cellSize,
           gameState.cellSize,
           true,
-          4,
+          3.5,
           background
         );
       } else {

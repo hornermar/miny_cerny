@@ -17,6 +17,7 @@ let gameState = {
 let longTouchTimeout = null;
 const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
+const minCanvasHeight = 620;
 
 let babyImg;
 let flagImg;
@@ -36,7 +37,8 @@ function recalculateCellSizeAndGridWidth() {
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
+  const canvasSize = getCanvasSize();
+  createCanvas(canvasSize.width, canvasSize.height);
   recalculateCellSizeAndGridWidth();
   draw();
 }
@@ -50,7 +52,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
+  const canvasSize = getCanvasSize();
+  createCanvas(canvasSize.width, canvasSize.height);
   recalculateCellSizeAndGridWidth();
   initializeGame();
 
