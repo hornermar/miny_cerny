@@ -62,15 +62,15 @@ function setup() {
 }
 
 function initializeGame() {
-  gameState.mapConfig = MAP.map((row) => row.slice());
+  gameState.mapConfig = MAP.map((row) => row.map(cell => [cell, 0]));
 
   const minePositions = minesArray[gameState.level];
   for (const [row, col] of minePositions) {
-    gameState.mapConfig[row][col] = CELL_TYPES.MINE;
+    gameState.mapConfig[row][col][1] =  CELL_TYPES.MINE
   }
 
   if (gameState.level === 2) {
-    addRandomMines(0.15);
+    addRandomMines(0.13);
   }
 
   gameState.totalMines = countMinesFromMap(gameState.mapConfig);
@@ -167,10 +167,13 @@ function touchStarted() {
   const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
-  if (isInGameArea) {
+  if (
+    (isInGameArea && gameState.currentGameState === "not started") ||
+    gameState.currentGameState === "playing"
+  ) {
     longTouchTimeout = setTimeout(() => {
-      toggleFlag(row, col);
       vibrate(80);
+      toggleFlag(row, col);
       longTouchTimeout = null;
     }, LONG_TOUCH_DURATION);
   }
@@ -188,6 +191,7 @@ function touchEnded() {
     return false;
   }
   const btn = window.resetButton;
+
   if (
     btn &&
     mouseX >= btn.x &&
@@ -213,7 +217,7 @@ function touchEnded() {
     ) {
       return false;
     }
-    // Compute cell coordinates once
+
     const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
     const col = Math.floor((mouseX - gridX) / gameState.cellSize);
     const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);

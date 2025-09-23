@@ -16,7 +16,7 @@ function drawStatus(gameState) {
     drawWrappedText(INTRODUCTION[gameState.level], x, y, gameState.gridWidth);
 
     drawWrappedText(
-      "Tvoje mise: Odminuj Prahu a zachraň veřejný prostor.",
+      "Začni kliknutím do hracího pole.",
       x,
       y + STATUS.LINE_HEIGHT * 2,
       gameState.gridWidth
@@ -34,12 +34,12 @@ function drawStatus(gameState) {
     text(`${formatTime(msElapsed)} s`, x + 40, y);
   }
 
-  y += STATUS.LINE_HEIGHT;
+  y += STATUS.LINE_HEIGHT_SMALL;
   textSize(STATUS.TEXT_SIZE);
 
   if (gameState.currentGameState === "won") {
     drawWrappedText(
-      "Odminováno! Veřejný prostor je zase volný. ",
+     WIN[gameState.level],
       x,
       y,
       gameState.gridWidth
@@ -51,11 +51,10 @@ function drawStatus(gameState) {
 
 function drawEndMineInfo(gameState, x, y) {
   const endMine = getFoundMine(gameState);
-  const description = endMine ? endMine.description : "Tuhle hru nevyhraješ!";
 
   if (endMine) {
     drawWrappedText(
-      `Bum! Narazil*a jsi na "${endMine.name}". A Praha je pořád plná Černýho.`,
+      `Bum! Narazil*a jsi na "${endMine.name}".`,
       x,
       y,
       gameState.gridWidth
@@ -63,9 +62,9 @@ function drawEndMineInfo(gameState, x, y) {
   }
 
   drawWrappedText(
-    description,
+    LOSS[gameState.level],
     width / 2,
-    endMine ? y + STATUS.MINE_INFO_OFFSET_Y * 2 : y + STATUS.MINE_INFO_OFFSET_Y,
+    y + STATUS.MINE_INFO_OFFSET_Y * 2 ,
     gameState.gridWidth
   );
 }

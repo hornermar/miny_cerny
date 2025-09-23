@@ -9,11 +9,13 @@ function revealCell(row, col) {
 
   gameState.revealed[row][col] = true;
 
-  if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
+  if (gameState.mapConfig[row][col][1] === CELL_TYPES.MINE) {
     gameState.currentGameState = "lost";
     revealAllMines();
     gameState.endMine = [row, col];
     gameState.endTime = Date.now();
+
+    vibrate([100, 50, 100]);
     return;
   }
 
@@ -51,7 +53,7 @@ function revealAllMines() {
   for (let row = 0; row < gameState.rows; row++) {
     for (let col = 0; col < gameState.cols; col++) {
       if (
-        gameState.mapConfig[row][col] === CELL_TYPES.MINE ||
+        gameState.mapConfig[row][col][1] === CELL_TYPES.MINE ||
         gameState.flagged[row][col]
       ) {
         gameState.revealed[row][col] = true;
@@ -68,7 +70,7 @@ function checkWin() {
     for (let col = 0; col < gameState.cols; col++) {
       if (
         gameState.revealed[row][col] &&
-        gameState.mapConfig[row][col] !== CELL_TYPES.MINE
+        gameState.mapConfig[row][col][1] !== CELL_TYPES.MINE
       ) {
         revealedCount++;
       }
@@ -83,7 +85,7 @@ function checkWin() {
     // add flag to all mines
     for (let row = 0; row < gameState.rows; row++) {
       for (let col = 0; col < gameState.cols; col++) {
-        if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
+        if (gameState.mapConfig[row][col][1] === CELL_TYPES.MINE) {
           gameState.flagged[row][col] = true;
         }
       }
@@ -139,11 +141,11 @@ function addRandomMines(probability) {
   for (let row = 0; row < gameState.rows; row++) {
     for (let col = 0; col < gameState.cols; col++) {
       if (
-        gameState.mapConfig[row][col] !== CELL_TYPES.MINE &&
-        gameState.mapConfig[row][col] !== CELL_TYPES.RIVER
+        gameState.mapConfig[row][col][1] !== CELL_TYPES.MINE &&
+        gameState.mapConfig[row][col][0] !== CELL_TYPES.RIVER
       ) {
         if (Math.random() < probability) {
-          gameState.mapConfig[row][col] = CELL_TYPES.MINE;
+          gameState.mapConfig[row][col][1] = CELL_TYPES.MINE;
         }
       }
     }

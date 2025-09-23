@@ -46,15 +46,17 @@ function drawGrid(gameState) {
 function getCellBackground(gameState, row, col) {
   const revealed = gameState.revealed[row][col];
   const flagged = gameState.flagged[row][col];
-  const type = gameState.mapConfig[row][col];
+  const cellType = gameState.mapConfig[row][col][0];
+
+  const isMine = gameState.mapConfig[row][col][1] === 1;
 
   const isEndMine =
     gameState.endMine?.[0] === row && gameState.endMine?.[1] === col;
 
   if (revealed) {
-    if (type === CELL_TYPES.MINE) {
+    if (isMine) {
       if (flagged) {
-        if (type === CELL_TYPES.RIVER) {
+        if (cellType === CELL_TYPES.RIVER) {
           return COLORS.CELL_RIVER;
         } else {
           return COLORS.BACKGROUND;
@@ -62,11 +64,12 @@ function getCellBackground(gameState, row, col) {
       } else {
         if (isEndMine) {
           return COLORS.CELL_MINE;
-        } else {
+        } else if (cellType === CELL_TYPES.RIVER) 
+          return COLORS.CELL_RIVER;{
           return COLORS.BACKGROUND;
         }
       }
-    } else if (type === CELL_TYPES.RIVER) {
+    } else if (cellType === CELL_TYPES.RIVER) {
       return COLORS.CELL_RIVER;
     } else {
       if (flagged) {
@@ -76,7 +79,7 @@ function getCellBackground(gameState, row, col) {
       }
     }
   } else {
-    if (type === CELL_TYPES.RIVER) {
+    if (cellType === CELL_TYPES.RIVER) {
       return COLORS.CELL_RIVER;
     } else {
       return COLORS.BACKGROUND;
@@ -99,7 +102,7 @@ function drawCellContent(gameState, row, col, x, y) {
       gameState.cellSize * 0.8
     );
   } else if (gameState.revealed[row][col]) {
-    if (gameState.mapConfig[row][col] === CELL_TYPES.MINE) {
+    if (gameState.mapConfig[row][col][1] === CELL_TYPES.MINE) {
       image(
         babyImg,
         x + gameState.cellSize * 0.05,

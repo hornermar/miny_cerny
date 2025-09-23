@@ -9,15 +9,27 @@ const TITLE = {
 };
 
 const INTRODUCTION = [
-  "Sochy Davida Černého se postupně dostávají do veřejného prostoru Prahy.",
-  "Díla Davida Černéhose šíří po městě jako miny. ",
-  "Díla Davida Černého jsou všude – na ulicích, na střechách. Každý roh je zaminovaný.",
+  "Tady díla spojený s developerama ještě nehledej. Zato tu ještě najdeš ostrou kritiku český společnosti. ",
+  "Díla Davida Černýho nezastavitelně obsazujou Prahu. Motýli jsou pořád na Máji. 26 “min” na takový prostor není zrovna málo. Šance na výhru ale pořád je.",
+  "Už stojí Top Tower? A jsou Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomhle levelu najdeš také budoucí, náhodně se objevující sochy. Je vůbec možný ještě vyhrát?",
 ];
+
+const WIN = [
+  "Odminováno. V tomto případě je to ale možná ještě škoda.",
+  "Odminováno!",
+  ""
+]
+
+const LOSS = [
+  "",
+  "",
+  ""
+]
 
 const dropdownHeight = 40;
 
 const LEVEL = {
-  NAMES: ["Praha 2000", "Praha 2025", "Praha 2050"],
+  NAMES: ["Praha 2013", "Praha 2025", "Praha 2032"],
   TEXT_SIZE: 14,
   DROPDOWN_WIDTH: 130,
   DROPDOWN_HEIGHT: dropdownHeight,
@@ -51,7 +63,8 @@ const STATUS = {
   HEIGHT: 100,
   TEXT_SIZE: 12,
   OFFSET_Y: 30,
-  LINE_HEIGHT: 24,
+  LINE_HEIGHT: 55,
+  LINE_HEIGHT_SMALL: 30
 };
 
 const pink = [217, 77, 153];

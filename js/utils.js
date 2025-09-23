@@ -24,7 +24,7 @@ function countMinesFromMap(mapConfig) {
   let mineCount = 0;
   for (let row = 0; row < mapConfig.length; row++) {
     for (let col = 0; col < mapConfig[row].length; col++) {
-      if (mapConfig[row][col] === CELL_TYPES.MINE) {
+      if (mapConfig[row][col][1] === CELL_TYPES.MINE) {
         mineCount++;
       }
     }
@@ -36,7 +36,7 @@ function countSafeCellsFromMap(mapConfig) {
   let safeCount = 0;
   for (let row = 0; row < mapConfig.length; row++) {
     for (let col = 0; col < mapConfig[row].length; col++) {
-      if (mapConfig[row][col] === CELL_TYPES.CITY) {
+      if (mapConfig[row][col][0] === CELL_TYPES.CITY || mapConfig[row][col][0] === CELL_TYPES.RIVER) {
         safeCount++;
       }
     }
@@ -57,11 +57,11 @@ function isMineCell(row, col, mapConfig) {
   ) {
     return false;
   }
-  return mapConfig[row][col] === CELL_TYPES.MINE;
+  return mapConfig[row][col][1] === CELL_TYPES.MINE;
 }
 
 function getNeighborMineCount(row, col, mapConfig, rows, cols) {
-  if (mapConfig[row][col] === CELL_TYPES.MINE) {
+  if (mapConfig[row][col][1] === CELL_TYPES.MINE) {
     return 0;
   }
 
@@ -73,7 +73,7 @@ function getNeighborMineCount(row, col, mapConfig, rows, cols) {
       let newCol = col + j;
       if (
         isValidCell(newRow, newCol, rows, cols) &&
-        mapConfig[newRow][newCol] === CELL_TYPES.MINE
+        mapConfig[newRow][newCol][1] === CELL_TYPES.MINE
       ) {
         count++;
       }
@@ -110,7 +110,7 @@ function getEmoji(state) {
   }
 }
 
-function vibrate(pattern = 40) {
+function vibrate(pattern = 35) {
   if (navigator.vibrate) {
     navigator.vibrate(pattern);
   }
