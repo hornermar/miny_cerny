@@ -174,19 +174,21 @@ const mines = [
     name: "Bar v kavárně Mlýnská",
     description: "",
     position: [4, 3],
+    year: 2015,
   },
   {
     id: 24,
     name: "Tři ženy na domě",
     description: "",
     position: [5, 6],
+    year: 2007,
   },
-  {
-    id: 25,
-    name: "The Italians Wine Food",
-    description: "",
-    position: [7, 4],
-  },
+  // {
+  //   id: 25,
+  //   name: "The Italians Wine Food",
+  //   description: "",
+  //   position: [7, 4],
+  // },
   {
     id: 26,
     name: "Embryo",

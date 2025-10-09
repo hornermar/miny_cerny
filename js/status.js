@@ -15,7 +15,7 @@ function drawStatus(gameState) {
   ) {
     drawWrappedText(INTRODUCTION[gameState.level], x, y, gameState.gridWidth);
 
-    y += STATUS.LINE_HEIGHT * 5;
+    y += STATUS.LINE_HEIGHT * 6;
     drawWrappedText(CALL_TO_ACTION[gameState.level], x, y , gameState.gridWidth);
 
     y += STATUS.LINE_HEIGHT * 2.8;
@@ -58,13 +58,6 @@ function drawEndMineInfo(gameState, x, y) {
       gameState.gridWidth
     );
   }
-
-  drawWrappedText(
-    LOSS[gameState.level],
-    width / 2,
-    y + STATUS.MINE_INFO_OFFSET_Y * 2,
-    gameState.gridWidth
-  );
 }
 
 function getFoundMine(gameState) {

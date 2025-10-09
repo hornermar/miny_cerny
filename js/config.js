@@ -10,7 +10,7 @@ const TITLE = {
 
 const INTRODUCTION = [
   "Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.",
-  "David Černý ubírá na kritičnosti soch a místo toho razantně posíluje spolupraci s developery. Výsledkem je dvacet šest děl v jednom městě.",
+  "David Černý ubírá na kritičnosti soch a místo toho razantně posíluje spolupraci s developery. Výsledkem je dvacet osm děl v jednom městě.",
   "Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.",
 ];
 
@@ -45,14 +45,14 @@ const TOOLBAR = {
 };
 
 const DISPLAY = {
-  WIDTH: 98,
-  HEIGHT: 50,
-  TEXT_SIZE: 52,
+  WIDTH: 88,
+  HEIGHT: 46,
+  TEXT_SIZE: 46,
   FRAME: 3,
 };
 
 const GRID = {
-  MIN_CELL_SIZE: 20,
+  MIN_CELL_SIZE: 22,
   MAX_CELL_SIZE: 28,
   ROWS: MAP.length,
   COLS: MAP[0].length,
