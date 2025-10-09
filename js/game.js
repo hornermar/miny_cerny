@@ -12,6 +12,7 @@ let gameState = {
   level: 1, // 0, 1, 2
   endMine: null,
   endTime: null,
+  firstClick: false,
 };
 
 let longTouchTimeout = null;
@@ -102,7 +103,6 @@ function drawGame(gameState) {
 
 function resetGame(level) {
   gameState.currentGameState = "not started";
-  gameState.firstClick = true;
   gameState.startTime = null;
   gameState.level = level ?? gameState.level;
   gameState.endMine = null;
@@ -135,6 +135,7 @@ function mousePressed() {
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
   if (isInGameArea && gameState.currentGameState === "not started") {
+    gameState.firstClick = true;
     gameState.startTime = Date.now();
     gameState.currentGameState = "playing";
   }
@@ -227,6 +228,7 @@ function touchEnded() {
     const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
     if (!isInGameArea) return false;
     if (gameState.currentGameState === "not started") {
+      gameState.firstClick = true;
       gameState.startTime = Date.now();
       gameState.currentGameState = "playing";
     }

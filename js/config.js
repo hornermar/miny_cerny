@@ -9,22 +9,22 @@ const TITLE = {
 };
 
 const INTRODUCTION = [
-  "Tady díla spojený s developerama ještě nehledej. Zato tu ještě najdeš ostrou kritiku český společnosti. ",
-  "Díla Davida Černýho nezastavitelně obsazujou Prahu. Motýli jsou pořád na Máji. 26 “min” na takový prostor není zrovna málo. Šance na výhru ale pořád je.",
-  "Už stojí Top Tower? A jsou Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomhle levelu najdeš také budoucí, náhodně se objevující sochy. Je vůbec možný ještě vyhrát?",
+  "Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.",
+  "David Černý ubírá na kritičnosti soch a místo toho razantně posíluje spolupraci s developery. Výsledkem je dvacet šest děl v jednom městě.",
+  "Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.",
 ];
 
-const WIN = [
-  "Odminováno. V tomto případě je to ale možná ještě škoda.",
-  "Odminováno!",
-  ""
+const CALL_TO_ACTION = [
+"(Vy)hraj jednoduše!",
+"Zkus se Prahou proklikat a nešlápnout na Černého minu!",
+"Je vůbec možný ještě vyhrát?"
 ]
 
-const LOSS = [
-  "",
-  "",
-  ""
-]
+const WIN = [
+  "Odminováno. Našel*a jsi všechny sochy Davida Černého, kontroverzního umělce, který se nebojí tnout do živého.",
+  "To byl ale grandiózní slalom mezi minami, gratulace! Moc se ale neraduj. Z médií tušíš, že Černého pražská invaze zdaleka nekončí.",
+  "Vyčistil*a jsi hustě zaminované území! Profesionální výkon. Dostáváš nabídky od ukrajinské armády. A David Černý od dalších a dalších firem."
+];
 
 const dropdownHeight = 40;
 
@@ -64,8 +64,7 @@ const STATUS = {
   HEIGHT: 100,
   TEXT_SIZE: 12,
   OFFSET_Y: 30,
-  LINE_HEIGHT: 55,
-  LINE_HEIGHT_SMALL: 30
+  LINE_HEIGHT: 18
 };
 
 const pink = [217, 77, 153];

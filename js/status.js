@@ -15,16 +15,20 @@ function drawStatus(gameState) {
   ) {
     drawWrappedText(INTRODUCTION[gameState.level], x, y, gameState.gridWidth);
 
-    drawWrappedText(
-      "Začni kliknutím do hracího pole.",
-      x,
-      y + STATUS.LINE_HEIGHT * 2,
-      gameState.gridWidth
-    );
-    return;
-  }
+    y += STATUS.LINE_HEIGHT * 5;
+    drawWrappedText(CALL_TO_ACTION[gameState.level], x, y , gameState.gridWidth);
 
-  if (
+    y += STATUS.LINE_HEIGHT * 2.8;
+
+    if (!gameState.firstClick) {
+      drawWrappedText(
+        "Začni kliknutím do hracího pole.",
+        x,
+        y ,
+        gameState.gridWidth
+      );
+    }
+  } else if (
     gameState.currentGameState === "lost" ||
     gameState.currentGameState === "won"
   ) {
@@ -32,20 +36,14 @@ function drawStatus(gameState) {
 
     text("Čas:", x, y);
     text(`${formatTime(msElapsed)} s`, x + 40, y);
-  }
 
-  y += STATUS.LINE_HEIGHT_SMALL;
-  textSize(STATUS.TEXT_SIZE);
-
-  if (gameState.currentGameState === "won") {
-    drawWrappedText(
-     WIN[gameState.level],
-      x,
-      y,
-      gameState.gridWidth
-    );
-  } else if (gameState.currentGameState === "lost") {
-    drawEndMineInfo(gameState, x, y);
+    y += STATUS.LINE_HEIGHT * 1.5;
+  
+    if (gameState.currentGameState === "won") {
+      drawWrappedText(WIN[gameState.level], x, y, gameState.gridWidth);
+    } else if (gameState.currentGameState === "lost") {
+      drawEndMineInfo(gameState, x, y);
+    } 
   }
 }
 
@@ -54,7 +52,7 @@ function drawEndMineInfo(gameState, x, y) {
 
   if (endMine) {
     drawWrappedText(
-      `Bum! Narazil*a jsi na "${endMine.name}".`,
+      `Bum! Narazil*a jsi na dílo "${endMine.name}". Tuhle hru prohráváš.`,
       x,
       y,
       gameState.gridWidth
@@ -64,7 +62,7 @@ function drawEndMineInfo(gameState, x, y) {
   drawWrappedText(
     LOSS[gameState.level],
     width / 2,
-    y + STATUS.MINE_INFO_OFFSET_Y * 2 ,
+    y + STATUS.MINE_INFO_OFFSET_Y * 2,
     gameState.gridWidth
   );
 }
