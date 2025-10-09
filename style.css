@@ -16,6 +16,14 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+canvas {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
 .loading {
   position: fixed;
   top: 10px;
