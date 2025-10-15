@@ -1,35 +1,35 @@
 const COMMON = {
-  fontFamily: "Kode Mono",
+  fontFamily: 'Kode Mono',
 };
 
 const TITLE = {
   OFFSET_Y: 34,
   TEXT_SIZE: 16,
-  LABEL: "miny_černý",
+  LABEL: 'miny_černý',
 };
 
 const INTRODUCTION = [
-  "Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.",
-  "David Černý ubírá na kritičnosti soch a místo toho razantně posíluje spolupraci s developery. Výsledkem je dvacet osm děl v jednom městě.",
-  "Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.",
+  'Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.',
+  'Díla Davida Černého nezastavitelně plní Prahu. Svým sochám postupně ubírá na kritičnosti a naopak razantně posíluje spolupraci s developery. Výsledkem je dvacet sedm děl v jednom městě.',
+  'Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.',
 ];
 
 const CALL_TO_ACTION = [
-"(Vy)hraj jednoduše!",
-"Zkus se Prahou proklikat a nešlápnout na Černého minu!",
-"Je vůbec možný ještě vyhrát?"
-]
+  '(Vy)hraj jednoduše!',
+  'Proklikej se Prahou a zkus nešlápnout na Černého minu!',
+  'Je vůbec možný ještě vyhrát?',
+];
 
 const WIN = [
-  "Odminováno. Našel*a jsi všechny sochy Davida Černého, kontroverzního umělce, který se nebojí tnout do živého.",
-  "To byl ale grandiózní slalom mezi minami, gratulace! Moc se ale neraduj. Z médií tušíš, že Černého pražská invaze zdaleka nekončí.",
-  "Vyčistil*a jsi hustě zaminované území! Profesionální výkon. Dostáváš nabídky od ukrajinské armády. A David Černý od dalších a dalších firem."
+  'Odminováno. Našel*a jsi všechny sochy Davida Černého, kontroverzního umělce, který se nebojí tnout do živého.',
+  'To byl ale grandiózní slalom mezi minami, gratulace! Moc se ale neraduj. Z médií tušíš, že Černého pražská invaze zdaleka nekončí.',
+  'Vyčistil*a jsi hustě zaminované území! Profesionální výkon. Dostáváš nabídky od ukrajinské armády. A David Černý od dalších a dalších firem.',
 ];
 
 const dropdownHeight = 40;
 
 const LEVEL = {
-  NAMES: ["Praha 2013", "Praha 2025", "Praha 2032"],
+  NAMES: ['Praha 2013', 'Praha 2025', 'Praha 2035'],
   TEXT_SIZE: 14,
   DROPDOWN_WIDTH: 130,
   DROPDOWN_HEIGHT: dropdownHeight,
@@ -64,7 +64,7 @@ const STATUS = {
   HEIGHT: 100,
   TEXT_SIZE: 12,
   OFFSET_Y: 30,
-  LINE_HEIGHT: 18
+  LINE_HEIGHT: 19,
 };
 
 const pink = [217, 77, 153];

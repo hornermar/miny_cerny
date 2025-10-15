@@ -10,62 +10,68 @@ function drawStatus(gameState) {
   fill(COLORS.TEXT_PRIMARY);
 
   if (
-    gameState.currentGameState === "not started" ||
-    gameState.currentGameState === "playing"
+    gameState.currentGameState === 'not started' ||
+    gameState.currentGameState === 'playing'
   ) {
     drawWrappedText(INTRODUCTION[gameState.level], x, y, gameState.gridWidth);
 
     y += STATUS.LINE_HEIGHT * 6;
-    drawWrappedText(CALL_TO_ACTION[gameState.level], x, y , gameState.gridWidth);
+    drawWrappedText(CALL_TO_ACTION[gameState.level], x, y, gameState.gridWidth);
 
     y += STATUS.LINE_HEIGHT * 2.8;
 
     if (!gameState.firstClick) {
       drawWrappedText(
-        "Začni kliknutím do hracího pole.",
+        'Začni kliknutím do hracího pole.',
         x,
-        y ,
+        y,
         gameState.gridWidth
       );
     }
   } else if (
-    gameState.currentGameState === "lost" ||
-    gameState.currentGameState === "won"
+    gameState.currentGameState === 'lost' ||
+    gameState.currentGameState === 'won'
   ) {
     const msElapsed = gameState.endTime - gameState.startTime;
 
-    text("Čas:", x, y);
-    text(`${formatTime(msElapsed)} s`, x + 40, y);
+    text(`Čas: ${formatTime(msElapsed)} s`, x , y);
 
     y += STATUS.LINE_HEIGHT * 1.5;
-  
-    if (gameState.currentGameState === "won") {
+
+    if (gameState.currentGameState === 'won') {
       drawWrappedText(WIN[gameState.level], x, y, gameState.gridWidth);
-    } else if (gameState.currentGameState === "lost") {
+    } else if (gameState.currentGameState === 'lost') {
       drawEndMineInfo(gameState, x, y);
-    } 
+    }
   }
 }
 
 function drawEndMineInfo(gameState, x, y) {
-  const endMine = getFoundMine(gameState);
+  let endMine = getFoundMine(gameState);
 
-  if (endMine) {
-    drawWrappedText(
-      `Bum! Narazil*a jsi na dílo "${endMine.name}". Tuhle hru prohráváš.`,
-      x,
-      y,
-      gameState.gridWidth
-    );
-  }
+  const endMineText = endMine
+    ? `Bum! Narazil*a jsi na dílo "${endMine.name}". ${endMine.description} Tuhle hru prohráváš.`
+    : gameState.level === 2 && !endMine
+    ? 'Bum! Narazil*a jsi na jedno z budoucích děl. Tuhle hru prohráváš.'
+    : '';
+
+  drawWrappedText(endMineText, x, y, gameState.gridWidth);
 }
 
 function getFoundMine(gameState) {
   if (!gameState.endMine) return null;
 
-  return mines.find(
+  let mine = mines.find(
     (mine) =>
       mine.position[0] === gameState.endMine[0] &&
       mine.position[1] === gameState.endMine[1]
-  );
+  )
+
+
+  // Find first mine with same id (it should have description)
+  if(!mine.description) {
+    mine = mines.find(item => item.id === mine.id);
+  }
+
+  return mine;
 }

@@ -4,7 +4,7 @@ let gameState = {
   cellSize: GRID.MIN_CELL_SIZE,
   gridWidth: null,
   totalMines: 0,
-  currentGameState: "not started", // 'not started', 'playing', 'won', 'lost'
+  currentGameState: 'not started', // 'not started', 'playing', 'won', 'lost'
   revealed: [],
   flagged: [],
   mapConfig: MAP,
@@ -18,7 +18,7 @@ let gameState = {
 let longTouchTimeout = null;
 const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
-const minCanvasHeight = 620;
+const minCanvasHeight = 720;
 
 let babyImg;
 let flagImg;
@@ -45,11 +45,11 @@ function windowResized() {
 }
 
 function preload() {
-  babyImg = loadImage("assets/baby.png");
-  flagImg = loadImage("assets/flag.svg");
-  emojiSmileImg = loadImage("assets/emoji-smile.svg");
-  emojiSadImg = loadImage("assets/emoji-sad.svg");
-  emojiGlassesImg = loadImage("assets/emoji-glasses.svg");
+  babyImg = loadImage('assets/baby.png');
+  flagImg = loadImage('assets/flag.svg');
+  emojiSmileImg = loadImage('assets/emoji-smile.svg');
+  emojiSadImg = loadImage('assets/emoji-sad.svg');
+  emojiGlassesImg = loadImage('assets/emoji-glasses.svg');
 }
 
 function setup() {
@@ -59,18 +59,18 @@ function setup() {
   initializeGame();
 
   // Prevent right-click context menu on the canvas
-  document.addEventListener("contextmenu", function (e) {
+  document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
     return false;
   });
 }
 
 function initializeGame() {
-  gameState.mapConfig = MAP.map((row) => row.map(cell => [cell, 0]));
+  gameState.mapConfig = MAP.map((row) => row.map((cell) => [cell, 0]));
 
   const minePositions = minesArray[gameState.level];
   for (const [row, col] of minePositions) {
-    gameState.mapConfig[row][col][1] =  CELL_TYPES.MINE
+    gameState.mapConfig[row][col][1] = CELL_TYPES.MINE;
   }
 
   if (gameState.level === 2) {
@@ -102,7 +102,7 @@ function drawGame(gameState) {
 }
 
 function resetGame(level) {
-  gameState.currentGameState = "not started";
+  gameState.currentGameState = 'not started';
   gameState.startTime = null;
   gameState.level = level ?? gameState.level;
   gameState.endMine = null;
@@ -123,8 +123,8 @@ function mousePressed() {
   }
 
   if (
-    gameState.currentGameState === "won" ||
-    gameState.currentGameState === "lost"
+    gameState.currentGameState === 'won' ||
+    gameState.currentGameState === 'lost'
   ) {
     return;
   }
@@ -134,10 +134,10 @@ function mousePressed() {
   const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
-  if (isInGameArea && gameState.currentGameState === "not started") {
+  if (isInGameArea && gameState.currentGameState === 'not started') {
     gameState.firstClick = true;
     gameState.startTime = Date.now();
-    gameState.currentGameState = "playing";
+    gameState.currentGameState = 'playing';
   }
 
   if (mouseButton === LEFT) {
@@ -172,8 +172,8 @@ function touchStarted() {
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
   if (
-    (isInGameArea && gameState.currentGameState === "not started") ||
-    gameState.currentGameState === "playing"
+    (isInGameArea && gameState.currentGameState === 'not started') ||
+    gameState.currentGameState === 'playing'
   ) {
     longTouchTimeout = setTimeout(() => {
       vibrate(80);
@@ -216,8 +216,8 @@ function touchEnded() {
     clearTimeout(longTouchTimeout);
     longTouchTimeout = null;
     if (
-      gameState.currentGameState === "won" ||
-      gameState.currentGameState === "lost"
+      gameState.currentGameState === 'won' ||
+      gameState.currentGameState === 'lost'
     ) {
       return false;
     }
@@ -227,10 +227,10 @@ function touchEnded() {
     const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
     const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
     if (!isInGameArea) return false;
-    if (gameState.currentGameState === "not started") {
+    if (gameState.currentGameState === 'not started') {
       gameState.firstClick = true;
       gameState.startTime = Date.now();
-      gameState.currentGameState = "playing";
+      gameState.currentGameState = 'playing';
     }
     vibrate();
     if (gameState.revealed[row][col]) {
