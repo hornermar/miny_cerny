@@ -176,7 +176,6 @@ function touchStarted() {
     gameState.currentGameState === 'playing'
   ) {
     longTouchTimeout = setTimeout(() => {
-      vibrate(80);
       toggleFlag(row, col);
       longTouchTimeout = null;
     }, LONG_TOUCH_DURATION);

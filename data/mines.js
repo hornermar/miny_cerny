@@ -3,114 +3,80 @@ const mines = [
     id: 1,
     name: 'Proudy',
     description:
-      'Dvě mužské postavy močící do nádrže ve tvaru České republiky.',
+      'To ses teda nechal*a jednoduše přečůrat.',
     position: [3, 5],
     year: 2004,
   },
   {
-    /*
-    Tenhle trabant stojí na dvoře německého velvyslanectví.
-    Praha má v roce 1990 ještě v dobré paměti, jak přes ni před pár měsíci utíkaly tisíce východních Němců na Západ, 
-    které tu kolem západonněmecké ambaasády, vydávající jim víza, po sobě zanechávali opuštěné duroplastové symboly pomalu zanikající NDR. 
-    Použije jeden z nich a přidělá mu nohy. Dnes stojí na dvoře německého velvyslanectví v Lobkovickém paláci.
-    */
     id: 2,
-    name: 'Quo Vadis (Trabant)',
+    name: 'Quo Vadis',
     description:
-      'Tenhle kráčející trabant stojí na dvoře německého velvyslanectví.',
+      'V roce 1990 aktuální, a dodnes nadčasová socha. Kráčejícího trabanta jsi asi přehlédl*a, protože je schovaný na zahradě německého velvyslanectví. ',
     position: [3, 3],
     year: 1990,
   },
   {
-    /*
-    Kampa. Metafora marketingového cejchu, který se nám vráží do tváře už při narození. Plazící se batole s čárovým kódem místo obličeje.
-    */
     id: 3,
-    name: 'Mimina',
-    description: '',
+    name: 'Miminka',
+    description: 'Zatím jedno z posledních instalovaných kritckých děl Davida Černého. Metafora marketingového cejchu, který se nám vráží do tváře už při narození.',
     position: [4, 4],
     year: 2008,
   },
   {
-    /*
-    „I já děkuji společnosti Rockaway. Ve spolupráci s ní jsme udělali ze sochy vlastně takovou chladničku na kolečkách, 
-    která se dá převézt rudlíkem. Jen tak jsme mohli obejít stavební povolení, 
-    o které bychom museli bojovat s Klubem za zasranou Pra.., ehm, pardon, s Klubem za starou Prahu“
-    */
     id: 4,
     name: 'Věra',
-    description: '',
+    description: 'Ač to vypadá jako památník Spidermana, tak je to Černého hold Věře Čáslavské. Tenhle kolotoč už z hlavy nedostaneš.',
     position: [5, 4],
     year: 2024,
   },
   {
-    /*
-    Odhalen u příležitosti 40ti letům působení známé české punkové skupiny Visací zámek.
-    */
     id: 5,
     name: 'Pomník kapely Visací zámek',
-    description: '',
+    description: 'Punk’s not dead, jen trochu zrůžověl. Pomník nesmrtelné kapely od nesmrtelného umělce.',
     position: [5, 2],
     year: 2022,
   },
   {
-    /*
-     */
     id: 6,
     name: 'Brownnosing',
-    description: '',
+    description: 'Socha z dob, kdy si Černý neodolatelně střílel z „těch nahoře“. Co by tehdejší David Černý řekl na dnešního Davida Černého?  ',
     position: [6, 3],
     year: 2003,
   },
   {
-    /*
-    Nejdříve měl Černý povolení umístit zde torzo tanku jen na pár dní, 
-    nakonec se však společně s vedením městské části i s památkáři domluvili a torzo zde zůstalo natrvalo.
-    */
     id: 7,
     name: 'Torzo tanku',
     description:
-      'Mělo tu být jen chvíli, ale jak už to s díly Davida Černého bývá, nakonec tu zůstalo natrvalo.',
+      'Mělo tu být jen chvíli. Jak už to ale s díly Davida Černého občas bývá, nakonec tu zůstalo natrvalo.',
     position: [6, 4],
     year: 2018,
   },
 
   {
-    /*
-    Dílo David vystavoval ve finále ceny Jindřicha Chalupeckého v roce 2000. 
-    Tu v tomto roce vyhrál. Dnes jsou auta azvěšená na MeetFactory.
-    */
     id: 8,
     name: 'Maso',
-    description: '',
+    description: 'Černého protest proti „auto-civilizaci“ způsobil Knížákův protest proti Černému. Ty neprotestuj a zkus si zahrát znovu.',
     position: [9, 4],
     year: 2007,
   },
   {
-    /*
-    Korpo-Speederman pro developery z Waltrovky.
-    Penta, Wlatrovka. Korporátní umění.
-    */
     id: 10,
     name: 'Speederman',
-    description: '',
+    description: 'Speederman v jinonické Waltrovce znázorňuje nadlidskou rychlost vývoje člověka. A možná taky zvyšující se intenzitu spolupráce Davida Černého s developery?',
     position: [9, 2],
     year: 2014,
   },
   {
-    /*
-    Stojí před budovou s luxusními apartmány Waltrovka společnosti Penta Investments.
-    */
     id: 11,
     name: 'Pegasové',
-    description: '',
+    description: 'Napůl koně, napůl motory. Napůl byznys, napůl umění. Ty jsi se ale měl*a vyhnout Černému úplně. Takže to zkus znovu.',
     position: [8, 2],
     year: 2017,
   },
   {
     id: 12,
     name: 'Viselec',
-    description: 'A to už si chtěl*a volat hasiče, aby toho Freuda zachránili.',
+    description: 'A to už si chtěl*a volat hasiče, aby toho chlapa zachránili.',
     position: [4, 6],
     year: 1997,
   },
@@ -118,7 +84,7 @@ const mines = [
     id: 13,
     name: 'Butterfly Effect',
     description:
-      'Kupodivu i takhle může vypadat „dočasná“ instalace na kulturní památce.',
+      'Kupodivu i takhle může vypadat „dočasná“ instalace na kulturní památce. Jo a, nejsou to svítící motýli, ale památník letcům RAF!',
     position: [5, 7],
     year: 2024,
   },
@@ -126,15 +92,11 @@ const mines = [
     id: 14,
     name: 'Franz Kafka "K"',
     description:
-      'Spletl*a sis snad tuhle otáčející se hlavu s poutačem na Qadrio?',
+      'Spletl*a sis snad tuhle otáčející se hlavu s poutačem na Quadrio?',
     position: [5, 8],
     year: 2014,
   },
   {
-    /*
-    V Lucerně je tu už od roku 2000. Měla znázornit aktuální stav České republiky očima Davida Černého 
-    – nefunguje, ale všichni děláme „jakoby nic“
-    */
     id: 15,
     name: 'Svatý Václav',
     description: 'Prý alegorie stavu České republiky. Funguje to i po letech.',
@@ -145,7 +107,7 @@ const mines = [
     id: 16,
     name: 'Miminka',
     description:
-      'Těhle deset batolat mělo být na Žižkovském vysílači jen dočasně. Díky kladným ohlasům tu jsou ale natrvalo. Kdyby to tak fungovalo i obráceně...',
+      'Těhle deset batolat mělo být na Žižkovském vysílači jen dočasně. Díky kladným ohlasům tu ale jsou natrvalo. Kdyby to tak fungovalo i obráceně..',
     position: [6, 9],
     year: 2000,
   },
@@ -185,13 +147,9 @@ const mines = [
     year: 2000,
   },
   {
-    /*
-    Rovnoprávnost žen s logem Trigemy.
-    Trigema. Podle umělce má Lilith symbolizovat rovnoprávnost a nezávislost žen. Přitom ...
-    */
     id: 18,
     name: 'Lilith',
-    description: '',
+    description: 'Podle Černého tato karlínská gigantka symbolizuje rovnoprávnost a nezávislost žen. Zajisté, říkáš si, a mimoděk si bůhvíproč vzpomeneš na Dolly Buster. ',
     position: [3, 9],
     year: 2022,
   },
@@ -203,20 +161,16 @@ const mines = [
     year: 2023,
   },
   {
-    /*
-     */
     id: 21,
     name: 'Pamětní deska Václava Havla',
-    description: '',
+    description: 'Na tuhle desku se stejně jako na Národní divadlo složil český lid. Ty jsi ale evidentně nepřispěl*a, když jsi na ni šlápl*a.',
     position: [5, 7],
     year: 2012,
   },
   {
-    /*
-     */
     id: 22,
     name: 'H-A-V-E-L',
-    description: '',
+    description: 'To je písmenek! Dům Karla Schwarzenberga v ulici vyčnívá svou novotou a nad portálem ukrývá tuto Černého nenápadnou, ale propracovanou instalaci.',
     position: [6, 6],
     year: 2021,
   },
@@ -224,29 +178,18 @@ const mines = [
     id: 23,
     name: 'Bar v kavárně Mlýnská',
     description:
-      'A pozor, v reálným životě by hrozilo, že tu narazíš na samotného Černého.',
+      'Pozor na dvojchyby! V reálném životě by hrozilo, že tu narazíš i na samotného Černého.',
     position: [4, 3],
     year: 2015,
   },
   {
-    /*
-     */
     id: 24,
     name: 'Tři ženy na domě',
-    description: '',
+    description: 'Černého raný "take" na umístění uměleckého díla na kulturní památku. Je to malý a neblejská se to - není divu, že jsi ho přehlednul*a.',
     position: [5, 6],
     year: 2007,
   },
-  // {
-  //   id: 25,
-  //   name: "The Italians Wine Food",
-  //   description: "",
-  //   position: [7, 4],
-  // },
   {
-    /*
-    Darováno Divadlu na Zábradlí k padesátým narozeninám.
-    */
     id: 26,
     name: 'Embryo',
     description: 'Snad se z toho nevyklubou další mimina!',
@@ -257,7 +200,7 @@ const mines = [
     id: 27,
     name: 'Trifot',
     description:
-      'Jako by toho v těch Butovicích bylo málo, tak tě tu navíc ještě sledují.',
+      'Aby toho v těch Butovicích nebylo málo, tak tě tu navíc ještě sledují.',
     position: [10, 1],
     year: 2016,
   },
@@ -270,21 +213,16 @@ const mines = [
     year: 2018,
   },
   {
-    /*
-    Investorem je společnost Passerinvest Group. Socha podle svého autora upozorňuje na přílišnou společenskou náklonost automobilismu
-    */
     id: 29,
     name: 'Brouk',
-    description: '',
+    description: 'Šlápnul jsi na auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo! ',
     position: [10, 9],
     year: 2020,
   },
   {
-    /*
-     */
     id: 30,
     name: 'Top Tower',
-    description: 'Tak je to teda greenwashing nebo ne?',
+    description: 'Tak je to teda greenwashing nebo ne? / Vrak lodi na kopci podepírající mrakodrap. Jak by to měl ještě David Černý vyšperkovat, abys na to příště omylem nešlápl*a?',
     position: [9, 0],
     year: 2030,
   },
@@ -297,7 +235,13 @@ const mines = [
     year: 2013,
   },
 
-  // Mimo mapu nebo se nevejdou
+  // Mimo mapu nebo se nevejdou nebo nevim
+  // {
+  //   id: 25,
+  //   name: "The Italians Wine Food",
+  //   description: "",
+  //   position: [7, 4],
+  // },
   // {
   //   id: 21,
   //   name: "The London Booster",

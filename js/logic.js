@@ -46,6 +46,7 @@ function toggleFlag(row, col) {
     return;
   }
 
+  vibrate(80);
   gameState.flagged[row][col] = !gameState.flagged[row][col];
 }
 

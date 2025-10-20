@@ -50,7 +50,7 @@ function drawEndMineInfo(gameState, x, y) {
   let endMine = getFoundMine(gameState);
 
   const endMineText = endMine
-    ? `Bum! Narazil*a jsi na dílo "${endMine.name}". ${endMine.description} Tuhle hru prohráváš.`
+    ? `Bum! Narazil*a jsi na dílo "${endMine.name}". ${endMine.description}`
     : gameState.level === 2 && !endMine
     ? 'Bum! Narazil*a jsi na jedno z budoucích děl. Tuhle hru prohráváš.'
     : '';
@@ -69,7 +69,7 @@ function getFoundMine(gameState) {
 
 
   // Find first mine with same id (it should have description)
-  if(!mine.description) {
+  if(mine && !mine.description) {
     mine = mines.find(item => item.id === mine.id);
   }
 
