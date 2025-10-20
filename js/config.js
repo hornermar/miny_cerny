@@ -10,7 +10,7 @@ const TITLE = {
 
 const INTRODUCTION = [
   'Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.',
-  'Díla Davida Černého nezastavitelně plní Prahu. Svým sochám postupně ubírá na kritičnosti a naopak razantně posíluje spolupraci s developery. Výsledkem je dvacet sedm děl v jednom městě.',
+  'Díla Davida Černého nezastavitelně plní Prahu. Postupem času ubral na jejich kritičnosti a naopak razantně posílil spolupraci s developery. Výsledkem je dvacet sedm děl v jednom městě.',
   'Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.',
 ];
 

@@ -11,14 +11,14 @@ const mines = [
     id: 2,
     name: 'Quo Vadis',
     description:
-      'V roce 1990 aktuální, a dodnes nadčasová socha. Kráčejícího trabanta jsi asi přehlédl*a, protože je schovaný na zahradě německého velvyslanectví. ',
+      'V roce 1990 aktuální, a dodnes nadčasová socha. Kráčející trabant jsi asi přehlédl*a, protože je schovaný na zahradě německého velvyslanectví.',
     position: [3, 3],
     year: 1990,
   },
   {
     id: 3,
     name: 'Miminka',
-    description: 'Zatím jedno z posledních instalovaných kritckých děl Davida Černého. Metafora marketingového cejchu, který se nám vráží do tváře už při narození.',
+    description: 'Zatím jedno z posledních instalovaných kritických děl Davida Černého. Metafora marketingového cejchu, který se nám vráží do tváře už při narození.',
     position: [4, 4],
     year: 2008,
   },
@@ -32,14 +32,14 @@ const mines = [
   {
     id: 5,
     name: 'Pomník kapely Visací zámek',
-    description: 'Punk’s not dead, jen trochu zrůžověl. Pomník nesmrtelné kapely od nesmrtelného umělce.',
+    description: 'Punk\'s not dead, jen trochu zrůžověl. Pomník nesmrtelné kapely od nesmrtelného umělce.',
     position: [5, 2],
     year: 2022,
   },
   {
     id: 6,
     name: 'Brownnosing',
-    description: 'Socha z dob, kdy si Černý neodolatelně střílel z „těch nahoře“. Co by tehdejší David Černý řekl na dnešního Davida Černého?  ',
+    description: 'Socha z dob, kdy si Černý neodolatelně střílel z „těch nahoře“. Co by tehdejší David Černý řekl na dnešního Davida Černého?',
     position: [6, 3],
     year: 2003,
   },
@@ -62,7 +62,7 @@ const mines = [
   {
     id: 10,
     name: 'Speederman',
-    description: 'Speederman v jinonické Waltrovce znázorňuje nadlidskou rychlost vývoje člověka. A možná taky zvyšující se intenzitu spolupráce Davida Černého s developery?',
+    description: 'Speederman v jinonické Waltrovce znázorňuje nadlidskou rychlost vývoje člověka. A možná taky zvyšující se intenzitu spolupráce Davida Černého s developery.',
     position: [9, 2],
     year: 2014,
   },
@@ -84,7 +84,7 @@ const mines = [
     id: 13,
     name: 'Butterfly Effect',
     description:
-      'Kupodivu i takhle může vypadat „dočasná“ instalace na kulturní památce. Jo a, nejsou to svítící motýli, ale památník letcům RAF!',
+      'Kupodivu i takhle může vypadat „dočasná“ instalace na kulturní památce. Jo a –⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠ nejsou to svítící motýli, ale památník letcům RAF!',
     position: [5, 7],
     year: 2024,
   },
@@ -107,7 +107,7 @@ const mines = [
     id: 16,
     name: 'Miminka',
     description:
-      'Těhle deset batolat mělo být na Žižkovském vysílači jen dočasně. Díky kladným ohlasům tu ale jsou natrvalo. Kdyby to tak fungovalo i obráceně..',
+      'Těchto deset batolat mělo být na Žižkovském vysílači jen dočasně. Díky kladným ohlasům tu ale jsou natrvalo. Kdyby to tak fungovalo i obráceně...',
     position: [6, 9],
     year: 2000,
   },
@@ -149,7 +149,7 @@ const mines = [
   {
     id: 18,
     name: 'Lilith',
-    description: 'Podle Černého tato karlínská gigantka symbolizuje rovnoprávnost a nezávislost žen. Zajisté, říkáš si, a mimoděk si bůhvíproč vzpomeneš na Dolly Buster. ',
+    description: 'Podle Černého tato karlínská gigantka symbolizuje rovnoprávnost a nezávislost žen. Zajisté, říkáš si, a mimoděk si bůhvíproč vzpomeneš na Dolly Buster.',
     position: [3, 9],
     year: 2022,
   },
@@ -185,7 +185,7 @@ const mines = [
   {
     id: 24,
     name: 'Tři ženy na domě',
-    description: 'Černého raný "take" na umístění uměleckého díla na kulturní památku. Je to malý a neblejská se to - není divu, že jsi ho přehlednul*a.',
+    description: 'Černého raný „take“ na umístění uměleckého díla na kulturní památku. Je to malý a neblýská se to - není divu, že jsi ho přehlédl*a.',
     position: [5, 6],
     year: 2007,
   },
@@ -215,14 +215,14 @@ const mines = [
   {
     id: 29,
     name: 'Brouk',
-    description: 'Šlápnul jsi na auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo! ',
+    description: 'Šlápnul jsi na auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo!',
     position: [10, 9],
     year: 2020,
   },
   {
     id: 30,
     name: 'Top Tower',
-    description: 'Tak je to teda greenwashing nebo ne? / Vrak lodi na kopci podepírající mrakodrap. Jak by to měl ještě David Černý vyšperkovat, abys na to příště omylem nešlápl*a?',
+    description: 'Vrak lodi na kopci podepírající mrakodrap. Jak by to měl ještě David Černý vyšperkovat, abys na to příště omylem nešlápl*a?',
     position: [9, 0],
     year: 2030,
   },
