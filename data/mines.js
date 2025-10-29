@@ -222,7 +222,7 @@ const mines = [
   {
     id: 29,
     name: 'Brouk',
-    description: 'Šlápnul jsi na auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo!',
+    description: 'Auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo!',
     position: [10, 9],
     year: 2020,
   },
