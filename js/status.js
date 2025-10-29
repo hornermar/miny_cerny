@@ -50,7 +50,7 @@ function drawEndMineInfo(gameState, x, y) {
   let endMine = getFoundMine(gameState);
 
   const endMineText = endMine
-    ? `Bum! Narazil*a jsi na dílo "${endMine.name}". ${endMine.description}`
+    ? `Bum! Narazil*a jsi na dílo „${endMine.name}“. ${endMine.description}`
     : gameState.level === 2 && !endMine
     ? 'Bum! Narazil*a jsi na jedno z budoucích děl. Tuhle hru prohráváš.'
     : '';

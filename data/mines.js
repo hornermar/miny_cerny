@@ -11,7 +11,7 @@ const mines = [
     id: 2,
     name: 'Quo Vadis',
     description:
-      'V roce 1990 aktuální, a dodnes nadčasová socha. Kráčející trabant jsi asi přehlédl*a, protože je schovaný na zahradě německého velvyslanectví.',
+      'V roce 1990 aktuální a dodnes nadčasová socha. Kráčející trabant jsi asi přehlédl*a, protože je schovaný na zahradě německého velvyslanectví.',
     position: [3, 3],
     year: 1990,
   },
@@ -90,7 +90,7 @@ const mines = [
   },
   {
     id: 14,
-    name: 'Franz Kafka "K"',
+    name: 'Franz Kafka „K“',
     description:
       'Spletl*a sis snad tuhle otáčející se hlavu s poutačem na Quadrio?',
     position: [5, 8],
@@ -156,7 +156,7 @@ const mines = [
   {
     id: 19,
     name: 'Musoleum',
-    description: 'Místo posledního odpočinku, nebo showroom Černého děl?',
+    description: 'Muzeum, nebo showroom? A není to jedno? Tohle sis prostě mohl*a odpustit.',
     position: [10, 4],
     year: 2023,
   },
@@ -170,7 +170,7 @@ const mines = [
   {
     id: 22,
     name: 'H-A-V-E-L',
-    description: 'To je písmenek! Dům Karla Schwarzenberga v ulici vyčnívá svou novotou a nad portálem ukrývá tuto Černého nenápadnou, ale propracovanou instalaci.',
+    description: 'Pro příště, tuto sochu ženy inspirovanou písmenkovou polívkou najdeš nad vstupem do Knihovny Václava Havla.',
     position: [6, 6],
     year: 2021,
   },
@@ -185,10 +185,17 @@ const mines = [
   {
     id: 24,
     name: 'Tři ženy na domě',
-    description: 'Černého raný „take“ na umístění uměleckého díla na kulturní památku. Je to malý a neblýská se to - není divu, že jsi ho přehlédl*a.',
+    description: 'Černého raný „take“ na umístění uměleckého díla na kulturní památku. Je to malý a neblýská se to – není divu, že jsi ho přehlédl*a.',
     position: [5, 6],
     year: 2007,
   },
+    {
+    id: 25,
+    name: "The Italians Wine Food",
+    description: "Vyčerpaný*á sis skočil*a pro bagetu, kafčo a trochu klidu. Když tu náhle...prostě ses jen nevinně podíval*a na strop a tam na trámu shluk Černého sošek. Kapituluješ.",
+    position: [7, 4],
+    year: 2020, // unknown
+   },
   {
     id: 26,
     name: 'Embryo',
@@ -222,7 +229,7 @@ const mines = [
   {
     id: 30,
     name: 'Top Tower',
-    description: 'Vrak lodi na kopci podepírající mrakodrap. Jak by to měl ještě David Černý vyšperkovat, abys na to příště omylem nešlápl*a?',
+    description: 'Vrak lodi na kopci podepírající mrakodrap. Jak by to měl David Černý ještě vyšperkovat, abys ho nepřehlédl*a?',
     position: [9, 0],
     year: 2030,
   },
@@ -236,12 +243,6 @@ const mines = [
   },
 
   // Mimo mapu nebo se nevejdou nebo nevim
-  // {
-  //   id: 25,
-  //   name: "The Italians Wine Food",
-  //   description: "",
-  //   position: [7, 4],
-  // },
   // {
   //   id: 21,
   //   name: "The London Booster",

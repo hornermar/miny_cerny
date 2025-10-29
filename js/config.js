@@ -10,13 +10,13 @@ const TITLE = {
 
 const INTRODUCTION = [
   'Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.',
-  'Díla Davida Černého nezastavitelně plní Prahu. Postupem času ubral na jejich kritičnosti a naopak razantně posílil spolupraci s developery. Výsledkem je dvacet sedm děl v jednom městě.',
+  'David Černý svými díly nezastavitelně plní Prahu. V posledních letech k tomu přispívají hlavně jeho spolupráce s developery. Výsledkem je dvacet osm děl rozesetých po městě – a přibývají další.',
   'Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.',
 ];
 
 const CALL_TO_ACTION = [
   '(Vy)hraj jednoduše!',
-  'Proklikej se Prahou a zkus nešlápnout na Černého minu!',
+  'Zvládneš Prahu odminovat dřív, než bude pozdě?',
   'Je vůbec možný ještě vyhrát?',
 ];
 
