@@ -22,7 +22,7 @@ function drawStatus(gameState) {
 
     if (!gameState.firstClick) {
       drawWrappedText(
-        'Začni kliknutím do hracího pole.',
+        'Začni kliknutím do hracího pole.' + gameState.cellSize,
         x,
         y,
         gameState.gridWidth
