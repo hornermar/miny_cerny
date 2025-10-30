@@ -30,10 +30,33 @@ function recalculateCellSizeAndGridWidth() {
   const gridBorderWidth = TOOLBAR.OFFSET * 2;
   const gridWidth = window.innerWidth - GRID.OFFSET_X * 2 - gridBorderWidth;
   const calculatedCellSize = Math.floor(gridWidth / gameState.cols);
+  
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const isMobile = window.innerWidth < 768;
+  const isHighDensity = devicePixelRatio > 2;
+  const isVerySmallScreen = window.innerWidth < 400;
+  
+  let minCellSize = GRID.MIN_CELL_SIZE;
+  let maxCellSize = GRID.MAX_CELL_SIZE;
+  
+  if (isMobile) {
+    if (isVerySmallScreen) {
+      minCellSize = Math.min(GRID.MIN_CELL_SIZE, calculatedCellSize);
+      maxCellSize = calculatedCellSize;
+    } else if (isHighDensity) {
+      minCellSize = GRID.MIN_CELL_SIZE + 8;
+      maxCellSize = GRID.MAX_CELL_SIZE + 8;
+    } else {
+      minCellSize = GRID.MIN_CELL_SIZE + 4;
+      maxCellSize = GRID.MAX_CELL_SIZE + 4;
+    }
+  }
+  
   gameState.cellSize = Math.max(
-    GRID.MIN_CELL_SIZE,
-    Math.min(calculatedCellSize, GRID.MAX_CELL_SIZE)
+    minCellSize,
+    Math.min(calculatedCellSize, maxCellSize)
   );
+  
   gameState.gridWidth = gameState.cols * gameState.cellSize + gridBorderWidth;
 }
 
