@@ -41,11 +41,11 @@ function recalculateCellSizeAndGridWidth() {
   
   if (isMobile) {
     if (isVerySmallScreen) {
-      minCellSize = Math.min(20, calculatedCellSize);
+      minCellSize = Math.min(18, calculatedCellSize);
       maxCellSize = calculatedCellSize;
     } else if (isHighDensity) {
       minCellSize = GRID.MIN_CELL_SIZE + 12;
-      maxCellSize = GRID.MAX_CELL_SIZE + 16;
+      maxCellSize = GRID.MAX_CELL_SIZE + 20;
     } else {
       minCellSize = GRID.MIN_CELL_SIZE + 4;
       maxCellSize = GRID.MAX_CELL_SIZE + 4;
