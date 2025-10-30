@@ -170,7 +170,7 @@ const mines = [
   {
     id: 22,
     name: 'H-A-V-E-L',
-    description: 'Pro příště, tuto sochu ženy inspirovanou písmenkovou polívkou najdeš nad vstupem do Knihovny Václava Havla.',
+    description: 'Pro příště, tuto písmenkovou sochu ženy najdeš nad vstupem do Knihovny Václava Havla. To dává smysl, nebo?',
     position: [6, 6],
     year: 2021,
   },
