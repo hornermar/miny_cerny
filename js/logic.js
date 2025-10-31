@@ -7,10 +7,11 @@ function revealCell(row, col) {
     return;
   }
 
+  vibrate();
   gameState.revealed[row][col] = true;
 
   if (gameState.mapConfig[row][col][1] === CELL_TYPES.MINE) {
-    gameState.currentGameState = "lost";
+    gameState.currentGameState = 'lost';
     revealAllMines();
     gameState.endMine = [row, col];
     gameState.endTime = Date.now();
@@ -79,7 +80,7 @@ function checkWin() {
   }
 
   if (revealedCount === totalSafeCells) {
-    gameState.currentGameState = "won";
+    gameState.currentGameState = 'won';
     gameState.endTime = Date.now();
     vibrate([100, 50, 100]);
 

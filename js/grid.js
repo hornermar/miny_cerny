@@ -1,22 +1,19 @@
 function drawGrid(gameState) {
-  // Calculate grid dimensions
-  const gridWidth = gameState.cols * gameState.cellSize;
-  const gridHeight = gameState.rows * gameState.cellSize;
-  const gridX = (window.innerWidth - gridWidth) / 2;
+  const gridHeight = gameState.rows * cellSize;
 
   draw3DRectEffect(
-    gridX - TOOLBAR.OFFSET,
-    GRID.OFFSET_Y - TOOLBAR.OFFSET,
-    gridWidth + TOOLBAR.OFFSET * 2,
-    gridHeight + TOOLBAR.OFFSET * 2,
+    gridX - strokeWidth,
+    gridY - strokeWidth,
+    gridWidth + strokeWidth * 2,
+    gridHeight + strokeWidth * 2,
     false,
-    TOOLBAR.OFFSET
+    strokeWidth
   );
 
   for (let row = 0; row < gameState.rows; row++) {
     for (let col = 0; col < gameState.cols; col++) {
-      let x = col * gameState.cellSize + gridX;
-      let y = row * gameState.cellSize + GRID.OFFSET_Y;
+      let x = col * cellSize + gridX;
+      let y = row * cellSize + gridY;
 
       const background = getCellBackground(gameState, row, col);
 
@@ -25,17 +22,17 @@ function drawGrid(gameState) {
         draw3DRectEffect(
           x,
           y,
-          gameState.cellSize,
-          gameState.cellSize,
+          cellSize,
+          cellSize,
           true,
-          3.5,
+          strokeWidth / 2,
           background
         );
       } else {
         stroke(COLORS.EFFECT_SHADOW);
         strokeWeight(1);
         fill(background);
-        rect(x, y, gameState.cellSize, gameState.cellSize);
+        rect(x, y, cellSize, cellSize);
       }
 
       drawCellContent(gameState, row, col, x, y);
@@ -64,8 +61,8 @@ function getCellBackground(gameState, row, col) {
       } else {
         if (isEndMine) {
           return COLORS.CELL_MINE;
-        } else if (cellType === CELL_TYPES.RIVER) 
-          return COLORS.CELL_RIVER;{
+        } else if (cellType === CELL_TYPES.RIVER) return COLORS.CELL_RIVER;
+        {
           return COLORS.BACKGROUND;
         }
       }
@@ -96,19 +93,19 @@ function drawCellContent(gameState, row, col, x, y) {
 
     image(
       flagImg,
-      x + gameState.cellSize * 0.1,
-      y + gameState.cellSize * 0.1,
-      gameState.cellSize * 0.8,
-      gameState.cellSize * 0.8
+      x + cellSize * 0.1,
+      y + cellSize * 0.1,
+      cellSize * 0.8,
+      cellSize * 0.8
     );
   } else if (gameState.revealed[row][col]) {
     if (gameState.mapConfig[row][col][1] === CELL_TYPES.MINE) {
       image(
         babyImg,
-        x + gameState.cellSize * 0.05,
-        y + gameState.cellSize * 0.05,
-        gameState.cellSize * 0.9,
-        gameState.cellSize * 0.9
+        x + cellSize * 0.05,
+        y + cellSize * 0.05,
+        cellSize * 0.9,
+        cellSize * 0.9
       );
     } else {
       let neighborCount = getNeighborMineCount(
@@ -119,11 +116,7 @@ function drawCellContent(gameState, row, col, x, y) {
         gameState.cols
       );
       if (neighborCount > 0) {
-        drawNumberWithColor(
-          neighborCount,
-          x + gameState.cellSize / 2,
-          y + gameState.cellSize / 2
-        );
+        drawNumberWithColor(neighborCount, x + cellSize / 2, y + cellSize / 2);
       }
     }
   }
@@ -135,7 +128,7 @@ function drawNumberWithColor(count, x, y) {
   if (COLORS.NUMBERS[count]) {
     push();
     fill(COLORS.NUMBERS[count]);
-    textSize(gameState.cellSize * 0.6);
+    textSize(cellSize * 0.6);
     textStyle(BOLD);
     text(count, x + 1, y + 2);
     pop();

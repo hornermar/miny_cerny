@@ -1,15 +1,15 @@
 function drawToolbar(gameState) {
-  const toolbarX = (window.innerWidth - gameState.gridWidth) / 2;
+  const toolbarX = (width - gridWidth) / 2;
 
   drawTitle(toolbarX);
 
   draw3DRectEffect(
-    toolbarX,
-    TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2,
-    gameState.gridWidth,
-    TOOLBAR.HEIGHT,
+    toolbarX - strokeWidth,
+    titleHeight,
+    gridWidth + strokeWidth * 2,
+    toolbarHeight,
     false,
-    TOOLBAR.OFFSET
+    strokeWidth
   );
 
   drawMineCounter(gameState, toolbarX);
@@ -20,77 +20,80 @@ function drawToolbar(gameState) {
 }
 
 function drawTitle(toolbarX) {
-  const title = TITLE.LABEL;
   noStroke();
 
   fill(COLORS.TEXT_PRIMARY);
   textAlign(LEFT, CENTER);
-  textSize(TITLE.TEXT_SIZE);
+  textSize(titleTextSize);
   textStyle(BOLD);
-  text(title, toolbarX, TITLE.OFFSET_Y);
+  text(TITLE, toolbarX - strokeWidth, titleHeight / 2);
 }
 
 function drawLevels(gameState, toolbarX) {
-  const dropdownX = toolbarX + gameState.gridWidth - LEVEL.DROPDOWN_WIDTH;
+  const dropdownHeight = toolbarHeight / 2;
+
+  const dropdownX = toolbarX + gridWidth - dropdownWidth + strokeWidth;
+  const dropdownY = titleHeight / 2 - dropdownHeight / 2;
 
   // Track dropdown open state globally
-  if (typeof window.levelDropdownOpen === "undefined") {
+  if (typeof window.levelDropdownOpen === 'undefined') {
     window.levelDropdownOpen = false;
   }
 
   draw3DRectEffect(
     dropdownX,
-    LEVEL.OFFSET_Y,
-    LEVEL.DROPDOWN_WIDTH,
-    LEVEL.DROPDOWN_HEIGHT,
+    dropdownY,
+    dropdownWidth,
+    dropdownHeight,
     true,
-    4
+    strokeWidth / 1.5
   );
   fill(COLORS.TEXT_PRIMARY);
 
   textAlign(LEFT, CENTER);
   textStyle(BOLD);
-  textSize(LEVEL.TEXT_SIZE);
+  textSize(dropdownTextSize);
   text(
-    LEVEL.NAMES[gameState.level].toLowerCase(),
-    dropdownX + LEVEL.INNER_OFFSET_X,
-    LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT / 2
+    LEVEL_NAMES[gameState.level].toLowerCase(),
+    dropdownX + strokeWidth * 2,
+    dropdownY + dropdownHeight / 2
   );
 
   // Draw arrow
-  const arrowX =
-    dropdownX + LEVEL.DROPDOWN_WIDTH - 2 * LEVEL.INNER_OFFSET_X + 4;
-  const arrowY = LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT / 2 - 1;
+  const arrowX = dropdownX + dropdownWidth - 2 - strokeWidth * 3;
+  const arrowY = dropdownY + dropdownHeight / 2;
+  const arrowHeight = arrowSize;
+  const arrowWidth = arrowHeight * 1.3;
   if (window.levelDropdownOpen) {
     triangle(
       arrowX,
-      arrowY + 4,
-      arrowX + 10,
-      arrowY + 4,
-      arrowX + 5,
-      arrowY - 3
+      arrowY + arrowHeight / 2,
+      arrowX + arrowWidth,
+      arrowY + arrowHeight / 2,
+      arrowX + arrowWidth / 2,
+      arrowY - arrowHeight / 2
     );
   } else {
     triangle(
       arrowX,
-      arrowY - 3,
-      arrowX + 10,
-      arrowY - 3,
-      arrowX + 5,
-      arrowY + 4
+      arrowY - arrowHeight / 2,
+      arrowX + arrowWidth,
+      arrowY - arrowHeight / 2,
+      arrowX + arrowWidth / 2,
+      arrowY + arrowHeight / 2
     );
   }
 
-  if (typeof window.levelDropdownMouseWasPressed === "undefined") {
+  if (typeof window.levelDropdownMouseWasPressed === 'undefined') {
     window.levelDropdownMouseWasPressed = false;
   }
   if (mouseIsPressed && !window.levelDropdownMouseWasPressed) {
     // Click on dropdown button
     if (
       mouseX >= dropdownX &&
-      mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
-      mouseY >= LEVEL.OFFSET_Y &&
-      mouseY <= LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT
+      mouseX <= dropdownX + dropdownWidth &&
+      mouseY >= dropdownY &&
+      mouseY <= dropdownY + dropdownHeight
     ) {
       window.levelDropdownOpen = !window.levelDropdownOpen;
     } else if (
@@ -98,12 +101,10 @@ function drawLevels(gameState, toolbarX) {
       window.levelDropdownOpen &&
       !(
         mouseX >= dropdownX &&
-        mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
-        mouseY >= LEVEL.OFFSET_Y &&
+        mouseX <= dropdownX + dropdownWidth &&
+        mouseY >= dropdownY &&
         mouseY <=
-          LEVEL.OFFSET_Y +
-            LEVEL.DROPDOWN_HEIGHT +
-            LEVEL.NAMES.length * LEVEL.DROPDOWN_HEIGHT
+          dropdownY + dropdownHeight + LEVEL_NAMES.length * dropdownHeight
       )
     ) {
       window.levelDropdownOpen = false;
@@ -116,22 +117,21 @@ function drawLevels(gameState, toolbarX) {
 
   // Draw dropdown list if open
   if (window.levelDropdownOpen) {
-    for (let i = 0; i < LEVEL.NAMES.length; i++) {
-      const itemY =
-        LEVEL.OFFSET_Y + LEVEL.DROPDOWN_HEIGHT + i * LEVEL.DROPDOWN_HEIGHT;
+    for (let i = 0; i < LEVEL_NAMES.length; i++) {
+      const itemY = dropdownY + dropdownHeight + i * dropdownHeight;
 
       fill(i === gameState.level ? COLORS.CELL_RIVER : COLORS.GRAY_LIGHT);
-      rect(dropdownX, itemY, LEVEL.DROPDOWN_WIDTH, LEVEL.DROPDOWN_HEIGHT);
+      rect(dropdownX, itemY, dropdownWidth, dropdownHeight);
 
       fill(COLORS.TEXT_PRIMARY);
       push();
       textAlign(LEFT, CENTER);
       textStyle(BOLD);
-      textSize(LEVEL.TEXT_SIZE);
+      textSize(dropdownTextSize);
       text(
-        LEVEL.NAMES[i].toLowerCase(),
-        dropdownX + 14,
-        itemY + LEVEL.DROPDOWN_HEIGHT / 2
+        LEVEL_NAMES[i].toLowerCase(),
+        dropdownX + strokeWidth * 2.5,
+        itemY + dropdownHeight / 2
       );
       pop();
 
@@ -139,9 +139,9 @@ function drawLevels(gameState, toolbarX) {
       if (
         mouseIsPressed &&
         mouseX >= dropdownX &&
-        mouseX <= dropdownX + LEVEL.DROPDOWN_WIDTH &&
+        mouseX <= dropdownX + dropdownWidth &&
         mouseY >= itemY &&
-        mouseY <= itemY + LEVEL.DROPDOWN_HEIGHT &&
+        mouseY <= itemY + dropdownHeight &&
         gameState.level !== i
       ) {
         window.pendingLevelReset = i;
@@ -152,21 +152,22 @@ function drawLevels(gameState, toolbarX) {
 }
 
 function drawDisplay(x, y, displayText) {
-  draw3DRectEffect(x, y, DISPLAY.WIDTH, DISPLAY.HEIGHT, false, DISPLAY.FRAME);
+  const frameSize = strokeWidth / 2;
+  draw3DRectEffect(x, y, displayWidth, displayHeight, false, frameSize);
 
   // Display background
   fill(COLORS.BLACK);
   rect(
-    x + DISPLAY.FRAME,
-    y + DISPLAY.FRAME,
-    DISPLAY.WIDTH - DISPLAY.FRAME * 2,
-    DISPLAY.HEIGHT - DISPLAY.FRAME * 2
+    x + frameSize,
+    y + frameSize,
+    displayWidth - frameSize * 2,
+    displayHeight - frameSize * 2
   );
 
   // Display text
   fill(COLORS.PRIMARY);
   textAlign(CENTER, CENTER);
-  textSize(DISPLAY.TEXT_SIZE);
+  textSize(displayTextSize);
   textStyle(NORMAL);
 
   let extraOffset = 0;
@@ -175,41 +176,49 @@ function drawDisplay(x, y, displayText) {
   }
   text(
     displayText,
-    x + DISPLAY.WIDTH / 2,
-    y + DISPLAY.HEIGHT / 2 + DISPLAY.FRAME + extraOffset
+    x + displayWidth / 2,
+    y + displayHeight / 2 + frameSize + extraOffset
   );
 }
 
 function drawMineCounter(gameState, toolbarX) {
   const flaggedCount = getFlaggedCount(gameState);
   const remainingMines = gameState.totalMines - flaggedCount;
-  const mineDisplayX = toolbarX + (TOOLBAR.HEIGHT - DISPLAY.HEIGHT) / 2;
-  const mineDisplayY =
-    TOOLBAR.OFFSET_Y -
-    TOOLBAR.OFFSET / 2 +
-    (TOOLBAR.HEIGHT - DISPLAY.HEIGHT) / 2;
+  const mineDisplayX =
+    toolbarX + (toolbarHeight - displayHeight) / 2 - strokeWidth;
+  const mineDisplayY = titleHeight + (toolbarHeight - displayHeight) / 2;
 
-  const mineText = remainingMines.toString().padStart(3, "0");
+  const mineText = remainingMines.toString().padStart(3, '0');
   drawDisplay(mineDisplayX, mineDisplayY, mineText);
 }
 
 function drawResetButton(gameState, toolbarX) {
   const emoji = getEmoji(gameState.currentGameState);
-  const buttonSize = DISPLAY.HEIGHT;
-  const buttonX = toolbarX + gameState.gridWidth / 2 - buttonSize / 2;
-  const buttonY =
-    TOOLBAR.OFFSET_Y - TOOLBAR.OFFSET / 2 + (TOOLBAR.HEIGHT - buttonSize) / 2;
+  const buttonSize = displayHeight;
+  const buttonX = toolbarX + gridWidth / 2 - buttonSize / 2;
+  const buttonY = titleHeight + (toolbarHeight - buttonSize) / 2;
 
   const isPressed = isButtonPressed(buttonX, buttonY, buttonSize, buttonSize);
-  const offset = isPressed ? 2 : 0;
+  const offset = isPressed ? strokeWidth / 8 : 0;
+  const stroke = strokeWidth / 2;
 
-  draw3DRectEffect(buttonX, buttonY, buttonSize, buttonSize, !isPressed, 4);
+  draw3DRectEffect(
+    buttonX,
+    buttonY,
+    buttonSize,
+    buttonSize,
+    !isPressed,
+    stroke
+  );
+
+  const emojiSize = buttonSize - emojiPadding * 2;
+
   image(
     emoji,
-    buttonX + 4 + offset,
-    buttonY + 4 + offset,
-    buttonSize - 8,
-    buttonSize - 8
+    buttonX + emojiPadding + offset,
+    buttonY + emojiPadding + offset,
+    emojiSize,
+    emojiSize
   );
 
   window.resetButton = {
@@ -224,15 +233,15 @@ function drawTimer(gameState, toolbarX) {
   let elapsedTime = 1;
   if (gameState.startTime) {
     if (
-      gameState.currentGameState === "won" ||
-      gameState.currentGameState === "lost"
+      gameState.currentGameState === 'won' ||
+      gameState.currentGameState === 'lost'
     ) {
       if (gameState.endTime) {
         elapsedTime = Math.floor(
           (gameState.endTime - gameState.startTime) / 1000
         );
       }
-    } else if (gameState.currentGameState === "playing") {
+    } else if (gameState.currentGameState === 'playing') {
       elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000) + 1;
     }
     elapsedTime = Math.min(elapsedTime, 999);
@@ -240,14 +249,12 @@ function drawTimer(gameState, toolbarX) {
 
   const timerDisplayX =
     toolbarX +
-    gameState.gridWidth -
-    DISPLAY.WIDTH -
-    (TOOLBAR.HEIGHT - DISPLAY.HEIGHT) / 2;
-  const timerDisplayY =
-    TOOLBAR.OFFSET_Y -
-    TOOLBAR.OFFSET / 2 +
-    (TOOLBAR.HEIGHT - DISPLAY.HEIGHT) / 2;
+    gridWidth -
+    displayWidth -
+    (toolbarHeight - displayHeight) / 2 +
+    strokeWidth;
+  const timerDisplayY = titleHeight + (toolbarHeight - displayHeight) / 2;
 
-  const timeText = elapsedTime.toString().padStart(3, "0");
+  const timeText = elapsedTime.toString().padStart(3, '0');
   drawDisplay(timerDisplayX, timerDisplayY, timeText);
 }

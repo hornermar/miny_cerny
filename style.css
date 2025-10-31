@@ -1,8 +1,10 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   background: rgb(220, 220, 220);
   color: rgb(100, 100, 100);
@@ -14,6 +16,10 @@ body {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  touch-action: manipulation;
 }
 
 canvas {

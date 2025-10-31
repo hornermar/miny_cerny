@@ -1,39 +1,85 @@
+/*
+  Global variables for responsive UI element sizes and grid positioning.
+  These are recalculated in setSizes().
+*/
+
+// Toolbar
+let titleTextSize = undefined;
+let titleHeight = undefined;
+let toolbarHeight = undefined;
+let dropdownWidth = undefined;
+let dropdownTextSize = undefined;
+let arrowSize = undefined;
+let displayTextSize = undefined;
+let displayWidth = undefined;
+let displayHeight = undefined;
+let emojiPadding = undefined;
+
+// Status
+let statusTextSize = undefined;
+let statusLineHeight = undefined;
+
+// Grid
+let gridWidth = undefined;
+let cellSize = undefined;
+
+let strokeWidth = undefined;
+
+let gridX = undefined;
+let gridY = undefined;
+
+/* 
+  Responsive canvas utility functions
+ */
+
+function setSizes() {
+  gridWidth = getResponsiveWidth(gridWidthRatio);
+  cellSize = gridWidth / gameState.cols;
+
+  strokeWidth = getResponsiveWidth(strokeWidthRatio);
+
+  titleTextSize = getResponsiveWidth(titleTextSizeRatio);
+  titleHeight = getResponsiveWidth(titleHeightRatio);
+
+  toolbarHeight = getResponsiveWidth(toolbarHeightRatio);
+  dropdownWidth = getResponsiveWidth(dropdownWidthRatio);
+  dropdownTextSize = getResponsiveWidth(dropdownTextSizeRatio);
+  displayTextSize = getResponsiveWidth(displayTextSizeRatio);
+  arrowSize = getResponsiveWidth(arrowSizeRatio);
+  displayWidth = getResponsiveWidth(displayWidthRatio);
+  displayHeight = getResponsiveWidth(displayHeightRatio);
+  emojiPadding = getResponsiveWidth(emojiPaddingRatio);
+
+  statusTextSize = getResponsiveWidth(statusTextSizeRatio);
+  statusLineHeight = getResponsiveWidth(statusLineHeightRatio);
+
+  gridX = (width - gridWidth) / 2;
+  gridY = titleHeight + toolbarHeight + strokeWidth * 3;
+}
+
+function getResponsiveWidth(ratio) {
+  let newSize = ratio * width;
+  return newSize;
+}
+
 function getCanvasSize() {
   let height;
 
-  if (window.innerHeight < minCanvasHeight) {
-    height = minCanvasHeight;
-    document.body.style.overflowY = "auto";
+  if (window.innerHeight < MIN_CANVAS_HEIGHT) {
+    height = MIN_CANVAS_HEIGHT;
+    document.body.style.overflowY = 'auto';
   } else {
     height = window.innerHeight;
-    document.body.style.overflowY = "hidden";
+    document.body.style.overflowY = 'hidden';
   }
 
-  return { width: window.innerWidth, height };
+  return { width: Math.min(window.innerWidth, MAX_CANVAS_WIDTH), height };
 }
 
-function isButtonPressed(x, y, w, h) {
-  if (
-    mouseIsPressed &&
-    mouseX >= x &&
-    mouseX <= x + w &&
-    mouseY >= y &&
-    mouseY <= y + h
-  ) {
-    return true;
-  }
-  if (
-    typeof touches !== "undefined" &&
-    touches.length > 0 &&
-    touches[0].x >= x &&
-    touches[0].x <= x + w &&
-    touches[0].y >= y &&
-    touches[0].y <= y + h
-  ) {
-    return true;
-  }
-  return false;
-}
+/*
+  Cell and map utility functions
+*/
+
 function countMinesFromMap(mapConfig) {
   let mineCount = 0;
   for (let row = 0; row < mapConfig.length; row++) {
@@ -46,32 +92,8 @@ function countMinesFromMap(mapConfig) {
   return mineCount;
 }
 
-function countSafeCellsFromMap(mapConfig) {
-  let safeCount = 0;
-  for (let row = 0; row < mapConfig.length; row++) {
-    for (let col = 0; col < mapConfig[row].length; col++) {
-      if (mapConfig[row][col][0] === CELL_TYPES.CITY || mapConfig[row][col][0] === CELL_TYPES.RIVER) {
-        safeCount++;
-      }
-    }
-  }
-  return safeCount;
-}
-
 function isValidCell(row, col, rows, cols) {
   return row >= 0 && row < rows && col >= 0 && col < cols;
-}
-
-function isMineCell(row, col, mapConfig) {
-  if (
-    row < 0 ||
-    row >= mapConfig.length ||
-    col < 0 ||
-    col >= mapConfig[0].length
-  ) {
-    return false;
-  }
-  return mapConfig[row][col][1] === CELL_TYPES.MINE;
 }
 
 function getNeighborMineCount(row, col, mapConfig, rows, cols) {
@@ -108,20 +130,36 @@ const getFlaggedCount = (gameState) => {
   return flaggedCount;
 };
 
-function formatTime(ms) {
-  if (typeof ms !== "number" || isNaN(ms)) return "0.000";
-  return (ms / 1000).toFixed(3);
+/*
+  Just some utility functions
+*/
+
+function isButtonPressed(x, y, w, h) {
+  if (
+    mouseIsPressed &&
+    mouseX >= x &&
+    mouseX <= x + w &&
+    mouseY >= y &&
+    mouseY <= y + h
+  ) {
+    return true;
+  }
+  if (
+    typeof touches !== 'undefined' &&
+    touches.length > 0 &&
+    touches[0].x >= x &&
+    touches[0].x <= x + w &&
+    touches[0].y >= y &&
+    touches[0].y <= y + h
+  ) {
+    return true;
+  }
+  return false;
 }
 
-function getEmoji(state) {
-  switch (state) {
-    case "lost":
-      return emojiSadImg;
-    case "won":
-      return emojiGlassesImg;
-    default:
-      return emojiSmileImg;
-  }
+function formatTime(ms) {
+  if (typeof ms !== 'number' || isNaN(ms)) return '0.000';
+  return (ms / 1000).toFixed(3);
 }
 
 function vibrate(pattern = 35) {
@@ -130,17 +168,32 @@ function vibrate(pattern = 35) {
   }
 }
 
+/*
+  UI utility functions
+*/
+
+function getEmoji(state) {
+  switch (state) {
+    case 'lost':
+      return emojiSadImg;
+    case 'won':
+      return emojiGlassesImg;
+    default:
+      return emojiSmileImg;
+  }
+}
+
 function drawWrappedText(txt, x, y, maxWidth) {
-  const words = txt.split(" ");
-  let line = "";
-  let lineHeight = textAscent() + textDescent() + 4;
+  const words = txt.split(' ');
+  let line = '';
+  let lineHeight = textAscent() + textDescent() + strokeWidth / 2;
   let yy = y;
   for (let n = 0; n < words.length; n++) {
-    let testLine = line + words[n] + " ";
+    let testLine = line + words[n] + ' ';
     let testWidth = textWidth(testLine);
     if (testWidth > maxWidth && n > 0) {
       text(line, x, yy);
-      line = words[n] + " ";
+      line = words[n] + ' ';
       yy += lineHeight;
     } else {
       line = testLine;

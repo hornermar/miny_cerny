@@ -1,8 +1,6 @@
 let gameState = {
-  rows: GRID.ROWS,
-  cols: GRID.COLS,
-  cellSize: GRID.MIN_CELL_SIZE,
-  gridWidth: null,
+  rows: MAP.length,
+  cols: MAP[0].length,
   totalMines: 0,
   currentGameState: 'not started', // 'not started', 'playing', 'won', 'lost'
   revealed: [],
@@ -18,7 +16,6 @@ let gameState = {
 let longTouchTimeout = null;
 const LONG_TOUCH_DURATION = 500;
 const minesArray = [MINES_0, MINES_1, MINES_2];
-const minCanvasHeight = 720;
 
 let babyImg;
 let flagImg;
@@ -26,26 +23,10 @@ let headImg;
 
 window.pendingLevelReset = null;
 
-function recalculateCellSizeAndGridWidth() {
-  const gridBorderWidth = TOOLBAR.OFFSET * 2;
-  const gridWidth = window.innerWidth - GRID.OFFSET_X * 2 - gridBorderWidth;
-  const calculatedCellSize = Math.floor(gridWidth / gameState.cols);
-
-  gameState.cellSize = Math.max(
-    GRID.MIN_CELL_SIZE,
-    Math.min(calculatedCellSize, GRID.MAX_CELL_SIZE)
-  );
-
-  gameState.gridWidth = gameState.cols * gameState.cellSize + gridBorderWidth;
-}
-
 function windowResized() {
   const canvasSize = getCanvasSize();
   createCanvas(canvasSize.width, canvasSize.height);
-  pixelDensity(1);
-  
-  recalculateCellSizeAndGridWidth();
-  draw();
+  setSizes();
 }
 
 function preload() {
@@ -59,15 +40,19 @@ function preload() {
 function setup() {
   const canvasSize = getCanvasSize();
   createCanvas(canvasSize.width, canvasSize.height);
-  pixelDensity(1);
+  setSizes();
 
-  recalculateCellSizeAndGridWidth();
   initializeGame();
 
   // Prevent right-click context menu on the canvas
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
     return false;
+  });
+
+  // Prevent pinch-zoom on mobile devices
+  document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
   });
 }
 
@@ -97,7 +82,7 @@ function initializeGame() {
 
 function draw() {
   background(COLORS.BACKGROUND);
-  textFont(COMMON.fontFamily);
+  textFont(FONT_FAMILY);
   drawGame(gameState);
 }
 
@@ -135,9 +120,9 @@ function mousePressed() {
     return;
   }
 
-  const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
-  const col = Math.floor((mouseX - gridX) / gameState.cellSize);
-  const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+  const col = Math.floor((mouseX - gridX) / cellSize);
+  const row = Math.floor((mouseY - gridY) / cellSize);
+
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
   if (isInGameArea && gameState.currentGameState === 'not started') {
@@ -172,9 +157,10 @@ function touchStarted() {
   if (longTouchTimeout) {
     clearTimeout(longTouchTimeout);
   }
-  const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
-  const col = Math.floor((mouseX - gridX) / gameState.cellSize);
-  const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+
+  const col = Math.floor((mouseX - gridX) / cellSize);
+  const row = Math.floor((mouseY - gridY) / cellSize);
+
   const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
 
   if (
@@ -227,9 +213,9 @@ function touchEnded() {
       return false;
     }
 
-    const gridX = (window.innerWidth - gameState.cols * gameState.cellSize) / 2;
-    const col = Math.floor((mouseX - gridX) / gameState.cellSize);
-    const row = Math.floor((mouseY - GRID.OFFSET_Y) / gameState.cellSize);
+    const col = Math.floor((mouseX - gridX) / cellSize);
+    const row = Math.floor((mouseY - gridY) / cellSize);
+
     const isInGameArea = isValidCell(row, col, gameState.rows, gameState.cols);
     if (!isInGameArea) return false;
     if (gameState.currentGameState === 'not started') {

@@ -1,12 +1,40 @@
-const COMMON = {
-  fontFamily: 'Kode Mono',
-};
+/** 
+  Responsive Ratio Constants
+  Used for scaling UI elements proportionally to screen size
+*/
 
-const TITLE = {
-  OFFSET_Y: 34,
-  TEXT_SIZE: 16,
-  LABEL: 'miny_černý',
-};
+const strokeWidthRatio = 0.02;
+
+const titleTextSizeRatio = 0.043;
+const titleHeightRatio = 0.18;
+
+const toolbarHeightRatio = 0.21;
+const dropdownWidthRatio = 0.35;
+const dropdownTextSizeRatio = 0.037;
+const arrowSizeRatio = 0.02;
+const displayTextSizeRatio = 0.12;
+const displayWidthRatio = 0.24;
+const displayHeightRatio = 0.12;
+
+const emojiPaddingRatio = 0.01;
+
+const statusTextSizeRatio = 0.032;
+const statusLineHeightRatio = 0.045;
+
+const gridWidthRatio = 0.82;
+
+/**  
+  Canvas Size Limits
+*/
+const MIN_CANVAS_HEIGHT = 720;
+const MAX_CANVAS_WIDTH = 425;
+
+/**  
+  Font and Game Text 
+*/
+const FONT_FAMILY = 'Kode Mono';
+const TITLE = 'miny_černý';
+const LEVEL_NAMES = ['Praha 2013', 'Praha 2025', 'Praha 2035'];
 
 const INTRODUCTION = [
   'Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.',
@@ -26,59 +54,21 @@ const WIN = [
   'Vyčistil*a jsi hustě zaminované území! Profesionální výkon. Dostáváš nabídky od ukrajinské armády. A David Černý od dalších a dalších firem.',
 ];
 
-const dropdownHeight = 40;
-
-const LEVEL = {
-  NAMES: ['Praha 2013', 'Praha 2025', 'Praha 2035'],
-  TEXT_SIZE: 14,
-  DROPDOWN_WIDTH: 130,
-  DROPDOWN_HEIGHT: dropdownHeight,
-  INNER_OFFSET_X: 14,
-  OFFSET_Y: TITLE.OFFSET_Y - dropdownHeight / 2,
-};
-
-const TOOLBAR = {
-  OFFSET_Y: LEVEL.DROPDOWN_HEIGHT + LEVEL.OFFSET_Y + 18,
-  OFFSET: 7,
-  TEXT_SIZE: 40,
-  HEIGHT: 80,
-};
-
-const DISPLAY = {
-  WIDTH: 88,
-  HEIGHT: 46,
-  TEXT_SIZE: 46,
-  FRAME: 3,
-};
-
-const GRID = {
-  MIN_CELL_SIZE: 22,
-  MAX_CELL_SIZE: 28,
-  ROWS: MAP.length,
-  COLS: MAP[0].length,
-  OFFSET_X: 14,
-  OFFSET_Y: TOOLBAR.HEIGHT + TOOLBAR.OFFSET_Y + 18,
-};
-
-const STATUS = {
-  HEIGHT: 100,
-  TEXT_SIZE: 12,
-  OFFSET_Y: 30,
-  LINE_HEIGHT: 19,
-};
-
-const pink = [217, 77, 153];
+/**
+  Colors and cells constants
+*/
+const PINK = [217, 77, 153];
 
 const COLORS = {
   BACKGROUND: [220, 220, 220],
-  PRIMARY: pink,
+  PRIMARY: PINK,
   BLACK: [10],
   WHITE: [255, 255, 255],
   GRAY_LIGHT: [200],
 
   TEXT_PRIMARY: [100],
 
-  CELL_MINE: pink,
+  CELL_MINE: PINK,
   CELL_MINE_LIGHT: [235, 157, 199],
   CELL_RIVER: [180, 180, 180],
 
