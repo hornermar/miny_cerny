@@ -96,7 +96,7 @@ const mines = [
   },
   {
     id: 14,
-    name: 'Franz Kafka „K“',
+    name: 'Franz Kafka ‚K‘',
     description:
       'Spletl*a sis snad tuhle otáčející se hlavu s poutačem na Quadrio?',
     position: [5, 8],

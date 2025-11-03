@@ -26,8 +26,7 @@ const gridWidthRatio = 0.82;
 /**  
   Canvas Size Limits
 */
-const MIN_CANVAS_HEIGHT = 720;
-const MAX_CANVAS_WIDTH = 430;
+const MAX_CANVAS_WIDTH = 425;
 
 /**  
   Font and Game Text 
@@ -38,7 +37,7 @@ const LEVEL_NAMES = ['Praha 2013', 'Praha 2025', 'Praha 2035'];
 
 const INTRODUCTION = [
   'Oceňované Černého sochy ostře kritizujou českou společnost. Jeho instalace z peněz developerů Prahu dosud nezaplavují. Zatím je těžké narazit na Černého „minu” omylem.',
-  'David Černý svými díly nezastavitelně plní Prahu. V posledních letech k tomu přispívají hlavně jeho spolupráce s developery. Výsledkem je dvacet osm děl rozesetých po městě – a přibývají další.',
+  'David Černý svými díly nezastavitelně plní Prahu. V posledních letech k tomu přispívají hlavně jeho spolupráce s developery. Výsledkem je 28 děl rozesetých po městě – a přibývají další.',
   'Už stojí Top Tower? A jsou „dočasní“ Motýli pořád na Máji? Kromě děl vzniklých do roku 2025 v tomto levelu najdeš také budoucí, náhodně se objevující sochy.',
 ];
 
