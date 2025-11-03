@@ -171,13 +171,14 @@ function drawDisplay(x, y, displayText) {
   textStyle(NORMAL);
 
   let extraOffset = 0;
-  if (/android/i.test(navigator.userAgent)) {
-    extraOffset = 2;
+  // Apply extra offset for iOS devices
+  if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+    extraOffset = strokeWidth / 4;
   }
   text(
     displayText,
     x + displayWidth / 2,
-    y + displayHeight / 2 + frameSize + extraOffset
+    y + displayHeight / 2 + frameSize - extraOffset
   );
 }
 

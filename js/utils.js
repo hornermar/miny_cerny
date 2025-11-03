@@ -63,17 +63,20 @@ function getResponsiveWidth(ratio) {
 }
 
 function getCanvasSize() {
+  const width = Math.min(window.innerWidth, MAX_CANVAS_WIDTH);
   let height;
 
-  if (window.innerHeight < MIN_CANVAS_HEIGHT) {
-    height = MIN_CANVAS_HEIGHT;
+  const relativeHeight = width * gridWidthRatio * 2.3;
+
+  if (window.innerHeight < relativeHeight) {
+    height = relativeHeight;
     document.body.style.overflowY = 'auto';
   } else {
     height = window.innerHeight;
     document.body.style.overflowY = 'hidden';
   }
 
-  return { width: Math.min(window.innerWidth, MAX_CANVAS_WIDTH), height };
+  return { width, height };
 }
 
 /*

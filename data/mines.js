@@ -2,9 +2,8 @@ const mines = [
   {
     id: 1,
     name: 'Proudy',
-    description:
-      'To ses teda nechal*a jednoduše přečůrat.',
-    position: [3, 5],
+    description: 'To ses teda nechal*a jednoduše přečůrat.',
+    position: [3, 4],
     year: 2004,
   },
   {
@@ -18,28 +17,32 @@ const mines = [
   {
     id: 3,
     name: 'Miminka',
-    description: 'Zatím jedno z posledních instalovaných kritických děl Davida Černého. Metafora marketingového cejchu, který se nám vráží do tváře už při narození.',
+    description:
+      'Zatím jedno z posledních instalovaných kritických děl Davida Černého. Metafora marketingového cejchu, který se nám vráží do tváře už při narození.',
     position: [4, 4],
     year: 2008,
   },
   {
     id: 4,
     name: 'Věra',
-    description: 'Ač to vypadá jako památník Spidermana, tak je to Černého hold Věře Čáslavské. Tenhle kolotoč už z hlavy nedostaneš.',
+    description:
+      'Ač to vypadá jako památník Spidermana, tak je to Černého hold Věře Čáslavské. Tenhle kolotoč už z hlavy nedostaneš.',
     position: [5, 4],
     year: 2024,
   },
   {
     id: 5,
     name: 'Pomník kapely Visací zámek',
-    description: 'Punk\'s not dead, jen trochu zrůžověl. Pomník nesmrtelné kapely od nesmrtelného umělce.',
+    description:
+      "Punk's not dead, jen trochu zrůžověl. Pomník nesmrtelné kapely od nesmrtelného umělce.",
     position: [5, 2],
     year: 2022,
   },
   {
     id: 6,
     name: 'Brownnosing',
-    description: 'Socha z dob, kdy si Černý neodolatelně střílel z „těch nahoře“. Co by tehdejší David Černý řekl na dnešního Davida Černého?',
+    description:
+      'Socha z dob, kdy si Černý neodolatelně střílel z „těch nahoře“. Co by tehdejší David Černý řekl na dnešního Davida Černého?',
     position: [6, 3],
     year: 2003,
   },
@@ -55,21 +58,24 @@ const mines = [
   {
     id: 8,
     name: 'Maso',
-    description: 'Černého protest proti „auto-civilizaci“ způsobil Knížákův protest proti Černému. Ty neprotestuj a zkus si zahrát znovu.',
+    description:
+      'Černého protest proti „auto-civilizaci“ způsobil Knížákův protest proti Černému. Ty neprotestuj a zkus si zahrát znovu.',
     position: [9, 4],
     year: 2007,
   },
   {
     id: 10,
     name: 'Speederman',
-    description: 'Speederman v jinonické Waltrovce znázorňuje nadlidskou rychlost vývoje člověka. A možná taky zvyšující se intenzitu spolupráce Davida Černého s developery.',
+    description:
+      'Speederman v jinonické Waltrovce znázorňuje nadlidskou rychlost vývoje člověka. A možná taky zvyšující se intenzitu spolupráce Davida Černého s developery.',
     position: [9, 2],
     year: 2014,
   },
   {
     id: 11,
     name: 'Pegasové',
-    description: 'Napůl koně, napůl motory. Napůl byznys, napůl umění. Ty jsi se ale měl*a vyhnout Černému úplně. Takže to zkus znovu.',
+    description:
+      'Napůl koně, napůl motory. Napůl byznys, napůl umění. Ty jsi se ale měl*a vyhnout Černému úplně. Takže to zkus znovu.',
     position: [8, 2],
     year: 2017,
   },
@@ -77,7 +83,7 @@ const mines = [
     id: 12,
     name: 'Viselec',
     description: 'A to už si chtěl*a volat hasiče, aby toho chlapa zachránili.',
-    position: [4, 6],
+    position: [4, 7],
     year: 1997,
   },
   {
@@ -149,28 +155,32 @@ const mines = [
   {
     id: 18,
     name: 'Lilith',
-    description: 'Podle Černého tato karlínská gigantka symbolizuje rovnoprávnost a nezávislost žen. Zajisté, říkáš si, a mimoděk si bůhvíproč vzpomeneš na Dolly Buster.',
+    description:
+      'Podle Černého tato karlínská gigantka symbolizuje rovnoprávnost a nezávislost žen. Zajisté, říkáš si, a mimoděk si bůhvíproč vzpomeneš na Dolly Buster.',
     position: [3, 9],
     year: 2022,
   },
   {
     id: 19,
     name: 'Musoleum',
-    description: 'Muzeum, nebo showroom? A není to jedno? Tohle sis prostě mohl*a odpustit.',
+    description:
+      'Muzeum, nebo showroom? A není to jedno? Tohle sis prostě mohl*a odpustit.',
     position: [10, 4],
     year: 2023,
   },
   {
     id: 21,
     name: 'Pamětní deska Václava Havla',
-    description: 'Na tuhle desku se stejně jako na Národní divadlo složil český lid. Ty jsi ale evidentně nepřispěl*a, když jsi na ni šlápl*a.',
+    description:
+      'Na tuhle desku se stejně jako na Národní divadlo složil český lid. Ty jsi ale evidentně nepřispěl*a, když jsi na ni šlápl*a.',
     position: [5, 7],
     year: 2012,
   },
   {
     id: 22,
     name: 'H-A-V-E-L',
-    description: 'Pro příště, tuto písmenkovou sochu ženy najdeš nad vstupem do Knihovny Václava Havla. To dává smysl, nebo?',
+    description:
+      'Pro příště, tuto písmenkovou sochu ženy najdeš nad vstupem do Knihovny Václava Havla. To dává smysl, nebo?',
     position: [6, 6],
     year: 2021,
   },
@@ -185,22 +195,24 @@ const mines = [
   {
     id: 24,
     name: 'Tři ženy na domě',
-    description: 'Černého raný „take“ na umístění uměleckého díla na kulturní památku. Je to malý a neblýská se to – není divu, že jsi ho přehlédl*a.',
+    description:
+      'Černého raný „take“ na umístění uměleckého díla na kulturní památku. Je to malý a neblýská se to – není divu, že jsi ho přehlédl*a.',
     position: [5, 6],
     year: 2007,
   },
-    {
+  {
     id: 25,
-    name: "The Italians Wine Food",
-    description: "Vyčerpaný*á sis skočil*a pro bagetu, kafčo a trochu klidu. Když tu náhle...prostě ses jen nevinně podíval*a na strop a tam na trámu shluk Černého sošek. Kapituluješ.",
+    name: 'The Italians Wine Food',
+    description:
+      'Vyčerpaný*á sis skočil*a pro bagetu, kafčo a trochu klidu. Když tu náhle...prostě ses jen nevinně podíval*a na strop a tam na trámu shluk Černého sošek. Kapituluješ.',
     position: [7, 4],
     year: 2020, // unknown
-   },
+  },
   {
     id: 26,
     name: 'Embryo',
     description: 'Snad se z toho nevyklubou další mimina!',
-    position: [4, 5],
+    position: [4, 6],
     year: 2008,
   },
   {
@@ -222,14 +234,16 @@ const mines = [
   {
     id: 29,
     name: 'Brouk',
-    description: 'Auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo!',
+    description:
+      'Auto, které upozorňuje na přemíru aut. Dupni na plyn a dej si ještě jedno kolo!',
     position: [10, 9],
     year: 2020,
   },
   {
     id: 30,
     name: 'Top Tower',
-    description: 'Vrak lodi na kopci podepírající mrakodrap. Jak by to měl David Černý ještě vyšperkovat, abys ho nepřehlédl*a?',
+    description:
+      'Vrak lodi na kopci podepírající mrakodrap. Jak by to měl David Černý ještě vyšperkovat, abys ho nepřehlédl*a?',
     position: [9, 0],
     year: 2030,
   },
@@ -238,7 +252,7 @@ const mines = [
     name: 'Fakáč',
     description:
       'Jak si mohl*a zapomenout na tenhle „normální fakáč těm zm***m komunistickejm zasr**ejm na Hradě“? Plul na Vltavě na pozdim 2013',
-    position: [5, 5],
+    position: [4, 5],
     year: 2013,
   },
 
