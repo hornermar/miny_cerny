@@ -27,7 +27,7 @@ const gridWidthRatio = 0.82;
   Canvas Size Limits
 */
 const MIN_CANVAS_HEIGHT = 720;
-const MAX_CANVAS_WIDTH = 425;
+const MAX_CANVAS_WIDTH = 430;
 
 /**  
   Font and Game Text 
