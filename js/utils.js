@@ -66,7 +66,7 @@ function getCanvasSize() {
   const width = Math.min(window.innerWidth, MAX_CANVAS_WIDTH);
   let height;
 
-  const relativeHeight = width * gridWidthRatio * 2.3;
+  const relativeHeight = width * gridWidthRatio * 2.4;
 
   if (window.innerHeight < relativeHeight) {
     height = relativeHeight;

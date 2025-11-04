@@ -20,7 +20,7 @@ function drawStatus(gameState) {
       gridWidth + strokeWidth
     );
 
-    y += statusLineHeight * 6;
+    y += statusLineHeight * 6.4;
     drawWrappedText(
       CALL_TO_ACTION[gameState.level],
       x,
